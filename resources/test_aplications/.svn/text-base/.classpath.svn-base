@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="labedados/1roteiro1/src"/>
+	<classpathentry kind="src" path="labedados/2roteiro1/src"/>
+	<classpathentry kind="src" path="labedados/3roteiro1/src"/>
+	<classpathentry kind="src" path="labedados/4roteiro1"/>
+	<classpathentry kind="src" path="labedados/5roteiro1/src"/>
+	<classpathentry kind="src" path="labedados/6roteiro1"/>
+	<classpathentry kind="src" path="org-smartpumping-core/src/main/java"/>
+	<classpathentry kind="src" path="org-smartpumping-core/src/test/java"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dw.jar"/>
+	<classpathentry kind="lib" path="e.jar"/>
+	<classpathentry kind="lib" path="fp.jar"/>
+	<classpathentry kind="lib" path="labedados/1roteiro1/1.jar"/>
+	<classpathentry kind="lib" path="labedados/2roteiro1/2.jar"/>
+	<classpathentry kind="lib" path="labedados/3roteiro1/3.jar"/>
+	<classpathentry kind="lib" path="labedados/5roteiro1/5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="src"/>
+</classpath>

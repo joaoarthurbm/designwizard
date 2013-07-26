@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test
+END
+AbstractEntityTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/AbstractEntityTest.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/package-frame.html
+END
+EntityTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/EntityTest.html
+END
+MethodNodeTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/MethodNodeTest.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/package-tree.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/package-use.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/package-summary.html
+END
+FieldNodeTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/FieldNodeTest.html
+END
+ClassNodeTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/design/test/ClassNodeTest.html
+END

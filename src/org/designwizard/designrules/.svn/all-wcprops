@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules
+END
+ClassDependencesRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/ClassDependencesRule.java
+END
+CyclicDependencyRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/CyclicDependencyRule.java
+END
+Rule.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/Rule.java
+END
+HashCodeAndEqualsRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/HashCodeAndEqualsRule.java
+END
+MethodDependencesRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/MethodDependencesRule.java
+END
+AbstractDependencesRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/AbstractDependencesRule.java
+END
+PackageDependences.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/PackageDependences.java
+END
+DependencesRuleIF.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/designrules/DependencesRuleIF.java
+END

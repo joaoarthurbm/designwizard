@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/design_wizard/src_tests/tests/org/designwizard/system
+END
+TraceForMethods.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/3/trunk/design_wizard/src_tests/tests/org/designwizard/system/TraceForMethods.java
+END
+ExtractingFromClassFileTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/3/trunk/design_wizard/src_tests/tests/org/designwizard/system/ExtractingFromClassFileTest.java
+END
+ImpactTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/design_wizard/src_tests/tests/org/designwizard/system/ImpactTest.java
+END
+EARFilesTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/3/trunk/design_wizard/src_tests/tests/org/designwizard/system/EARFilesTest.java
+END

@@ -1,0 +1,215 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles
+END
+teste.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/teste.jar
+END
+usefield.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/usefield.jar
+END
+staticFinalAttCall.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/staticFinalAttCall.jar
+END
+subTyping.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/subTyping.jar
+END
+accessmodifiers.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/accessmodifiers.jar
+END
+attributeredefined.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/attributeredefined.jar
+END
+gerador.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/gerador.jar
+END
+useragent.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/useragent.jar
+END
+wepayu.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/wepayu.jar
+END
+ejb.jar
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ejb.jar
+END
+singletonCorrect.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/singletonCorrect.jar
+END
+justOneLetter.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/justOneLetter.jar
+END
+singletonBadField.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/singletonBadField.jar
+END
+innerclass.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/innerclass.jar
+END
+trycatchblock.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/trycatchblock.jar
+END
+singletonBadGetInstance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/singletonBadGetInstance.jar
+END
+derby.war
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/derby.war
+END
+hierarchy.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/hierarchy.jar
+END
+constructors.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/constructors.jar
+END
+implements2Interfaces.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/implements2Interfaces.jar
+END
+isprimitive.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/isprimitive.jar
+END
+impactwithinheritance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/impactwithinheritance.jar
+END
+attributeNOTredefined.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/attributeNOTredefined.jar
+END
+enum.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/enum.jar
+END
+trace.jar
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/trace.jar
+END
+finalAttCall.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/finalAttCall.jar
+END
+edados1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/edados1.jar
+END
+singleton.jar
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/singleton.jar
+END
+simpleimpactwithinheritance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/simpleimpactwithinheritance.jar
+END
+innerclass-relations.jar
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/innerclass-relations.jar
+END
+throws.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/throws.jar
+END
+designwizard-1.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/designwizard-1.2.jar
+END
+returnmethod.jar
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/returnmethod.jar
+END
+singletonBadConstructor1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/singletonBadConstructor1.jar
+END
+visibility.jar
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/visibility.jar
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact
+END
+ImpactTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/ImpactTest.html
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/package-frame.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/package-tree.html
+END
+EARFilesTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/EARFilesTest.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/package-use.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/package-summary.html
+END
+DescriptionTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/DescriptionTest.html
+END
+TraceForMethods.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/impact/TraceForMethods.html
+END

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design
+END
+package-frame.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/package-frame.html
+END
+package-tree.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/package-tree.html
+END
+CatchBlockTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/CatchBlockTest.html
+END
+RedBarTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/RedBarTest.html
+END
+CatchedExceptionsTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/CatchedExceptionsTest.html
+END
+package-use.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/package-use.html
+END
+AllClassesInSuiteTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/AllClassesInSuiteTest.html
+END
+package-summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/package-summary.html
+END
+WarningTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3/trunk/design_wizard/doc/org/designwizard/test/design/WarningTest.html
+END

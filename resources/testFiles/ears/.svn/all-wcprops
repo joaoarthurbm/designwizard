@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears
+END
+bmp-simple.ear
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/bmp-simple.ear
+END
+airlinesupplier.ear
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/airlinesupplier.ear
+END
+activitysupplier.ear
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/activitysupplier.ear
+END
+bank.ear
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/bank.ear
+END
+basicSSL.ear
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/basicSSL.ear
+END
+bmp-robean.ear
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/bmp-robean.ear
+END
+basicAuth.ear
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3/trunk/design_wizard/resources/testFiles/ears/basicAuth.ear
+END

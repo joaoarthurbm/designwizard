@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/3/trunk/design_wizard/lib
+END
+easymockclassextension.jar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3/trunk/design_wizard/lib/easymockclassextension.jar
+END
+asm-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/design_wizard/lib/asm-3.1.jar
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/3/trunk/design_wizard/lib/.cvsignore
+END
+gxl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/3/trunk/design_wizard/lib/gxl.jar
+END
+easymock.jar
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/design_wizard/lib/easymock.jar
+END
+junit.jar
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/design_wizard/lib/junit.jar
+END
+cglib-nodep-2.1_3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/3/trunk/design_wizard/lib/cglib-nodep-2.1_3.jar
+END

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Ant build file for DesignWizard. -->
+                  
+<project basedir="." default="build" name="design_wizard">
+
+<property file="build.properties" />
+
+	<path id="lib.path">
+			<fileset dir="${designwizard.lib.dir}">
+				<include name="*.jar"/>
+			</fileset>
+	</path>
+
+	
+<target name="init">
+	<mkdir dir="${designwizard.output.dir}" />
+	<mkdir dir="${designwizard.docs.dir}" />
+	<mkdir dir="${designwizard.dist.dir}" />
+</target>
+
+<target name="compile" depends="init">
+	<javac sourcepath="1.5" srcdir="${designwizard.src.dir}" classpath="${java.classpath}"
+	         destdir="${designwizard.output.dir}" debug="on" optimize="on" >
+	 </javac>
+</target>
+
+<target name="clean"> 
+	<delete dir="${designwizard.output.dir}"/>
+	<delete dir="${designwizard.docs.dir}"/>
+	<delete file="${designwizard.jar}"/>
+	<delete file="${designwizard-executable.jar}"/>
+</target>
+
+<target name="build">
+	<antcall target="clean" />
+	<antcall target="compile" />
+	<antcall target="jar" />
+	<antcall target="javadoc" />
+</target>
+	
+<!-- DOJAVADOC -->
+<target name="javadoc">
+	<mkdir dir="${designwizard.docs.dir}" />
+	<javadoc author="true" classpath="${java.classpath}" destdir="${designwizard.docs.dir}"
+		sourcepath="${designwizard.src.dir}" 
+		use="true" version="true" windowtitle="Design Wizard"
+		excludepackagenames="**/test/**" >
+		<fileset dir="${designwizard.src.dir}" defaultexcludes="yes">
+		</fileset>
+	</javadoc>
+</target>
+	
+
+<!-- MAKEJAR WITH ASM EMBEDDED-->
+<target name="jarWithDependencies" depends="compile">
+    <fatjar.build output="${designwizard-executable.jar}">
+        <fatjar.manifest/>
+        <fatjar.filesource path="${designwizard.output.dir}" relpath="">
+            <fatjar.exclude relpath="${designwizard.test.dir}"/>
+        </fatjar.filesource>
+    	<fatjar.jarsource file="${asm.jar}" relpath=""/>
+    	<fatjar.jarsource file="${gxl.jar}" relpath=""/>
+    </fatjar.build>
+	<deltree dir="_"/>
+</target>
+	
+
+<!-- MAKEJAR WITHOUT ASM -->	
+<target name="jar" description="creates a jar file ">
+	
+	 <jar destfile="${designwizard.jar}">
+	    <fileset dir="${designwizard.output.dir}"
+	             excludes="**/*Test.class"
+	    />
+	  </jar>
+	
+</target>
+
+<!-- Run unit tests -->
+<target name="unit" depends="compile,jarWithDependencies">
+	<java fork="yes" classname="junit.swingui.TestRunner" taskname="junit" failonerror="true">
+		<arg value="org.designwizard.test.AllTest"/>
+		<classpath>
+			<pathelement path="${java.classpath}"/>
+		</classpath>
+	</java>
+</target>
+</project>

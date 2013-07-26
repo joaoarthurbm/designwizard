@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker
+END
+SingletonPatternChecker.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/SingletonPatternChecker.java
+END
+CheckError.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/CheckError.java
+END
+CheckingResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/CheckingResult.java
+END
+PatternChecker.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/PatternChecker.java
+END
+CheckWarning.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/CheckWarning.java
+END
+ResultListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3/trunk/design_wizard/src/org/designwizard/patternchecker/ResultListener.java
+END
