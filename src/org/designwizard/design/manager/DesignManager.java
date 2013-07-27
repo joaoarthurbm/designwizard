@@ -75,7 +75,7 @@ public class DesignManager implements ExtractionListener {
 	public void extractFacts(String path) throws IOException, FileNotFoundException {
 		File file = new File(path);
 		
-		if (!file.exists()) throw new FileNotFoundException();
+		if (!file.exists()) throw new FileNotFoundException("Couldn't find the given path: " + path);
 		
 		if (file.getName().endsWith(".jar") ) {
 			this.extractFactsFromJar(path);
