@@ -68,19 +68,20 @@ public class ASMExtractorTest extends TestCase {
 		
 		try {
 			this.dw = new DesignWizard(EAR_PROJECT_PATH, "dashsample.war", "WEB-INF/classes/com/kbtflawt/server/ejb/DirectoryPoller.java");
-			fail();
+			fail("Should had thrown Exception for unexisting path");
 		}catch (Exception e) {	}
 		
 		
 		try {
 			this.dw = new DesignWizard(EAR_PROJECT_PATH, "dashsample.java");
-			fail();
+			fail("Should had thrown Exception for unexisting path");
 		}catch (Exception e) {	}
 		
 		try {
 			this.dw = new DesignWizard(EAR_PROJECT_PATH);
-			fail();
-		}catch (Exception e) {	}
+		}catch (Exception e) {
+			fail("Should NOT had thrown Exception for existing path");
+		}
 		
 	}
 	
@@ -99,23 +100,24 @@ public class ASMExtractorTest extends TestCase {
 		
 		try {
 			this.dw = new DesignWizard(WAR_PROJECT_PATH,  "WEB-INF/classes/", "teste");
-			fail();
+			fail("Should had thrown Exception for unexisting path");
 		}catch (Exception e) {	}
 		
 		try {
 			this.dw = new DesignWizard(WAR_PROJECT_PATH,  "WEB-INF/lib/jetty-util-6.0.1.jar", "teste");
-			fail();
+			fail("Should had thrown Exception for unexisting path");
 		}catch (Exception e) {	}
 		
 		try {
 			this.dw = new DesignWizard(WAR_PROJECT_PATH, "dashsample.java");
-			fail();
+			fail("Should had thrown Exception for unexisting path");
 		}catch (Exception e) {	}
 		
 		try {
 			this.dw = new DesignWizard(WAR_PROJECT_PATH);
-			fail();
-		}catch (Exception e) {	}
+		}catch (Exception e) {
+			fail("Should not had thrown Exception for existing path");
+		}
 		
 	}
 	
