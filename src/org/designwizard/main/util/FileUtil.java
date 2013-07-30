@@ -16,6 +16,8 @@ import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import com.google.common.io.Files;
+
 
 public class FileUtil {
 	
@@ -78,15 +80,9 @@ public class FileUtil {
 	 * @throws FileNotFoundException 
 	 */
 	public static File extractFilesFromZipFile(String pathOfEarFile, String internalPath) throws IOException {
-		String currentDir = System.getProperty("user.dir");
-
-		File directory = new File(currentDir+File.separator+"tmp-designwizard" + new Random().nextInt(10000));
-		directory.mkdir();
+		File directory = Files.createTempDir();
 		
-		
-
 		File sourceZipFile = new File(pathOfEarFile);
-		File unzipDestinationDirectory = directory;
 
 		// Open Zip file for reading
 		ZipFile zipFile = new ZipFile(sourceZipFile, ZipFile.OPEN_READ);
@@ -103,7 +99,7 @@ public class FileUtil {
 
 			if (currentEntry.startsWith(internalPath)) {
 
-				File destFile = new File(unzipDestinationDirectory, currentEntry);
+				File destFile = new File(directory, currentEntry);
 
 				// grab file's parent directory structure
 				File destinationParent = destFile.getParentFile();
