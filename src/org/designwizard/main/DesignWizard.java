@@ -106,8 +106,7 @@ public class DesignWizard {
 	 * 			by the classEntity.
 	 * @throws 	InexistentEntityException	if the class cannot be located
 	 */
-	@SuppressWarnings("unchecked")
-	public ClassNode getClass(java.lang.Class classEntity) throws InexistentEntityException {
+	public ClassNode getClass(java.lang.Class<?> classEntity) throws InexistentEntityException {
 	
 		return this.getClass(classEntity.getName());
 	
