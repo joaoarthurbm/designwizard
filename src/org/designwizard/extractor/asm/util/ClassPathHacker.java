@@ -6,7 +6,7 @@ import java.net.URLClassLoader;
 
 public class ClassPathHacker {
 	 
-	private final Class[] parameters = new Class[]{URL.class};
+	private final Class<?>[] parameters = new Class[]{URL.class};
 	 
 	/**
 	 * Adds the file to classpath.
