@@ -17,6 +17,8 @@ public class FactEvent extends EventObject {
 	private String entity;
 	private String modifier;
 	private Collection<String> modifiers = new ArrayList<String>();
+	//FIXME Add for annotation classes: visibility of the annotation! Not used yet!
+    private boolean visible;
 	
 	/**
 	 * Creates a new FactEvent for relation extracted.
@@ -56,6 +58,17 @@ public class FactEvent extends EventObject {
 	
 	}
 	
+	/**
+     * Creates a new FactEvent for annotation extracted.
+     * @param source
+     * @param entity the name of the annotation
+     * @param visible visibility of the annotation
+     */
+    public FactEvent(Object source, String entity, boolean visible) {
+        super(source);
+        this.entity = entity.replace("/", ".");
+        this.visible = visible;
+    }
 	
 	/**
 	 * Used to classExtracted.

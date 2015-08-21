@@ -71,6 +71,35 @@ public class Design implements DesignIF {
 		}
 	
 	}
+	
+	@Override
+	public void annotationExtracted(String entity) {
+		if (!this.entities.containsKey(entity)) {
+			ClassNode annotation = new ClassNode(entity);
+			annotation.modifiers.add(Modifier.ANNOTATION);
+			this.entities.put(entity, annotation);
+		}
+	}
+	
+	public Set<ClassNode> getAllAnnotations() {
+		Set<ClassNode> feedBack = new HashSet<ClassNode>();
+		for (Entity entity: this.entities.values()) {
+			if (entity.getModifiers().contains(Modifier.ANNOTATION)) {
+				feedBack.add((ClassNode) entity);
+			}
+		}
+		return feedBack;
+	}
+	
+	/**
+	 * Returns a <code>AnnotationNode</code> represented by the specified annotationName.
+	 * @param annotationName the name of the class.
+	 * @return a <code>AnnotationNode</code> represented by the specified annotationName.
+	 * @throws InexistentEntityException if the annotation cannot be located.
+	 */
+	public ClassNode getAnnotation(String annotationName) throws InexistentEntityException {
+		return (ClassNode) this.getEntity(annotationName);
+	}
 
 	/**
 	 * Adds a new relation in the design.

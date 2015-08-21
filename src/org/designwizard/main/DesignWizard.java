@@ -7,6 +7,7 @@ import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
+import org.designwizard.design.Modifier;
 import org.designwizard.design.PackageNode;
 import org.designwizard.design.manager.DesignManager;
 import org.designwizard.design.manager.ResultOfImpact;
@@ -158,6 +159,16 @@ public class DesignWizard {
 	
 		return this.manager.getAllClasses();
 	
+	}
+	
+	/**
+	 * Returns a <code>java.util.Set</code> containing <code>ClassNode</code> objects reflecting all
+	 * the annotations extracted that they are classes with {@link Modifier#ANNOTATION}.
+	 * @return    the set of <code>AnnotationNode</code> objects representing the
+	 *             annotations extracted.
+	 */
+	public Set<ClassNode> getAllAnnotations() {
+		return this.manager.getAllAnnotations();
 	}
 	
 	/**

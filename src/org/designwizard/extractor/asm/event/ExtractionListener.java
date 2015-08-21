@@ -10,5 +10,6 @@ public interface ExtractionListener  {
 	public void visibilityExtracted(FactEvent factEvent);
 	public void modifiersExtracted(FactEvent factEvent);
 	public void packageExtracted(FactEvent factEvent);
+	public void annotationExtracted(FactEvent factEvent);
 	
 }

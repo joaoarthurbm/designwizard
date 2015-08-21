@@ -2,9 +2,11 @@ package org.designwizard.extractor.asm.visitor;
 
 import java.util.Collection;
 
+import org.designwizard.design.manager.util.TranslatorUtil;
 import org.designwizard.extractor.asm.event.FactEvent;
 import org.designwizard.extractor.asm.event.FactsEventSourceImpl;
 import org.designwizard.extractor.asm.util.OpcodesTranslator;
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -189,7 +191,28 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 	
 	}
 	
-	
+	/**
+	 * Método de visita de Annotações.
+	 * @param annotationName
+	 * @param isVisible
+	 */
+	@Override
+	public AnnotationVisitor visitAnnotation(String annotationName, boolean isVisible) {
+		TranslatorUtil translator = new TranslatorUtil();
+		String annotation = null;
+		if (annotationName.length() != 1) {
+			annotation = translator.translateBytecodeToJavaPattern(annotationName);
+		}
+		// Cria um novo FactEvent para Annotations
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, annotation, isVisible);
+		super.fireAnnotationExtracted();
+
+		// Caller = classname and Called = desc (annotation)
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, "ISANNOTATEDBY", this.className, annotation);
+		super.fireRelationExtracted();
+		//TODO O que devemos retornar? Retornamos o EmptyVisitor
+		return new EmptyVisitor();
+	};
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {

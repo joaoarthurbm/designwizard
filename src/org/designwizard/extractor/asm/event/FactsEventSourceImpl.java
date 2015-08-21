@@ -91,6 +91,15 @@ public class FactsEventSourceImpl implements FactsEventSource {
     		l.classExtracted(this.factEvent);
     	}
 	}
+	
+	/**
+	 * Fire the Annotation Extracted Event.
+	 */
+	protected void fireAnnotationExtracted() {
+        for (ExtractionListener l : this.listeners) {
+            l.annotationExtracted(this.factEvent);
+        }
+    }
 
 	public void firePackageExtracted() {
 		for (ExtractionListener l : this.listeners) {
