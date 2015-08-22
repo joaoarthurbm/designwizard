@@ -198,17 +198,12 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 	 */
 	@Override
 	public AnnotationVisitor visitAnnotation(String annotationName, boolean isVisible) {
-		TranslatorUtil translator = new TranslatorUtil();
-		String annotation = null;
-		if (annotationName.length() != 1) {
-			annotation = translator.translateBytecodeToJavaPattern(annotationName);
-		}
 		// Cria um novo FactEvent para Annotations
-		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, annotation, isVisible);
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, annotationName, isVisible);
 		super.fireAnnotationExtracted();
 
 		// Caller = classname and Called = desc (annotation)
-		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, "ISANNOTATEDBY", this.className, annotation);
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, "ISANNOTATEDBY", this.className, annotationName);
 		super.fireRelationExtracted();
 		//TODO O que devemos retornar? Retornamos o EmptyVisitor
 		return new EmptyVisitor();
