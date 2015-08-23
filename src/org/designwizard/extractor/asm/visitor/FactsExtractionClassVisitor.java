@@ -2,7 +2,6 @@ package org.designwizard.extractor.asm.visitor;
 
 import java.util.Collection;
 
-import org.designwizard.design.manager.util.TranslatorUtil;
 import org.designwizard.extractor.asm.event.FactEvent;
 import org.designwizard.extractor.asm.event.FactsEventSourceImpl;
 import org.designwizard.extractor.asm.util.OpcodesTranslator;
@@ -205,7 +204,7 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 		// Caller = classname and Called = desc (annotation)
 		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, "ISANNOTATEDBY", this.className, annotationName);
 		super.fireRelationExtracted();
-		//TODO O que devemos retornar? Retornamos o EmptyVisitor
+		
 		return new EmptyVisitor();
 	};
 
