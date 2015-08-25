@@ -274,6 +274,28 @@ public class ClassNode extends AbstractEntity implements Entity {
 	public Set<ClassNode> getAnnotations() {
 		return declaredAnnotations;
 	}
+	
+	/**
+     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * represented by this <code>ClassNode</code> with {@link Modifier#ANNOTATION}.
+     *
+     * @return the set of the annotated classes for this object or <code>null</code> if this object wasn't an annotation.
+     */
+	public Set<ClassNode> getClassesAnnotated() {
+		if (!isAnnotationClass()) return null;
+		
+		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.ANNOTATES);
+		Set<ClassNode> feedBack = new HashSet<ClassNode>();
+		
+		for (Relation relation : containsRelations) {
+			Entity entity = relation.getCalledEntity();
+			if (entity.getTypeOfEntity().equals(TypesOfEntities.CLASS)) {
+				feedBack.add((ClassNode) entity);
+			}
+		}
+	
+		return feedBack;
+	}
 
 	/**
      * Returns a <code>java.util.Set</code> representing the methods of the class or interface represented by this
