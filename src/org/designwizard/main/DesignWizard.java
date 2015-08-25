@@ -100,6 +100,18 @@ public class DesignWizard {
 	}
 	
 	/**
+	 * Returns the <code>ClassNode</code> object associated with the annotation
+	 * with the given string name. The {@link ClassNode} contains the {@link Modifier#ANNOTATION}.
+	 * @param    annotationName   the fully qualified name of the desired annotation.
+	 * @return    the <code>ClassNode</code> object for the annotation with the
+	 *             specified name.
+	 * @throws     InexistentEntityException    if the annotation cannot be located
+	 */
+	public ClassNode getAnnotation(String annotationName) throws InexistentEntityException {
+		return this.manager.getAnnotation(annotationName);
+	}
+	
+	/**
 	 * Returns the <code>ClassNode</code> object associated with the class or
      * interface with the given java class.
 	 * @param	classEntity   the desired class.
@@ -160,6 +172,10 @@ public class DesignWizard {
 		return this.manager.getAllClasses();
 	
 	}
+	
+	public Set<ClassNode> getClassesByAnnotation(String annotationName) throws InexistentEntityException {
+        return this.manager.getClassesByAnnotation(annotationName);
+    }
 	
 	/**
 	 * Returns a <code>java.util.Set</code> containing <code>ClassNode</code> objects reflecting all
