@@ -31,45 +31,25 @@ public class AnnotationsOfClassTest {
 		Set<ClassNode> annotations = dw.getAllAnnotations();
 
         for (ClassNode annotationNode : annotations) {
-            System.out.println("Annotations");
-            System.out.println("Name: " + annotationNode.getName());
-            // System.out.println("Annotations: " +
-            // annotationNode.getClassesAnnotated());
-            System.out.println("Is Annotation: " + annotationNode.isAnnotationClass());
+            assertTrue("Annotation: " + annotationNode.getName(), annotationNode.isAnnotationClass());
         }
-        
-        Set<ClassNode> classes = dw.getAllClasses();
-
-        for (ClassNode classNode : classes) {
-            System.out.println(classNode.getClassName());
-            System.out.println(classNode.getAnnotations());
-        }
+        assertEquals("1", 9, annotations.size());
 	}
 
 	@Test
 	public void testIsAnnotationClass() {
-		ClassNode sigest, annotationA, annotationB;
+		ClassNode sigest, annotationA, annotationB, entity;
 		try {
 			sigest = dw.getClass("br.ufrn.cerescaico.bsi.sigest.Sigest");
 			annotationA = dw.getClass("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			annotationB = dw.getClass("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
-			
-			System.out.println("Classe >>>> Sigest");
-	        System.out.println("Name: " + sigest.getName());
-	        System.out.println("ClassName: " + sigest.getClassName());
-	        System.out.println("All Annotations:");
-	        
-	        Set<ClassNode> annotations = sigest.getAnnotations();
-	        for (ClassNode annotationNode : annotations) {
-	            System.out.println("Annotations");
-	            System.out.println("Name: " + annotationNode.getName());
-	            System.out.println("Is Annotation: " + annotationNode.isAnnotationClass());
-	        }
+			entity = dw.getClass("javax.persistence.Entity");
 
 	        assertTrue("1", sigest.isClass());
 	        assertFalse("2", sigest.isAnnotationClass());
 	        assertTrue("3", annotationA.isAnnotationClass());
 	        assertTrue("4", annotationB.isAnnotationClass());
+	        assertTrue("5", entity.isAnnotationClass());
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
 		}
@@ -77,27 +57,67 @@ public class AnnotationsOfClassTest {
 	
 	@Test
 	public void testGetClassesByAnnotation() {
-        /*Set<ClassNode> models = dw.getClassesByAnnotation("javax.persistence.Entity");
-
-        for (ClassNode classNode : models) {
-            System.out.println(classNode.getClassName());
-            System.out.println(classNode.getAllAnnotations());
-        }*/
+        Set<ClassNode> classes = null;
+		try {
+			classes = dw.getClassesByAnnotation("javax.persistence.Entity");
+			assertEquals("1", 11, classes.size());
+			
+			classes = dw.getClassesByAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
+			assertEquals("2", 2, classes.size());
+			
+			classes = dw.getClassesByAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			assertEquals("3", 0, classes.size());
+		} catch (InexistentEntityException e) {
+			fail(e.getMessage());
+		}
 	}
 	
-	//@Test
+	@Test
 	public void testGetAnnotation() {
-		/*ClassNode annotation = dw.getAnnotation("javax.persistence.Entity");
-        System.out.println("Annotations >>>> ");
-        System.out.println("Name: " + annotation.getName());
-        System.out.println("ClassName: " + annotation.getClassName());
-        System.out.println("is Annotation: " + annotation.isAnnotationClass());*/
+		ClassNode entity, annotationA, annotationB, sigest;
+		try {
+			entity = dw.getAnnotation("javax.persistence.Entity");
+			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			annotationB = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			sigest = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.Sigest");
+			
+			
+			assertNull("1", sigest);
+			assertNotNull("2", entity);
+			assertNotNull("3", annotationA);
+			assertNotNull("4", annotationB);
+	        assertTrue("5", annotationA.isAnnotationClass());
+	        assertTrue("6", annotationB.isAnnotationClass());
+	        assertTrue("7", entity.isAnnotationClass());
+			
+		} catch (InexistentEntityException e) {
+			fail(e.getMessage());
+		}
 	}
 	
 	//@Test
 	public void testGetClassesAnnotated() {
 		// TODO Implementar Relação reversa entre classes e suas anotações
-		//ClassNode annotation = dw.getAnnotation("javax.persistence.Entity");
-        //System.out.println("All Classes: " + annotation.getClassesAnnotated());
+		
+		/*ClassNode entity, annotationA, annotationB;
+		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity;
+		try {
+			entity = dw.getAnnotation("javax.persistence.Entity");
+			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			annotationB = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			classesAnnotationA = annotationA.getClassesAnnotated();
+			classesAnnotationB = annotationB.getClassesAnnotated();
+			classesEntity = entity.getClassesAnnotated();
+			
+			assertNotNull("1", classesAnnotationA);
+			assertEquals("2", 2, classesAnnotationA.size());
+	        assertNotNull("3", classesAnnotationB);
+	        assertEquals("4", 0, classesAnnotationB.size());
+	        assertNotNull("5", classesEntity);
+	        assertEquals("6", 11, classesEntity.size());
+			
+		} catch (InexistentEntityException e) {
+			fail(e.getMessage());
+		}*/
 	}
 }
