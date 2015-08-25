@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry path="" kind="src"/>
-	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
-	<classpathentry path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1" kind="con"/>
-	<classpathentry path="/DesignWizard/dist/designwizard-1.2.jar" kind="lib"/>
-	<classpathentry path="" kind="output"/>
-</classpath>
