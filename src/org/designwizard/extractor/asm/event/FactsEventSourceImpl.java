@@ -16,26 +16,26 @@ public class FactsEventSourceImpl implements FactsEventSource {
 	protected LinkedList<ExtractionListener> listeners = new LinkedList<ExtractionListener>();
 	protected FactEvent factEvent;
 	protected ClassVisitor cv;
-	
+
 	//FIXME Remover todas as Strings por Constantes ou ENUMS
 	private static final String PUBLIC = "PUBLIC";
 	private static final String PRIVATE = "PRIVATE";
 	private static final String PROTECTED = "PROTECTED";
 	private static final String PACKAGE = "PACKAGE";
-	
+
 	public FactsEventSourceImpl(ClassVisitor cv) {
-		
+
 		if (cv == null) {
-			
+
 			this.cv = new EmptyVisitor();
-		
+
 		}
-		
-    	this.cv = cv;
-    }
-	
+
+		this.cv = cv;
+	}
+
 	public FactsEventSourceImpl() {}
-    
+
 
 	protected String extractVisibility(int access) {
 		if ((access & Opcodes.ACC_PUBLIC) != 0) {
@@ -48,54 +48,54 @@ public class FactsEventSourceImpl implements FactsEventSource {
 			return FactsEventSourceImpl.PACKAGE;
 		}
 	}
-	
-	public void addListener(ExtractionListener e) {
-    	this.listeners.add(e);
-    }
-    
-    public void addListener(List<ExtractionListener> e) {
-    	this.listeners.addAll(e);
-    }
-    
-    public void removeListener(ExtractionListener e) {
-    	this.listeners.remove(e);
-    }
-    
-    
-    protected void fireRelationExtracted(){
-    	for (ExtractionListener l : this.listeners) {
-    		l.relationExtracted(this.factEvent);
-    	}
-    }
-   
-    protected void fireSignatureExtracted(){
-    	for (ExtractionListener l : this.listeners) {
-    		l.signatureExtracted(this.factEvent);
-    	}
-    }
-    
-    protected void fireVisibilityExtracted() {
-    	for (ExtractionListener l : this.listeners) {
-    		l.visibilityExtracted(this.factEvent);
-    	}
-    }
 
-    protected void fireModifiersExtracted() {
-		for (ExtractionListener l : this.listeners) {
-    		l.modifiersExtracted(this.factEvent);
-    	}
+	public void addListener(ExtractionListener e) {
+		this.listeners.add(e);
 	}
-    
+
+	public void addListener(List<ExtractionListener> e) {
+		this.listeners.addAll(e);
+	}
+
+	public void removeListener(ExtractionListener e) {
+		this.listeners.remove(e);
+	}
+
+
+	protected void fireRelationExtracted(){
+		for (ExtractionListener l : this.listeners) {
+			l.relationExtracted(this.factEvent);
+		}
+	}
+
+	protected void fireSignatureExtracted(){
+		for (ExtractionListener l : this.listeners) {
+			l.signatureExtracted(this.factEvent);
+		}
+	}
+
+	protected void fireVisibilityExtracted() {
+		for (ExtractionListener l : this.listeners) {
+			l.visibilityExtracted(this.factEvent);
+		}
+	}
+
+	protected void fireModifiersExtracted() {
+		for (ExtractionListener l : this.listeners) {
+			l.modifiersExtracted(this.factEvent);
+		}
+	}
+
 	protected void fireClassExtracted() {
 		for (ExtractionListener l : this.listeners) {
-    		l.classExtracted(this.factEvent);
-    	}
+			l.classExtracted(this.factEvent);
+		}
 	}
 
 	public void firePackageExtracted() {
 		for (ExtractionListener l : this.listeners) {
-    		l.packageExtracted(this.factEvent);
-    	}
+			l.packageExtracted(this.factEvent);
+		}
 	}
 
 
@@ -128,7 +128,7 @@ public class FactsEventSourceImpl implements FactsEventSource {
 	public void visitInnerClass(String name, String outerName,
 			String innerName, int access) {
 		this.cv.visitInnerClass(name, outerName, innerName, access);
-		
+
 	}
 
 	@Override
