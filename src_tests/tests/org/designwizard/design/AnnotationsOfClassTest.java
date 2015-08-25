@@ -95,15 +95,13 @@ public class AnnotationsOfClassTest {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testGetClassesAnnotated() {
-		// TODO Implementar Relação reversa entre classes e suas anotações
-		
-		/*ClassNode entity, annotationA, annotationB;
+		ClassNode entity, annotationA, annotationB;
 		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity;
 		try {
 			entity = dw.getAnnotation("javax.persistence.Entity");
-			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			annotationB = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
 			classesAnnotationA = annotationA.getClassesAnnotated();
 			classesAnnotationB = annotationB.getClassesAnnotated();
@@ -118,6 +116,6 @@ public class AnnotationsOfClassTest {
 			
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
-		}*/
+		}
 	}
 }

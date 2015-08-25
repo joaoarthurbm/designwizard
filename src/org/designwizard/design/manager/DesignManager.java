@@ -309,6 +309,13 @@ public class DesignManager implements ExtractionListener {
 		return this.design.getAllClassesFromCode();
 	}
 	
+	/**
+     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * represented by this <code>annotationName</code>.
+     * @param annotationName The name of the entity that It is an annotation.
+     *
+     * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
+     */
 	public Set<ClassNode> getClassesByAnnotation(String annotationName) throws InexistentEntityException {
         return this.design.getClassesByAnnotation(annotationName);
     }

@@ -423,18 +423,19 @@ public class Design implements DesignIF {
 		return feedBack;
 	}
 	
+	/**
+     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * represented by this <code>annotationName</code>.
+     * @param annotationName The name of the entity that It is an annotation.
+     *
+     * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
+     */
 	public Set<ClassNode> getClassesByAnnotation(String annotationName) throws InexistentEntityException {
-        Set<ClassNode> allClasses = this.getAllClasses();
         ClassNode annotationNode = this.getAnnotation(annotationName);
-
-        Set<ClassNode> classes = new HashSet<ClassNode>();
-
-        for (ClassNode classNode : allClasses) {
-            if (isAnnotated(classNode, annotationNode)) {
-                classes.add(classNode);
-            }
+        if (annotationNode != null) {
+			return annotationNode.getClassesAnnotated();
         }
-        return classes;
+        return null;
     }
 	
 	/**
