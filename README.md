@@ -1,17 +1,23 @@
-Design Wizard
-=============
+# Design Wizard
 
 Visit http://www.designwizard.org to get information 
 about the usage of Design Wizard.
 
-Contributing 
-------------
+## Contributing
 
 Want to contribute to this project? Awesome! Just remember to fork and add
 an upstream remote pointing to the official repository. Doing this you can keep
 track of the official repository and keep your code updated.
 
-### Instructions to Eclipse users
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m "Add some feature"`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request  :)
+
+English is the universal language nowadays, so please don't create or comment on issues using another language.
+
+## Instructions to Eclipse users
 
 This project is not deployed as an Eclipse project. In order to import
 *DesignWizard* properly, consider the following steps:
@@ -25,3 +31,11 @@ folder. *Eclipse* will understand that you are configuring an existing project.
 5. On the *Libraries* tab, click on *Add JARs...*
 6. Select **all** jars in the *lib* folder and press *OK*
 7. Finish the *New Project Wizard*
+
+## History
+
+For detailed changelog, see [Releases](https://github.com/joaoarthurbm/designwizard/releases).
+
+## License
+
+[MIT License](http://opensource.org/licenses/MIT)
