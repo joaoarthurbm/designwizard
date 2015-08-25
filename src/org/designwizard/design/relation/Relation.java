@@ -35,7 +35,8 @@ public class Relation {
 		IS_DECLARED_ON("IS_DECLARED_ON"),
 		LOAD("LOAD"),
 		IS_IMPLEMENTED_BY("IS_IMPLEMENTED_BY"),
-		IS_ANNOTATED_BY("IS_ANNOTATED_BY");
+		IS_ANNOTATED_BY("IS_ANNOTATED_BY"),
+		ANNOTATES("ANNOTATES");
 		
 		
 		private String type = "";
@@ -78,6 +79,8 @@ public class Relation {
 				return IS_DECLARED_ON;
 			} else if (this.equals(TypesOfRelation.IMPLEMENTS)) {
 				return IS_IMPLEMENTED_BY;
+			} else if (this.equals(TypesOfRelation.IS_ANNOTATED_BY)) {
+				return ANNOTATES;
 			}
 			return null;
 		}
