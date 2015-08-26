@@ -219,6 +219,18 @@ public class DesignWizard {
 	}
 	
 	/**
+	 * Returns the packages that starts with the given string name.
+	 * @param	prefix the prefix of the packages to be retrieved.
+	 * @return	a set of <code>PackageNode</code> objects starting with the given prefix.
+	 * @throws 	InexistentEntityException if the class cannot be located
+	 */
+	public Set<PackageNode> getPackagesStartingWith(String prefix) throws InexistentEntityException {
+
+		return this.manager.getPackagesStartingWith(prefix);
+	
+	}
+	
+	/**
 	 * This method generates a file containing all the entities extracted from jar file. The file will be saved as a text one
 	 * named entities.txt in the directory specified on designwizard.properties. Developers can use this
 	 * file to optimize the task of analyzing impacts of a change on several methods.
