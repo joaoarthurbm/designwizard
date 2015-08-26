@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.designwizard.api.util.FileUtil;
 import org.designwizard.extractor.Extractor;
 import org.designwizard.extractor.asm.event.ExtractionListener;
 import org.designwizard.extractor.asm.event.FactsEventSource;
 import org.designwizard.extractor.asm.visitor.FactsExtractionClassVisitor;
-import org.designwizard.main.util.FileUtil;
 import org.objectweb.asm.ClassReader;
 
 public class ASMExtractor implements Extractor {

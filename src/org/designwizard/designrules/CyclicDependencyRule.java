@@ -2,8 +2,8 @@ package org.designwizard.designrules;
 
 import java.util.Set;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.PackageNode;
-import org.designwizard.main.DesignWizard;
 
 public class CyclicDependencyRule implements Rule {
 

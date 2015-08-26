@@ -1,8 +1,9 @@
-package org.designwizard.main;
+package org.designwizard.api;
 
 import java.io.IOException;
 import java.util.Set;
 
+import org.designwizard.api.util.FileUtil;
 import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
@@ -13,7 +14,6 @@ import org.designwizard.design.manager.DesignManager;
 import org.designwizard.design.manager.ResultOfImpact;
 import org.designwizard.design.manager.util.TranslatorUtil;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.util.FileUtil;
 
 /**
  * This class provides methods to get access to information about a given application. The information is extracted from

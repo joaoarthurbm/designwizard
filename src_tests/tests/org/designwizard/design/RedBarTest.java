@@ -7,10 +7,10 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 /**
  * This class is a test composition class. I made some tests that must be executed to show to programmers

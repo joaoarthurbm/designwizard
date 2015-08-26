@@ -2,7 +2,7 @@ package tests.org.designwizard.system;
 
 import java.io.File;
 
-import org.designwizard.main.DesignWizard;
+import org.designwizard.api.DesignWizard;
 
 public class EARFilesTest {
 	private DesignWizard dw;

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.MethodNode;
@@ -14,7 +15,6 @@ import org.designwizard.design.Modifier;
 import org.designwizard.design.factory.AbstractElementsFactory;
 import org.designwizard.exception.InexistentEntityException;
 import org.designwizard.exception.InvalidTypeOfVisibility;
-import org.designwizard.main.DesignWizard;
 
 public class MethodNodeTest extends TestCase {
 	private DesignWizard dw;

@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.MethodNode;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 public class CatchBlockTest extends TestCase {
 

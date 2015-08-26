@@ -2,9 +2,9 @@ package org.designwizard.designrules;
 
 import java.util.Set;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.MethodNode;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 public class MethodDependencesRule extends AbstractDependencesRule implements Rule {
 

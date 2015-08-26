@@ -1,8 +1,8 @@
-package org.designwizard.main;
+package org.designwizard.api;
 
 import java.io.IOException;
 
-import org.designwizard.main.util.GXLUtil;
+import org.designwizard.api.util.GXLUtil;
 
 public class ExtractDesign {
 

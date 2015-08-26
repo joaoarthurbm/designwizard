@@ -6,13 +6,13 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.Design;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 //FIXME not a unit test
 public class InheritanceTest extends TestCase {

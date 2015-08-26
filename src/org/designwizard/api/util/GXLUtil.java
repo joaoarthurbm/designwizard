@@ -1,4 +1,4 @@
-package org.designwizard.main.util;
+package org.designwizard.api.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +16,11 @@ import net.sourceforge.gxl.GXLGraphElement;
 import net.sourceforge.gxl.GXLNode;
 import net.sourceforge.gxl.GXLString;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
 import org.designwizard.design.PackageNode;
-import org.designwizard.main.DesignWizard;
 
 public class GXLUtil {
 	 private GXLDocument gxlDocument;

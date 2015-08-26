@@ -6,9 +6,9 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 import org.designwizard.patternchecker.CheckError;
 import org.designwizard.patternchecker.CheckWarning;
 import org.designwizard.patternchecker.CheckingResult;

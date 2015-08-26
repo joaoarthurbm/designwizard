@@ -4,10 +4,10 @@ import java.io.File;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.Entity;
 import org.designwizard.design.Modifier;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 public class EntityTest extends TestCase {
 	

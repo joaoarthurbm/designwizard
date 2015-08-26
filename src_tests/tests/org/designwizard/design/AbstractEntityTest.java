@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.design.AbstractEntity;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.Entity;
@@ -12,7 +13,6 @@ import org.designwizard.design.Modifier;
 import org.designwizard.design.factory.AbstractElementsFactory;
 import org.designwizard.design.factory.ElementsFactory;
 import org.designwizard.exception.InexistentEntityException;
-import org.designwizard.main.DesignWizard;
 
 public class AbstractEntityTest extends TestCase {
 	

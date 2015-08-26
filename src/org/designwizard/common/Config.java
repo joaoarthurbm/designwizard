@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.designwizard.main.util.FileUtil;
+import org.designwizard.api.util.FileUtil;
 
 /**
  * Configuration for Design Wizard.

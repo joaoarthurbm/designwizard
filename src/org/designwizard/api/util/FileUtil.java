@@ -1,4 +1,4 @@
-package org.designwizard.main.util;
+package org.designwizard.api.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

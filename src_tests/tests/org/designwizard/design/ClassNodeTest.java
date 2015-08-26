@@ -7,6 +7,7 @@ import java.util.Set;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.designwizard.api.DesignWizard;
 import org.designwizard.common.Config;
 import org.designwizard.design.AbstractEntity;
 import org.designwizard.design.ClassNode;
@@ -21,7 +22,6 @@ import org.designwizard.design.factory.AbstractElementsFactory;
 import org.designwizard.exception.InexistentEntityException;
 import org.designwizard.exception.InvalidTypeOfVisibility;
 import org.designwizard.exception.NotAnInterfaceException;
-import org.designwizard.main.DesignWizard;
 import org.designwizard.patternchecker.ResultListener;
 
 import tests.org.designwizard.design.relation.RelationTest;
