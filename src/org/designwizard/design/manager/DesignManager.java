@@ -316,8 +316,8 @@ public class DesignManager implements ExtractionListener {
      *
      * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
      */
-	public Set<ClassNode> getClassesByAnnotation(String annotationName) throws InexistentEntityException {
-        return this.design.getClassesByAnnotation(annotationName);
+	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
+        return this.design.getClassesAnnotatedBy(annotationName);
     }
 
 	public Entity getEntity(String entityName) throws InexistentEntityException {

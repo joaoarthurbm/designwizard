@@ -281,7 +281,7 @@ public class ClassNode extends AbstractEntity implements Entity {
      *
      * @return the set of the annotated classes for this object or <empty set if this object wasn't an annotation.
      */
-	public Set<ClassNode> getClassesAnnotated() {
+	public Set<ClassNode> getAnnotatedClasses() {
 		if (!isAnnotation()) return new HashSet<ClassNode>();
 		
 		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.ANNOTATES);

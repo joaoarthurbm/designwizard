@@ -430,10 +430,10 @@ public class Design implements DesignIF {
      *
      * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
      */
-	public Set<ClassNode> getClassesByAnnotation(String annotationName) throws InexistentEntityException {
+	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
         ClassNode annotationNode = this.getAnnotation(annotationName);
         if (annotationNode != null) {
-			return annotationNode.getClassesAnnotated();
+			return annotationNode.getAnnotatedClasses();
         }
         return null;
     }

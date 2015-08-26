@@ -56,16 +56,16 @@ public class AnnotationsOfClassTest {
 	}
 	
 	@Test
-	public void testGetClassesByAnnotation() {
+	public void testGetClassesAnnotatedBy() {
         Set<ClassNode> classes = null;
 		try {
-			classes = dw.getClassesByAnnotation("javax.persistence.Entity");
+			classes = dw.getClassesAnnotatedBy("javax.persistence.Entity");
 			assertEquals("1", 11, classes.size());
 			
-			classes = dw.getClassesByAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
+			classes = dw.getClassesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			assertEquals("2", 2, classes.size());
 			
-			classes = dw.getClassesByAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			classes = dw.getClassesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
 			assertEquals("3", 0, classes.size());
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
@@ -96,7 +96,7 @@ public class AnnotationsOfClassTest {
 	}
 	
 	@Test
-	public void testGetClassesAnnotated() {
+	public void testGetAnnotatedClasses() {
 		ClassNode entity, annotationA, annotationB, sigest;
 		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity, classesSigest;
 		try {
@@ -104,10 +104,15 @@ public class AnnotationsOfClassTest {
 			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			annotationB = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
 			sigest = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.Sigest");
-			classesAnnotationA = annotationA.getClassesAnnotated();
-			classesAnnotationB = annotationB.getClassesAnnotated();
-			classesEntity = entity.getClassesAnnotated();
-			classesSigest = sigest.getClassesAnnotated();
+			
+			assertNull("0", sigest);
+			
+			classesAnnotationA = annotationA.getAnnotatedClasses();
+			classesAnnotationB = annotationB.getAnnotatedClasses();
+			classesEntity = entity.getAnnotatedClasses();
+			
+			sigest = dw.getClass("br.ufrn.cerescaico.bsi.sigest.Sigest");
+			classesSigest = sigest.getAnnotatedClasses();
 			
 			assertNotNull("1", classesAnnotationA);
 			assertEquals("2", 2, classesAnnotationA.size());
