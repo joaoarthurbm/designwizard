@@ -279,10 +279,10 @@ public class ClassNode extends AbstractEntity implements Entity {
      * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
      * represented by this <code>ClassNode</code> with {@link Modifier#ANNOTATION}.
      *
-     * @return the set of the annotated classes for this object or <code>null</code> if this object wasn't an annotation.
+     * @return the set of the annotated classes for this object or <empty set if this object wasn't an annotation.
      */
 	public Set<ClassNode> getClassesAnnotated() {
-		if (!isAnnotationClass()) return null;
+		if (!isAnnotation()) return new HashSet<ClassNode>();
 		
 		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.ANNOTATES);
 		Set<ClassNode> feedBack = new HashSet<ClassNode>();
@@ -491,7 +491,7 @@ public class ClassNode extends AbstractEntity implements Entity {
 	 * @return true if and only if this class represents an annotation.
 	 *
 	 */
-	public boolean isAnnotationClass() {
+	public boolean isAnnotation() {
 		return this.modifiers.contains(Modifier.ANNOTATION);
 	}
 	

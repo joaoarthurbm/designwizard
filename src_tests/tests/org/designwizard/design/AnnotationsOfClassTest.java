@@ -31,7 +31,7 @@ public class AnnotationsOfClassTest {
 		Set<ClassNode> annotations = dw.getAllAnnotations();
 
         for (ClassNode annotationNode : annotations) {
-            assertTrue("Annotation: " + annotationNode.getName(), annotationNode.isAnnotationClass());
+            assertTrue("Annotation: " + annotationNode.getName(), annotationNode.isAnnotation());
         }
         assertEquals("1", 9, annotations.size());
 	}
@@ -46,10 +46,10 @@ public class AnnotationsOfClassTest {
 			entity = dw.getClass("javax.persistence.Entity");
 
 	        assertTrue("1", sigest.isClass());
-	        assertFalse("2", sigest.isAnnotationClass());
-	        assertTrue("3", annotationA.isAnnotationClass());
-	        assertTrue("4", annotationB.isAnnotationClass());
-	        assertTrue("5", entity.isAnnotationClass());
+	        assertFalse("2", sigest.isAnnotation());
+	        assertTrue("3", annotationA.isAnnotation());
+	        assertTrue("4", annotationB.isAnnotation());
+	        assertTrue("5", entity.isAnnotation());
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
 		}
@@ -86,9 +86,9 @@ public class AnnotationsOfClassTest {
 			assertNotNull("2", entity);
 			assertNotNull("3", annotationA);
 			assertNotNull("4", annotationB);
-	        assertTrue("5", annotationA.isAnnotationClass());
-	        assertTrue("6", annotationB.isAnnotationClass());
-	        assertTrue("7", entity.isAnnotationClass());
+	        assertTrue("5", annotationA.isAnnotation());
+	        assertTrue("6", annotationB.isAnnotation());
+	        assertTrue("7", entity.isAnnotation());
 			
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
@@ -97,15 +97,17 @@ public class AnnotationsOfClassTest {
 	
 	@Test
 	public void testGetClassesAnnotated() {
-		ClassNode entity, annotationA, annotationB;
-		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity;
+		ClassNode entity, annotationA, annotationB, sigest;
+		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity, classesSigest;
 		try {
 			entity = dw.getAnnotation("javax.persistence.Entity");
 			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			annotationB = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			sigest = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.Sigest");
 			classesAnnotationA = annotationA.getClassesAnnotated();
 			classesAnnotationB = annotationB.getClassesAnnotated();
 			classesEntity = entity.getClassesAnnotated();
+			classesSigest = sigest.getClassesAnnotated();
 			
 			assertNotNull("1", classesAnnotationA);
 			assertEquals("2", 2, classesAnnotationA.size());
@@ -113,6 +115,8 @@ public class AnnotationsOfClassTest {
 	        assertEquals("4", 0, classesAnnotationB.size());
 	        assertNotNull("5", classesEntity);
 	        assertEquals("6", 11, classesEntity.size());
+	        assertNotNull("7", classesSigest);
+	        assertEquals("8", 0, classesSigest.size());
 			
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());

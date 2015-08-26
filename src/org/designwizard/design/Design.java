@@ -99,7 +99,7 @@ public class Design implements DesignIF {
 	 */
 	public ClassNode getAnnotation(String annotationName) throws InexistentEntityException {
 		ClassNode classNode = (ClassNode) this.getEntity(annotationName);
-		if (classNode != null && classNode.isAnnotationClass()) {
+		if (classNode != null && classNode.isAnnotation()) {
 			return classNode;
 		}
 		return null;
