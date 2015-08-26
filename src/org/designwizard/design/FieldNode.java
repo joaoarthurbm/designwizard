@@ -279,4 +279,21 @@ public class FieldNode extends AbstractEntity implements Entity {
 		
 	}
 
+	/**
+     * Returns the set of <code>ClassNode</code> representing the annotations annotating the entity
+     * represented by this <code>FieldNode</code>.
+     *
+     * @return the set of the annotations this object.
+     */
+	public Set<ClassNode> getAnnotations() {
+        Set<ClassNode> annotations = new HashSet<ClassNode>();
+        Set<Relation> isAnnotatedBy = super.getRelations(TypesOfRelation.IS_ANNOTATED_BY);
+
+        for (Relation relation : isAnnotatedBy) {
+            ClassNode outer = (ClassNode) relation.getCalledEntity();
+            annotations.add(outer);
+        }
+
+        return annotations;
+	}
 }
