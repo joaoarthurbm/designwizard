@@ -71,6 +71,39 @@ public class Design implements DesignIF {
 		}
 	
 	}
+	
+	@Override
+	public void annotationExtracted(String entity) {
+		if (!this.entities.containsKey(entity)) {
+			ClassNode annotation = new ClassNode(entity);
+			annotation.modifiers.add(Modifier.ANNOTATION);
+			this.entities.put(entity, annotation);
+		}
+	}
+	
+	public Set<ClassNode> getAllAnnotations() {
+		Set<ClassNode> feedBack = new HashSet<ClassNode>();
+		for (Entity entity: this.entities.values()) {
+			if (entity.getModifiers().contains(Modifier.ANNOTATION)) {
+				feedBack.add((ClassNode) entity);
+			}
+		}
+		return feedBack;
+	}
+	
+	/**
+	 * Returns a <code>AnnotationNode</code> represented by the specified annotationName.
+	 * @param annotationName the name of the class.
+	 * @return a <code>AnnotationNode</code> represented by the specified annotationName or <code>null</code>.
+	 * @throws InexistentEntityException if the annotation cannot be located.
+	 */
+	public ClassNode getAnnotation(String annotationName) throws InexistentEntityException {
+		ClassNode classNode = (ClassNode) this.getEntity(annotationName);
+		if (classNode != null && classNode.isAnnotation()) {
+			return classNode;
+		}
+		return null;
+	}
 
 	/**
 	 * Adds a new relation in the design.
@@ -389,6 +422,36 @@ public class Design implements DesignIF {
 		}
 		return feedBack;
 	}
+	
+	/**
+     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * represented by this <code>annotationName</code>.
+     * @param annotationName The name of the entity that It is an annotation.
+     *
+     * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
+     */
+	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
+        ClassNode annotationNode = this.getAnnotation(annotationName);
+        if (annotationNode != null) {
+			return annotationNode.getAnnotatedClasses();
+        }
+        return null;
+    }
+	
+	/**
+	 * Checks if the class is annotated by annotation.
+	 * @param aClass The class to check if contains the annotation.
+	 * @param annotation The annotation to check.
+	 * @return True if the class is annotated by annotation.
+	 */
+	public Boolean isAnnotated(ClassNode aClass, ClassNode annotation) {
+        Set<ClassNode> annotations = aClass.getAnnotations();
+
+        if (annotations.contains(annotation)) {
+                return true;
+        }
+        return false;
+    }
 
 	/**
 	 * A String representation for this Design.

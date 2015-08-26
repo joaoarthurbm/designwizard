@@ -54,7 +54,7 @@ public class OpcodesTranslator {
 	 * @param int access The access of the entity.
 	 * @return A <code>Collection</code> object containing a <code>String</code> representation of the opcodes
 	 * extracted from the given access.
-	 */ 
+	 */
 	//FIXME adicionar todos os modifiers aqui.
 	public static Collection<String> extractOpcodes(int access) {
 		Collection<String> returnValue = new ArrayList<String>();
@@ -69,6 +69,9 @@ public class OpcodesTranslator {
 		}
 		if ( (access & Opcodes.ACC_FINAL) != 0 ) {
 			returnValue.add("FINAL");
+		}
+		if ( (access & Opcodes.ACC_ANNOTATION) != 0 ) {
+			returnValue.add("ANNOTATION");
 		}
 		return returnValue;
 	}

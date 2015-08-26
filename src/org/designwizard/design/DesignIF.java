@@ -102,4 +102,6 @@ public interface DesignIF {
 	public PackageNode getPackage(String fullyQualifiedNamePackage) throws InexistentEntityException;
 	
 	public boolean containsEntity(String entityName);
+	
+	public void annotationExtracted(String entity);
 }

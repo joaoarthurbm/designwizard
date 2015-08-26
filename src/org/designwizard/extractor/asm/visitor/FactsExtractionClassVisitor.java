@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.designwizard.extractor.asm.event.FactEvent;
 import org.designwizard.extractor.asm.event.FactsEventSourceImpl;
 import org.designwizard.extractor.asm.util.OpcodesTranslator;
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -189,7 +190,23 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 	
 	}
 	
-	
+	/**
+	 * Método de visita de Annotações.
+	 * @param annotationName
+	 * @param isVisible
+	 */
+	@Override
+	public AnnotationVisitor visitAnnotation(String annotationName, boolean isVisible) {
+		// Cria um novo FactEvent para Annotations
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, annotationName, isVisible);
+		super.fireAnnotationExtracted();
+
+		// Caller = classname and Called = desc (annotation)
+		super.factEvent = new FactEvent(FactsExtractionClassVisitor.class, "ISANNOTATEDBY", this.className, annotationName);
+		super.fireRelationExtracted();
+		
+		return new EmptyVisitor();
+	};
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {

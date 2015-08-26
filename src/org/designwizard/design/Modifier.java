@@ -10,7 +10,7 @@ public enum Modifier {
 		//FIXME colocar todos os modificadores.
 		PUBLIC("PUBLIC"),PROTECTED("PROTECTED"),PRIVATE("PRIVATE"),PACKAGE("PACKAGE"), STATIC("STATIC"), 
 		ABSTRACT("ABSTRACT"), INTERFACE("INTERFACE"), INNERCLASS("INNER"), ANONYMOUS("ANONYMOUS"),
-		FINAL("FINAL");
+		FINAL("FINAL"), ANNOTATION("ANNOTATION");
 		
 		private String type = "";
 		
@@ -58,6 +58,8 @@ public enum Modifier {
 	        	 return Modifier.ANONYMOUS;
 	         } else if ((modifierAsString.equalsIgnoreCase("FINAL"))) {
 	        	 return Modifier.FINAL;
+	         } else if ((modifierAsString.equalsIgnoreCase("ANNOTATION"))) {
+                 return Modifier.ANNOTATION;
 	         }
 		     throw new InexistentModifierException("The modifier "+modifierAsString+ " is not valid." +
 		     		" See the valid modifiers at designwizard.design.Modifier class.");

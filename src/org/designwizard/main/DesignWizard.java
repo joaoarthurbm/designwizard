@@ -7,6 +7,7 @@ import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
+import org.designwizard.design.Modifier;
 import org.designwizard.design.PackageNode;
 import org.designwizard.design.manager.DesignManager;
 import org.designwizard.design.manager.ResultOfImpact;
@@ -99,6 +100,18 @@ public class DesignWizard {
 	}
 	
 	/**
+	 * Returns the <code>ClassNode</code> object associated with the annotation
+	 * with the given string name. The {@link ClassNode} contains the {@link Modifier#ANNOTATION}.
+	 * @param    annotationName   the fully qualified name of the desired annotation.
+	 * @return    the <code>ClassNode</code> object for the annotation with the
+	 *             specified name.
+	 * @throws     InexistentEntityException    if the annotation cannot be located
+	 */
+	public ClassNode getAnnotation(String annotationName) throws InexistentEntityException {
+		return this.manager.getAnnotation(annotationName);
+	}
+	
+	/**
 	 * Returns the <code>ClassNode</code> object associated with the class or
      * interface with the given java class.
 	 * @param	classEntity   the desired class.
@@ -158,6 +171,27 @@ public class DesignWizard {
 	
 		return this.manager.getAllClasses();
 	
+	}
+	
+	/**
+     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * represented by this <code>annotationName</code>.
+     * @param annotationName The name of the entity that It is an annotation.
+     *
+     * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
+     */
+	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
+        return this.manager.getClassesAnnotatedBy(annotationName);
+    }
+	
+	/**
+	 * Returns a <code>java.util.Set</code> containing <code>ClassNode</code> objects reflecting all
+	 * the annotations extracted that they are classes with {@link Modifier#ANNOTATION}.
+	 * @return    the set of <code>AnnotationNode</code> objects representing the
+	 *             annotations extracted.
+	 */
+	public Set<ClassNode> getAllAnnotations() {
+		return this.manager.getAllAnnotations();
 	}
 	
 	/**
