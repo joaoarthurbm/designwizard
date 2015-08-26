@@ -28,12 +28,44 @@ public class AnnotationsOfClassTest {
 
 	@Test
 	public void testGetAllAnnotations() {
+		ClassNode sigest, annotationA, annotationB, entity;
+		ClassNode id, oneToOne, oneToMany, column;
 		Set<ClassNode> annotations = dw.getAllAnnotations();
 
         for (ClassNode annotationNode : annotations) {
             assertTrue("Annotation: " + annotationNode.getName(), annotationNode.isAnnotation());
         }
-        assertEquals("1", 9, annotations.size());
+        assertFalse("1", annotations.isEmpty());
+        
+        try {
+        	sigest = dw.getClass("br.ufrn.cerescaico.bsi.sigest.Sigest");
+        	annotationA = dw.getClass("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
+        	annotationB = dw.getClass("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+        	entity = dw.getClass("javax.persistence.Entity");
+        	
+        	// Anotações em Classes
+        	assertTrue("2", annotations.contains(annotationA));
+        	assertTrue("3", annotations.contains(annotationB));
+        	assertTrue("4", annotations.contains(entity));
+        	assertFalse("5", annotations.contains(sigest));
+        	
+        	// Criando o classNode que representa à anotação
+        	id = new ClassNode("javax.persistence.Id");
+        	
+        	// Buscando os classNodes que representam às anotações
+        	oneToOne = dw.getClass("javax.persistence.OneToOne");
+        	oneToMany = dw.getClass("javax.persistence.OneToMany");
+        	column = dw.getClass("javax.persistence.Column");
+        	
+        	// Anotações em Atributos
+        	assertTrue("6", annotations.contains(id));
+        	assertTrue("7", annotations.contains(oneToOne));
+        	assertTrue("8", annotations.contains(oneToMany));
+        	assertTrue("9", annotations.contains(column));
+        	
+        } catch (InexistentEntityException e) {
+			fail(e.getMessage());
+		}
 	}
 
 	@Test

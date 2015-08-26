@@ -139,7 +139,10 @@ public class FactsExtractionClassVisitor extends FactsEventSourceImpl {
 		
 		}
 		
-		return new FactsExtractionFieldVisitor();
+		FactsExtractionFieldVisitor fieldVisitor = new FactsExtractionFieldVisitor(field);
+		fieldVisitor.addListener(super.listeners.getFirst());
+		
+		return fieldVisitor;
 
 	}
 
