@@ -152,6 +152,13 @@ public interface Entity {
 	public Modifier getVisibility();
 	
 	/**
+     * Returns the set of <code>ClassNode</code> representing the annotations within this Entity.
+     * 
+     * @return the set of the annotations within this object.
+     */
+	public Set<ClassNode> getAnnotations();
+	
+	/**
 	 * This method is used to add a <code>Modifier</code> on this <code>Entity</code>.
 	 * @param modifier
 	 */

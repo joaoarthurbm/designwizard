@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.designwizard.design.Entity.TypesOfEntities;
 import org.designwizard.design.relation.Relation;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 
@@ -39,6 +40,25 @@ public abstract class AbstractEntity implements Entity {
 	public abstract Set<ClassNode> getCalleeClasses();
 	
 	public abstract Set<ClassNode> getCallerClasses();
+	
+	/**
+     * Returns the set of <code>ClassNode</code> representing the annotations within this Entity.
+     * @return the set of the annotations within this object.
+     */
+	public Set<ClassNode> getAnnotations() {
+		
+		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.IS_ANNOTATED_BY);
+		Set<ClassNode> feedBack = new HashSet<ClassNode>();
+		
+		for (Relation relation : containsRelations) {
+			Entity entity = relation.getCalledEntity();
+			if (entity.getTypeOfEntity().equals(TypesOfEntities.CLASS))
+					feedBack.add((ClassNode) entity);
+		}
+	
+		return feedBack;
+	}
+	
 	
 	
 	protected AbstractEntity() {

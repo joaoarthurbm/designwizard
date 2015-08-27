@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.designwizard.design.Entity.TypesOfEntities;
 import org.designwizard.design.relation.Relation;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
@@ -52,7 +53,7 @@ public class ClassNode extends AbstractEntity implements Entity {
 	private boolean isPrimitive;
 	private Set<MethodNode> inheritedMethods;
 	private Set<MethodNode> declaredMethods;
-	private Set<ClassNode> declaredAnnotations;
+	
 
 	/**
 	 * Creates a new <code>ClassEntity</code>.
@@ -72,7 +73,7 @@ public class ClassNode extends AbstractEntity implements Entity {
 		this.inheritedMethods = new HashSet<MethodNode>();
 		this.declaredMethods = new HashSet<MethodNode>();
 		this.subClasses = new HashSet<ClassNode>();
-		this.declaredAnnotations = new HashSet<ClassNode>();
+	
 	}
 
 	/**
@@ -185,11 +186,6 @@ public class ClassNode extends AbstractEntity implements Entity {
 			}
 		}
 		
-		// Verifica o tipo da relação e adiciona ao conjunto de annotações do ClassNode
-      	if (relation.getType().equals(TypesOfRelation.IS_ANNOTATED_BY)) {
-      		ClassNode annotation = (ClassNode) relation.getCalledEntity();
-      		this.declaredAnnotations.add(annotation);
-      	}
 	}
 	
 	/**
@@ -263,38 +259,6 @@ public class ClassNode extends AbstractEntity implements Entity {
      */
 	public ClassNode getSuperClass() {
 		return this.superClass;
-	}
-	
-	/**
-     * Returns the set of <code>ClassNode</code> representing the annotations annotating the entity
-     * represented by this <code>ClassNode</code>.
-     *
-     * @return the set of the annotations this object.
-     */
-	public Set<ClassNode> getAnnotations() {
-		return declaredAnnotations;
-	}
-	
-	/**
-     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
-     * represented by this <code>ClassNode</code> with {@link Modifier#ANNOTATION}.
-     *
-     * @return the set of the annotated classes for this object or <empty set if this object wasn't an annotation.
-     */
-	public Set<ClassNode> getAnnotatedClasses() {
-		if (!isAnnotation()) return new HashSet<ClassNode>();
-		
-		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.ANNOTATES);
-		Set<ClassNode> feedBack = new HashSet<ClassNode>();
-		
-		for (Relation relation : containsRelations) {
-			Entity entity = relation.getCalledEntity();
-			if (entity.getTypeOfEntity().equals(TypesOfEntities.CLASS)) {
-				feedBack.add((ClassNode) entity);
-			}
-		}
-	
-		return feedBack;
 	}
 
 	/**
@@ -392,6 +356,21 @@ public class ClassNode extends AbstractEntity implements Entity {
 	public Set<FieldNode> getDeclaredFields() {
 		return Collections.unmodifiableSet(this.declaredFields);
 	}
+	
+	//TODO document this method.
+	public Set<Entity> getEntitiesAnnotatedBy() {
+		Set<Relation> annotatesRelations = this.getRelations(TypesOfRelation.ANNOTATES);
+		Set<Entity> feedBack = new HashSet<Entity>();
+		
+		for (Relation relation : annotatesRelations) {
+			Entity entity = relation.getCalledEntity();
+			feedBack.add(entity);
+		}
+	
+		return feedBack;
+	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see designwizard.design.entity.Entity#getImpactOfAChange()

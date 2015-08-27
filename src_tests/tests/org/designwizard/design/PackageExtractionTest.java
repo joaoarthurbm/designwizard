@@ -58,7 +58,7 @@ public class PackageExtractionTest extends TestCase {
 		assertFalse(callingMethods.isEmpty());
 		assertTrue(callingMethods.contains(dw.getMethod("tests.suites.AllTests.suite()")));
 		
-		packageNode = dw.getPackage("org.designwizard.main.util");
+		packageNode = dw.getPackage("org.designwizard.api.util");
 		callingMethods = packageNode.getCallerMethods();
 		assertFalse(callingMethods.isEmpty());
 	

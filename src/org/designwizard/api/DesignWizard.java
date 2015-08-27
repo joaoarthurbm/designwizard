@@ -6,6 +6,7 @@ import java.util.Set;
 import org.designwizard.api.util.FileUtil;
 import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
+import org.designwizard.design.Entity;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
 import org.designwizard.design.Modifier;
@@ -180,8 +181,8 @@ public class DesignWizard {
      *
      * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
      */
-	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
-        return this.manager.getClassesAnnotatedBy(annotationName);
+	public Set<Entity> getEntitiesAnnotatedBy(String annotationName) throws InexistentEntityException {
+        return this.manager.getEntitiesAnnotatedBy(annotationName);
     }
 	
 	/**

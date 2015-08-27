@@ -4,9 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.Set;
 
-import org.designwizard.design.ClassNode;
-import org.designwizard.exception.InexistentEntityException;
 import org.designwizard.api.DesignWizard;
+import org.designwizard.design.ClassNode;
+import org.designwizard.design.Entity;
+import org.designwizard.exception.InexistentEntityException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -89,15 +90,15 @@ public class AnnotationsOfClassTest {
 	
 	@Test
 	public void testGetClassesAnnotatedBy() {
-        Set<ClassNode> classes = null;
+        Set<Entity> classes = null;
 		try {
-			classes = dw.getClassesAnnotatedBy("javax.persistence.Entity");
+			classes = dw.getEntitiesAnnotatedBy("javax.persistence.Entity");
 			assertEquals("1", 11, classes.size());
 			
-			classes = dw.getClassesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
+			classes = dw.getEntitiesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
 			assertEquals("2", 2, classes.size());
 			
-			classes = dw.getClassesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
+			classes = dw.getEntitiesAnnotatedBy("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationB");
 			assertEquals("3", 0, classes.size());
 		} catch (InexistentEntityException e) {
 			fail(e.getMessage());
@@ -130,7 +131,7 @@ public class AnnotationsOfClassTest {
 	@Test
 	public void testGetAnnotatedClasses() {
 		ClassNode entity, annotationA, annotationB, sigest;
-		Set<ClassNode> classesAnnotationA, classesAnnotationB, classesEntity, classesSigest;
+		Set<Entity> classesAnnotationA, classesAnnotationB, classesEntity, classesSigest;
 		try {
 			entity = dw.getAnnotation("javax.persistence.Entity");
 			annotationA = dw.getAnnotation("br.ufrn.cerescaico.bsi.sigest.annotation.AnnotationA");
@@ -139,12 +140,12 @@ public class AnnotationsOfClassTest {
 			
 			assertNull("0", sigest);
 			
-			classesAnnotationA = annotationA.getAnnotatedClasses();
-			classesAnnotationB = annotationB.getAnnotatedClasses();
-			classesEntity = entity.getAnnotatedClasses();
+			classesAnnotationA = annotationA.getEntitiesAnnotatedBy();
+			classesAnnotationB = annotationB.getEntitiesAnnotatedBy();
+			classesEntity = entity.getEntitiesAnnotatedBy();
 			
 			sigest = dw.getClass("br.ufrn.cerescaico.bsi.sigest.Sigest");
-			classesSigest = sigest.getAnnotatedClasses();
+			classesSigest = sigest.getEntitiesAnnotatedBy();
 			
 			assertNotNull("1", classesAnnotationA);
 			assertEquals("2", 2, classesAnnotationA.size());

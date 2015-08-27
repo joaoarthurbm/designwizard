@@ -424,35 +424,21 @@ public class Design implements DesignIF {
 	}
 	
 	/**
-     * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
+     * Returns the set of <code>Entity</code> with the annotated classes to the entity
      * represented by this <code>annotationName</code>.
      * @param annotationName The name of the entity that It is an annotation.
      *
      * @return the set of the annotated classes or <code>null</code> if this parameter wasn't an annotation.
      */
-	public Set<ClassNode> getClassesAnnotatedBy(String annotationName) throws InexistentEntityException {
+	public Set<Entity> getEntitiesAnnotatedBy(String annotationName) throws InexistentEntityException {
         ClassNode annotationNode = this.getAnnotation(annotationName);
         if (annotationNode != null) {
-			return annotationNode.getAnnotatedClasses();
+			return annotationNode.getEntitiesAnnotatedBy();
         }
         return null;
     }
 	
-	/**
-	 * Checks if the class is annotated by annotation.
-	 * @param aClass The class to check if contains the annotation.
-	 * @param annotation The annotation to check.
-	 * @return True if the class is annotated by annotation.
-	 */
-	public Boolean isAnnotated(ClassNode aClass, ClassNode annotation) {
-        Set<ClassNode> annotations = aClass.getAnnotations();
-
-        if (annotations.contains(annotation)) {
-                return true;
-        }
-        return false;
-    }
-
+	
 	/**
 	 * A String representation for this Design.
 	 */
