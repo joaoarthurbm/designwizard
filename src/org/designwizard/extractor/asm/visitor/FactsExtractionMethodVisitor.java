@@ -49,7 +49,7 @@ public class FactsExtractionMethodVisitor extends FactsEventSourceImpl implement
 		this.method = method;
 	}
 
-	@Override //FIXME Não é utilizado
+	@Override
 	public AnnotationVisitor visitAnnotation(String annotationName,boolean isVisible) {
 		// Cria um novo FactEvent para Annotations do MethodNode
 		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, annotationName, isVisible);
@@ -62,12 +62,10 @@ public class FactsExtractionMethodVisitor extends FactsEventSourceImpl implement
 		return super.visitAnnotation(annotationName, isVisible);
 	}
 
-	// Annotations are not supported yet -- FIXME Não é utilizado
 	public AnnotationVisitor visitAnnotationDefault() {
 		return new EmptyVisitor();
 	}
 
-	// Annotations are not supported yet
 	public AnnotationVisitor visitParameterAnnotation(final int parameter, final String annotationName, final boolean visible) {
 		// Cria um novo FactEvent para Annotations do MethodNode
 		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, annotationName, visible);
