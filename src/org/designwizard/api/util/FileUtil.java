@@ -12,12 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Enumeration;
-import java.util.Random;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import com.google.common.io.Files;
-
 
 public class FileUtil {
 	
@@ -101,7 +99,7 @@ public class FileUtil {
 
 				File destFile = new File(directory, currentEntry);
 
-				// grab file's parent directory structure
+				// grabs file's parent directory structure
 				File destinationParent = destFile.getParentFile();
 
 				// create the parent directory structure if needed
