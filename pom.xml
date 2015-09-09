@@ -1,0 +1,206 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.designwizard</groupId>
+	<artifactId>designwizard</artifactId>
+	<packaging>jar</packaging>
+	<version>1.4</version>
+	<name>DesignWizard - API that supports the automated inspection of Design Tests of Java programs</name>
+	<url>designwizard.org</url>
+
+	<issueManagement>
+		<url>https://github.com/joaoarthurbm/designwizard/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<scm>
+		<url>https://github.com/joaoarthurbm/designwizard</url>
+		<connection>scm:git:git://github.com/joaoarthurbm/designwizard.git</connection>
+		<developerConnection>scm:git:git@github.com:joaoarthurbm/designwizard.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<email>tacianosilva@gmail.com</email>
+			<name>Taciano Morais Silva</name>
+			<url>https://github.com/tacianosilva</url>
+			<id>tacianosilva</id>
+		</developer>
+		<developer>
+			<email>joaoarthurbm@gmail.com</email>
+			<name>João Brunet</name>
+			<url>https://github.com/joaoarthurbm</url>
+			<id>joaoarthurbm</id>
+		</developer>
+		<developer>
+			<email>stenio.araujo@ccc.ufcg.edu.br</email>
+			<name>Stenio Elson</name>
+			<url>https://github.com/stenioaraujo</url>
+			<id>stenioaraujo</id>
+		</developer>
+		<developer>
+			<email>gustavo.hqo@gmail.com</email>
+			<name>Gustavo Queiroz</name>
+			<url>https://github.com/Gustavohqo</url>
+			<id>Gustavohqo</id>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<dw.version>1.4</dw.version>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymockclassextension</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>14.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.1_3</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<!-- Dependencia que necessita de Instalação em Repositório MAVEN Local -->
+		<dependency>
+			<groupId>net.sourceforge.gxl</groupId>
+			<artifactId>gxl</artifactId>
+			<version>0.92</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/gxl.jar</systemPath>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>designwizard-${dw.version}</finalName>
+
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>src_tests</testSourceDirectory>
+		<outputDirectory>classes</outputDirectory>
+		<testOutputDirectory>classes</testOutputDirectory>
+
+		<resources>
+			<resource>
+				<directory>src</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src_tests</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.designwizard.main.ExtractDesign</mainClass>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit4</artifactId>
+						<version>2.17</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.4</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jxr-plugin</artifactId>
+							<version>2.3</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>2.7</version>
+							<configuration>
+								<dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+								<dependencyLocationsEnabled>true</dependencyLocationsEnabled>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.9.1</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-report-plugin</artifactId>
+							<version>2.17</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>2.10</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-pmd-plugin</artifactId>
+							<version>3.0.1</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
