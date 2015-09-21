@@ -50,32 +50,18 @@ public class FactsExtractionMethodVisitor extends FactsEventSourceImpl implement
 	}
 
 	@Override
-	public AnnotationVisitor visitAnnotation(String annotationName,boolean isVisible) {
-		// Cria um novo FactEvent para Annotations do MethodNode
-		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, annotationName, isVisible);
-		super.fireAnnotationExtracted();
-
-		// Caller = classname and Called = desc (annotation)
-		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, "ISANNOTATEDBY", this.method, annotationName);
-		super.fireRelationExtracted();
-		
-		return super.visitAnnotation(annotationName, isVisible);
+	public AnnotationVisitor visitAnnotation(final String desc, final boolean visible) {
+		return super.visitAnnotation(desc, visible);
 	}
 
+	// Annotations are not supported yet
 	public AnnotationVisitor visitAnnotationDefault() {
 		return new EmptyVisitor();
 	}
 
-	public AnnotationVisitor visitParameterAnnotation(final int parameter, final String annotationName, final boolean visible) {
-		// Cria um novo FactEvent para Annotations do MethodNode
-		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, annotationName, visible);
-		super.fireAnnotationExtracted();
-		
-		// Caller = classname and Called = desc (annotation)
-		super.factEvent = new FactEvent(FactsExtractionMethodVisitor.class, "ISANNOTATEDBY", this.method, annotationName);
-		super.fireRelationExtracted();
-
-		return super.visitAnnotation(annotationName, visible);
+	// Annotations are not supported yet
+	public AnnotationVisitor visitParameterAnnotation(final int parameter, final String desc, final boolean visible) {
+		return new EmptyVisitor();
 	}
 
 	public void visitCode() {}
