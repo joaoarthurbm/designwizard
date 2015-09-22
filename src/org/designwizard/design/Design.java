@@ -358,6 +358,7 @@ public class Design implements DesignIF {
 			methodParameters.add(parameter);
 		}
 		methodNode.setParameters(methodParameters);
+		sc.close();
 	}
 
 	/**
