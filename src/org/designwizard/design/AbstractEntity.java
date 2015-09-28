@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.designwizard.design.Entity.TypesOfEntities;
 import org.designwizard.design.relation.Relation;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 
