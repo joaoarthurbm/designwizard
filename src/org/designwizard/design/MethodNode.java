@@ -25,12 +25,13 @@ import org.designwizard.exception.NotAnInterfaceException;
  * 
  * @see org.designwizard.design.ClassNode
  * @see org.designwizard.design.ClassNode#getAllMethods()
- * @see org.designwizard.design.ClassNode#getMethod(String)
+ * @see org.designwizard.design.ClassNode#getMethods(Modifier...)
  * @see org.designwizard.design.ClassNode#getDeclaredMethods()
  * @see org.designwizard.design.ClassNode#getInheritedMethods()
  * @see org.designwizard.design.ClassNode#getDeclaredMethod(String)
+ * @see org.designwizard.design.ClassNode#getInheritedMethod(String)
  *
- * @author Joao Brunet
+ * @author Joao Arthur Brunet Monteiro - joaoarthurbm@gmail.com
  */
 public class MethodNode extends AbstractEntity implements Entity {
 

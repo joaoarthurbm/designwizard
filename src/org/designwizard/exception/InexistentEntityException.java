@@ -1,13 +1,13 @@
 package org.designwizard.exception;
 
 /**
- * @author Jo�o Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
+ * @author João Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
  */
 public class InexistentEntityException extends Exception {
 	
 	/**
 	 * Create a new InexistentEntityException.
-	 * @param message
+	 * @param msg
 	 */
 	public InexistentEntityException(String msg) {
 		super(msg);
