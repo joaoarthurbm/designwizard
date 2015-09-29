@@ -245,10 +245,10 @@ public class DesignWizard {
 	}
 	
 	/**
-	 * Returns a <code>ResultManager</code> object that contains the result of impact analysis.
+	 * Returns a <code>ResultOfImpact</code> object that contains the result of impact analysis.
 	 * on each entity read from entities.txt.
 	 * @throws IOException 
-	 * @see <code>ResultManager</code>.
+	 * @see org.designwizard.design.manager.ResultOfImpact
 	 */
 	public ResultOfImpact analyseFromEntitiesFile() throws IOException {
 	

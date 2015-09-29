@@ -12,8 +12,7 @@ import org.designwizard.design.relation.Relation.TypesOfRelation;
 
 /**
  * Abstract class that represent the entities of Design.
- * @author Jo�o Arthur Brunet Monteiro - joaoarthurbm@gmail.com
- *
+ * @author Joao Arthur Brunet Monteiro - joaoarthurbm@gmail.com
  */
 public abstract class AbstractEntity implements Entity {
 	
@@ -90,7 +89,7 @@ public abstract class AbstractEntity implements Entity {
 	
 	/**
 	 * Removes a relation from this <code>Entity</code>.
-	 * @param Relation the relation to be removed.
+	 * @param relation the relation to be removed.
 	 * @return <tt>true</tt> if this <code>Entity</code> contains the specified relation.
 	 */
 	public boolean removeRelation(Relation relation) {
