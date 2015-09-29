@@ -55,9 +55,8 @@ public class ClassNode extends AbstractEntity implements Entity {
 	
 
 	/**
-	 * Creates a new <code>ClassEntity</code>.
-	 * @param name the name of the <code>ClassEntity</code>.
-	 * @param visibility the visibility of the <code>ClassEntity</code>.
+	 * Creates a new <code>ClassNode</code>.
+	 * @param name the name of the <code>ClassNode</code>.
 	 */
 	public ClassNode(String name) {
 		super();
@@ -272,7 +271,7 @@ public class ClassNode extends AbstractEntity implements Entity {
      * <code>ClassNode</code> object does not declare a method
      * with the specified return type, then an empty set is returned.
      * 
-     * @param	name return desired type
+     * @param type return desired type
      * @return  the <code>MethodNode</code> object for the method of this class
      * matching the specified return type. 
      * 
@@ -657,8 +656,8 @@ public class ClassNode extends AbstractEntity implements Entity {
      * <code>ClassNode</code> object does not declare a method
      * with the specified short name, then null is returned.
      * 
-     * @param	name the name of the method
-     * @return  the <code>MethodNode</code> object for the method of this class
+     * @param shortName the name of the method.
+     * @return the <code>MethodNode</code> object for the method of this class
      * matching the specified short name. If the the class or interface 
      * represented by this <code>ClassNode</code> object does not declare a method
      * with the specified short name, then null is returned.
@@ -694,8 +693,8 @@ public class ClassNode extends AbstractEntity implements Entity {
      * <code>ClassNode</code> object does not have an inherited method
      * with the specified short name, then null is returned.
      * 
-     * @param	name the name of the method
-     * @return  the <code>MethodNode</code> object for the method of this class
+     * @param shortName the name of the method.
+     * @return the <code>MethodNode</code> object for the method of this class
      * matching the specified short name. If the the class or interface 
      * represented by this <code>ClassNode</code> object does not have a method
      * with the specified short name, then null is returned.
@@ -905,7 +904,7 @@ public class ClassNode extends AbstractEntity implements Entity {
 	/**
 	 * Checks whether the class represented by this <code>ClasNode</code> object
 	 * implements the parameter interface.
-	 * @param interface The interface to be verified.
+	 * @param interfaceClassNode The interface to be verified.
 	 * @return true whether this class implements the parameter interface; false otherwise.
 	 */
 	public boolean implementsInterface(ClassNode interfaceClassNode) {

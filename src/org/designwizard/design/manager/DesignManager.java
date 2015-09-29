@@ -269,7 +269,7 @@ public class DesignManager implements ExtractionListener {
 	/**
 	 * Returns a {@link ClassNode} represented by the specified class annotation. 
 	 * Classes of Annotation are classes with {@link Modifier#ANNOTATION} that define Annotations.
-	 * @param annnotationName the fully qualified name of the desired annotation.
+	 * @param annotationName the fully qualified name of the desired annotation.
 	 * @return a <code>ClassNode</code> represented by the specified annotationName.
 	 * @throws InexistentEntityException if the annotation cannot be located.
 	 */

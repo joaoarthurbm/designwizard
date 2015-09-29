@@ -23,20 +23,18 @@ import org.designwizard.design.relation.Relation.TypesOfRelation;
 * </pre></blockquote>
 * 
 * @see org.designwizard.design.ClassNode
-* @see org.designwizard.design.ClassNode#getFields()
+* @see org.designwizard.design.ClassNode#getAllFields()
 * @see org.designwizard.design.ClassNode#getField(String)
 * @see org.designwizard.design.ClassNode#getDeclaredFields()
-* @see org.designwizard.design.ClassNode#getDeclaredField(String)
+* @see org.designwizard.design.ClassNode#getInheritedFields()
 *
-* @author Joao Brunet
+* @author Joao Arthur Brunet Monteiro - joaoarthurbm@gmail.com
 */
 public class FieldNode extends AbstractEntity implements Entity {
-	
 
 	/**
 	 * Creates a new <code>Field</code>.
 	 * @param name the name of this entity.
-	 * @param visibility the visibility of this entity.
 	 */
 	public FieldNode(String name) {
 	

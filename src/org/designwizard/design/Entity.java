@@ -9,15 +9,13 @@ import org.designwizard.design.relation.Relation.TypesOfRelation;
 
 /**
  * Represents the entities of the Design.
- * @author Jo�o Arthur Brunet Monteiro - joaoarthurbm@gmail.com
- *
+ * @author Joao Arthur Brunet Monteiro - joaoarthurbm@gmail.com
  */
 public interface Entity {
 	
 	/**
 	 * This enum represents the entities of the design.
 	 * @author Joao Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
-	 *
 	 */
 	public enum TypesOfEntities {	
 			CLASS,
@@ -147,7 +145,7 @@ public interface Entity {
 	
 	/**
 	 * Returns the visibility of this <code>Entity</code>.
-	 * @return
+	 * @return The visibility of this <code>Entity</code>.
 	 */
 	public Modifier getVisibility();
 	
@@ -167,14 +165,14 @@ public interface Entity {
 	
 	/**
 	 * This method is used to add a <code>Collection</code> of <code>Modifier</code> on this <code>Entity</code>.
-	 * @param modifier
+	 * @param modifiers A <code>Collection</code> of <code>Modifier</code> to add on this <code>Entity</code>.
 	 */
 	public void addModifiers(Collection<Modifier> modifiers);
 	
 	
 	/**
 	 * Verifies whether this <code>Entity</code> has the specified modifiers.
-	 * @param modifiers
+	 * @param modifiers A <code>Collection</code> of <code>Modifier</code>.
 	 * @return true if this <code>Entity</code> has the specified modifiers or false otherwise. 
 	 */
 	public boolean containsModifiers(Modifier... modifiers);
@@ -182,7 +180,7 @@ public interface Entity {
 	/**
 	 * Returns a <code>List</code> of <code>String</code> arrays that represents the trace of calls.
 	 * The deep of the search is configured on designwizard.properties
-	 * @return
+	 * @return A <code>List</code> of <code>String</code> arrays.
 	 */
 	public List<String[]> getImpactOfAChange();
 	

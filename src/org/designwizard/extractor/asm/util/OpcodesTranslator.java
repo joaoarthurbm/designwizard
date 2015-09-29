@@ -51,7 +51,7 @@ public class OpcodesTranslator {
 	}
 	/**
 	 * Extracts the opcodes from the given access.
-	 * @param int access The access of the entity.
+	 * @param access The access of the entity.
 	 * @return A <code>Collection</code> object containing a <code>String</code> representation of the opcodes
 	 * extracted from the given access.
 	 */

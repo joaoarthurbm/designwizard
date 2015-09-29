@@ -48,7 +48,7 @@ public class Relation {
 		/**
 		 * Verifies if the relationType is equals to any kind of invoke relation (INVOKEVIRTUAL,INVOKESPECIAL,INVOKESTATIC
 		 * or INVOKEINTERFACE).
-		 * @return
+		 * @return True if the relationType is equals to any kind of invoke relation.
 		 */
 		public boolean isInvokeRelation() {
 			return (this.equals(INVOKEVIRTUAL) || this.equals(INVOKESPECIAL) || this.equals(INVOKESTATIC) 
@@ -58,7 +58,7 @@ public class Relation {
 		/**
 		 * Verifies if the relationType is equals to any kind of access relation (GETSTATIC,PUTSTATIC,GETFIELD
 		 * or PUTFIELD).
-		 * @return
+		 * @return True if the relationType is equals to any kind of access relation.
 		 */
 		public boolean isAccessRelation() {
 			return (this.equals(GETSTATIC) || this.equals(PUTSTATIC) || this.equals(GETFIELD) 
@@ -67,6 +67,7 @@ public class Relation {
 		
 		/**
 		 * Returns the reverse relation of this relation.
+		 * @return the reverse relation of this relation.
 		 */
 		public TypesOfRelation getReverseRelation() {
 			if (this.equals(TypesOfRelation.EXTENDS)) {
@@ -92,9 +93,9 @@ public class Relation {
 		
 		/**
 		 * Translate an UPPERCASE String to a type.
-		 * @param type
-		 * @return
-		 *
+		 * @param type an UPPERCASE String to a type.
+		 * @return A <code>TypesOfRelation</code> If the type exists.
+		 * @throws InexistentTypeOfRelationException If the type doesn't exists.
 		 */
 		public static TypesOfRelation extractElement(String type) throws InexistentTypeOfRelationException {
 			if ((type.equals("INSTANCEOF"))) {
