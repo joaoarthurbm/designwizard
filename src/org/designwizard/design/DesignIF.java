@@ -108,7 +108,8 @@ public interface DesignIF {
 	public Collection<PackageNode> getAllPackagesFromCode();
 
 	/**
-	 * @param entity
+	 * Adds a package that was extracted from code.
+	 * @param entity the name of the package extracted.
 	 */
 	public void packageExtracted(String entity);
 
@@ -122,13 +123,15 @@ public interface DesignIF {
 	public PackageNode getPackage(String fullyQualifiedNamePackage) throws InexistentEntityException;
 	
 	/**
-	 * @param entityName
-	 * @return
+	 * Verifies if the design contains the entity.
+	 * @param entityName The entity's name.
+	 * @return True if the entity exists.
 	 */
 	public boolean containsEntity(String entityName);
 	
 	/**
-	 * @param entity
+	 * Adds an annotation that was extracted from code.
+	 * @param entity the name of the annotation extracted.
 	 */
 	public void annotationExtracted(String entity);
 }
