@@ -2,12 +2,30 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<dw.groupId>org.designwizard</dw.groupId>
+		<dw.artifactId>designwizard</dw.artifactId>
+		<dw.version>1.4</dw.version>
+	</properties>
+
 	<groupId>org.designwizard</groupId>
 	<artifactId>designwizard</artifactId>
-	<packaging>jar</packaging>
 	<version>1.4</version>
-	<name>DesignWizard - API that supports the automated inspection of Design Tests of Java programs</name>
-	<url>designwizard.org</url>
+
+	<packaging>jar</packaging>
+
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>DesignWizard - API that supports the automated inspection of Design Tests of Java programs</description>
+	<url>http://designwizard.org</url>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public</name>
+			<url>LICENSE.txt</url>
+		</license>
+	</licenses>
 
 	<issueManagement>
 		<url>https://github.com/joaoarthurbm/designwizard/issues</url>
@@ -46,13 +64,6 @@
 			<id>Gustavohqo</id>
 		</developer>
 	</developers>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dw.version>1.4</dw.version>
-
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -95,7 +106,7 @@
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
 			<version>2.0.1</version>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 		<!-- Dependencia que necessita de Instalação em Repositório MAVEN Local -->
 		<dependency>
@@ -108,7 +119,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>designwizard-${dw.version}</finalName>
+		<finalName>${dw.artifactId}-${dw.version}</finalName>
 
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>src_tests</testSourceDirectory>
@@ -138,6 +149,32 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
@@ -150,6 +187,20 @@
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -201,6 +252,9 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<version>2.16</version>
+							<configuration>
+								<configLocation>checkstyle-config.xml</configLocation>
+							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
