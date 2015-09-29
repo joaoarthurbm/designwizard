@@ -113,9 +113,11 @@ public interface DesignIF {
 	public void packageExtracted(String entity);
 
 	/**
-	 * @param fullyQualifiedNamePackage
-	 * @return
-	 * @throws InexistentEntityException
+	 * Returns a <code>PackageNode</code> object with the fully qualified name.
+	 * represents all packages from code.
+	 * @param fullyQualifiedNamePackage The package's name.
+	 * @return A <code>PackageNode</code> object if the package exists.
+	 * @throws InexistentEntityException If the package doesn't exist.
 	 */
 	public PackageNode getPackage(String fullyQualifiedNamePackage) throws InexistentEntityException;
 	
