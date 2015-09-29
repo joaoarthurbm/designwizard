@@ -107,7 +107,7 @@ public class Design implements DesignIF {
 
 	/**
 	 * Adds a new relation in the design.
-	 * @param relation the relation to be added.
+	 * 
 	 * pattern:
 	 * 	- Methods: M:Class.method(int,double,...)
 	 *  - Fields: F:Class.fieldName
@@ -115,8 +115,12 @@ public class Design implements DesignIF {
 	 *  
 	 *  ps1.: Varargs must be describe as an array.
 	 *  ps2.: It is not necessary to describe generics.
-	 *  ps3.: put S: for static methods. Example: S:M:Main.main(String[]) 
-	 * */
+	 *  ps3.: put S: for static methods. Example: S:M:Main.main(String[])
+	 *  
+	 * @param typeOfRelation the relation's type to be added.
+	 * @param callerName the caller of the relation.
+	 * @param calledName the called of the relation.
+	 */
 	public void addRelation(TypesOfRelation typeOfRelation, String callerName, String calledName) {
 		
 		Entity caller = null,called = null;
@@ -289,7 +293,9 @@ public class Design implements DesignIF {
 	}
 	
 	/**
-	 * Verifies whether the class with the specified className if from the code extracted.
+	 * Verifies whether the class with the specified className if from the application's code extracted.
+	 * @param className the class's name that it will be checked.
+	 * @return True if class from the application's code. 
 	 */
 	private boolean isClassFromCode(String className) {
 		boolean isClassFromCode = false;
@@ -310,12 +316,6 @@ public class Design implements DesignIF {
 	public boolean containsEntity(String entityName) {
 		return this.entities.containsKey(entityName);
 	}
-
-	/**
-	 * Returns a set containing all classes extracted.
-	 * @return a set containing all classes extracted.
-	 * * If no class was extracted, this method will return a empty Set<String>;
-	 */
 
 	/* (non-Javadoc)
 	 * @see designWizard.design.DesignIF#setVisibility(java.lang.String, designWizard.design.TypesOfVisibility)
@@ -341,6 +341,9 @@ public class Design implements DesignIF {
 		methodNode.setReturnType(returnTypeNode);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.designwizard.design.DesignIF#setParameters(java.lang.String, java.lang.String)
+	 */
 	public void setParameters(String method, String parameters) throws InexistentEntityException {
 		MethodNode methodNode = this.getMethod(method);
 		ClassNode parameter;
@@ -365,6 +368,7 @@ public class Design implements DesignIF {
 	 * Method that return the entity with the specified name.
 	 * @param entityName the name of the entity to be looked for.
 	 * @return the entity with the specified name.
+	 * @throws InexistentEntityException 
 	 */
 	public Entity getEntity(String entityName) throws InexistentEntityException {
 		if (this.entities.get(entityName) == null) throw new InexistentEntityException(entityName);
@@ -402,7 +406,8 @@ public class Design implements DesignIF {
 	}
 
 	/**
-	 * Returns all the classes from the application's code
+	 * Returns all the classes from the application's code.
+	 * @return A set with all the classes from the application's code.
 	 */
 	public Set<ClassNode> getAllClassesFromCode() {
 		return this.classesExtracted;
@@ -411,7 +416,7 @@ public class Design implements DesignIF {
 	/**
 	 * Returns a <code>Set</code> of <code>ClassNode</code> objects representing all classes extracted. This includes those
 	 * classes from java and libraries used by the code extracted. Realize that classes from java are not entirely extracted.
-	 * If you need only the classes from your source code, you must call the {@link designwizard.design.Design#getAllClassesFromCode()}.
+	 * If you need only the classes from your source code, you must call the {@link Design#getAllClassesFromCode()}.
 	 * @return a <code>Set</code> of <code>ClassNode</code> objects representing all the classes extracted.
 	 */
 	public Set<ClassNode> getAllClasses() {

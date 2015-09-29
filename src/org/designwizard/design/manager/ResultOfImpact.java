@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * 
- * @author Jo�o Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
+ * @author João Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
  *
  */
 public class ResultOfImpact {

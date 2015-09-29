@@ -27,7 +27,7 @@ public class FactEvent extends EventObject {
 	 * @param caller
 	 * @param called
 	 */
-	public FactEvent(Object source,String type, String caller, String called) {
+	public FactEvent(Object source, String type, String caller, String called) {
 	
 		super(source);
 		this.caller = caller.replace("/", ".");
@@ -40,7 +40,7 @@ public class FactEvent extends EventObject {
 	 * Creates a new FactEvent for entity and visibility/modifier  extracted.
 	 * @param source
 	 * @param entity the name of the entity
-	 * @param type modifier
+	 * @param modifier
 	 */
 	public FactEvent(Object source, String entity, String modifier) {
 	
