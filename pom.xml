@@ -77,6 +77,7 @@
 			<artifactId>asm</artifactId>
 			<version>3.1</version>
 			<scope>compile</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.easymock</groupId>
@@ -135,8 +136,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -166,7 +167,7 @@
 				</executions>
 				<configuration>
                     <!--  -Xdoclint:all -->
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <!-- <additionalparam>-Xdoclint:none</additionalparam> -->
                 </configuration>
 			</plugin>
 			<plugin>
