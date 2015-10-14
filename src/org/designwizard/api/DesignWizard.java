@@ -220,15 +220,12 @@ public class DesignWizard {
 	}
 	
 	/**
-	 * Returns the packages that starts with the given string name.
-	 * @param	prefix the prefix of the packages to be retrieved.
-	 * @return	a set of <code>PackageNode</code> objects starting with the given prefix.
-	 * @throws 	InexistentEntityException if the class cannot be located
+	 * Returns the packages that contains the given string name.
+	 * @param regex the regular expression used to describe the packages desired.
+	 * @return a set of <code>PackageNode</code> objects that contains the given string.
 	 */
-	public Set<PackageNode> getPackagesStartingWith(String prefix) throws InexistentEntityException {
-
-		return this.manager.getPackagesStartingWith(prefix);
-	
+	public Set<PackageNode> getPackages(String regex) {
+		return this.manager.getPackages(regex);
 	}
 	
 	/**
