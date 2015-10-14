@@ -50,7 +50,7 @@ public class PackageExtractionTest extends TestCase {
 	
 	public void testPackagesWithRegularExpressions() throws InexistentEntityException {
 		
-		// Testa o retorno dos pacotes que contém a string "api"
+		// Testa o retorno dos pacotes que contÃ©m a string "api"
 		Set<PackageNode> packagesThatContainsApi = dw.getPackages(".*api.*");
 		assertFalse(packagesThatContainsApi.isEmpty());
 		assertTrue(packagesThatContainsApi.contains(dw.getPackage("org.designwizard.api")));
@@ -67,7 +67,7 @@ public class PackageExtractionTest extends TestCase {
 		Set<PackageNode> packagesStartingWithApi = dw.getPackages("^api.*");
 		assertTrue(packagesStartingWithApi.isEmpty());
 		
-		// Testa o retorno dos pacotes que contém a string "api" ou "util"
+		// Testa o retorno dos pacotes que contÃ©m a string "api" ou "util"
 		Set<PackageNode> packagesThatContainsApiOrUtil = dw.getPackages(".*api.*|.*util.*");
 		assertFalse(packagesThatContainsApiOrUtil.isEmpty());
 		assertTrue(packagesThatContainsApiOrUtil.contains(dw.getPackage("org.designwizard.api")));
