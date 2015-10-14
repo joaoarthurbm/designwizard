@@ -697,4 +697,32 @@ public class ClassNodeTest extends TestCase {
 		assertTrue(constructors.contains(method));
 	}
 	
+	public void testClassesWithRegularExpressions() throws InexistentEntityException {
+		
+		// Testa o retorno das classes que contém a string "api"
+		Set<ClassNode> classesThatContainsApi = dw.getClasses(".*api.*");
+		assertFalse(classesThatContainsApi.isEmpty());
+		assertTrue(classesThatContainsApi.contains(dw.getClass("org.designwizard.api.DesignWizard")));
+		assertTrue(classesThatContainsApi.contains(dw.getClass("org.designwizard.api.util.FileUtil")));
+		assertTrue(classesThatContainsApi.size() == 2);
+		
+		// Testa o retorno das classes que terminam com a string "Wizard"
+		Set<ClassNode> classesFinishWithApi = dw.getClasses(".*Wizard$");
+		assertFalse(classesFinishWithApi.isEmpty());
+		assertTrue(classesFinishWithApi.contains(dw.getClass("org.designwizard.api.DesignWizard")));
+		assertTrue(classesFinishWithApi.size() == 1);
+				
+		// Testa o retorno das classes que iniciam com a string "api"
+		Set<ClassNode> classesStartingWithApi = dw.getClasses("^api.*");
+		assertTrue(classesStartingWithApi.isEmpty());
+		
+		// Testa o retorno das classes que contém a string "common" ou "factory"
+		Set<ClassNode> classesThatContainsCommonOrFactory = dw.getClasses(".*common.*|.*factory.*");
+		assertFalse(classesThatContainsCommonOrFactory.isEmpty());
+		assertTrue(classesThatContainsCommonOrFactory.contains(dw.getClass("org.designwizard.design.factory.ElementsFactory")));
+		assertTrue(classesThatContainsCommonOrFactory.contains(dw.getClass("org.designwizard.design.factory.AbstractElementsFactory")));
+		assertTrue(classesThatContainsCommonOrFactory.contains(dw.getClass("org.designwizard.common.Config")));
+		assertTrue(classesThatContainsCommonOrFactory.size() == 3);
+	}
+	
 }

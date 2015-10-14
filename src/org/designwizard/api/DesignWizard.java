@@ -175,6 +175,15 @@ public class DesignWizard {
 	}
 	
 	/**
+	 * Returns the classes that contains the given string name.
+	 * @param regex the regular expression used to describe the classes desired.
+	 * @return a set of <code>ClassNode</code> objects that contains the given string.
+	 */
+	public Set<ClassNode> getClasses(String regex) {
+		return this.manager.getClasses(regex);
+	}
+	
+	/**
      * Returns the set of <code>ClassNode</code> with the annotated classes to the entity
      * represented by this <code>annotationName</code>.
      * @param annotationName The name of the entity that It is an annotation.
