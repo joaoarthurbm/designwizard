@@ -27,6 +27,7 @@ import org.designwizard.extractor.Extractor;
 import org.designwizard.extractor.asm.ASMExtractor;
 import org.designwizard.extractor.asm.event.ExtractionListener;
 import org.designwizard.extractor.asm.event.FactEvent;
+import java.util.regex.Matcher;
 
 /**
  * @author Joao Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
@@ -441,16 +442,15 @@ public class DesignManager implements ExtractionListener {
 	public Set<MethodNode> getAllMethods() {
 		return this.design.getAllMethods();
 	}
-
-	public Set<PackageNode> getPackagesStartingWith(String prefix) {
+	
+	public Set<PackageNode> getPackages(String regex) {
 		Set<PackageNode> packages = new HashSet<PackageNode>();
 		
 		for (PackageNode p : this.getAllPackages()) {
-			if (p.getName().startsWith(prefix))
+			if(p.getName().matches(regex)) {
 				packages.add(p);
+			};
 		}
-		
 		return packages;
 	}
-
 }
