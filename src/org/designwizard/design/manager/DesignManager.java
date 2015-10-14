@@ -443,6 +443,11 @@ public class DesignManager implements ExtractionListener {
 		return this.design.getAllMethods();
 	}
 	
+	/**
+	 * Returns the packages that contains the given string name.
+	 * @param regex the regular expression used to describe the packages desired.
+	 * @return a set of <code>PackageNode</code> objects that contains the given string or a empty list if no entity associated was found
+	 */
 	public Set<PackageNode> getPackages(String regex) {
 		Set<PackageNode> packages = new HashSet<PackageNode>();
 		
@@ -452,5 +457,21 @@ public class DesignManager implements ExtractionListener {
 			};
 		}
 		return packages;
+	}
+	
+	/**
+	 * Returns the classes that contains the given string name.
+	 * @param regex the regular expression used to describe the classes desired.
+	 * @return a set of <code>ClassNode</code> objects that contains the given string or a empty list if no entity associated was found.
+	 */
+	public Set<ClassNode> getClasses(String regex) {
+		Set<ClassNode> classes = new HashSet<ClassNode>();
+		
+		for (ClassNode c : this.getAllClasses()) {
+			if(c.getName().matches(regex)) {
+				classes.add(c);
+			};
+		}
+		return classes;
 	}
 }
