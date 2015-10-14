@@ -177,7 +177,7 @@ public class DesignWizard {
 	/**
 	 * Returns the classes that contains the given string name.
 	 * @param regex the regular expression used to describe the classes desired.
-	 * @return a set of <code>ClassNode</code> objects that contains the given string.
+	 * @return a set of <code>ClassNode</code> objects that contains the given string or a empty list if no entity associated was found.
 	 */
 	public Set<ClassNode> getClasses(String regex) {
 		return this.manager.getClasses(regex);
@@ -231,7 +231,7 @@ public class DesignWizard {
 	/**
 	 * Returns the packages that contains the given string name.
 	 * @param regex the regular expression used to describe the packages desired.
-	 * @return a set of <code>PackageNode</code> objects that contains the given string.
+	 * @return a set of <code>PackageNode</code> objects that contains the given string or a empty list if no entity associated was found
 	 */
 	public Set<PackageNode> getPackages(String regex) {
 		return this.manager.getPackages(regex);
