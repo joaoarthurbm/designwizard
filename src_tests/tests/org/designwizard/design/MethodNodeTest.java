@@ -306,6 +306,31 @@ public class MethodNodeTest extends TestCase {
 		
 		method = this.dw.getMethod("MorePublic.<init>()");
 		assertTrue(method.getModifiers().contains(Modifier.PRIVATE));
-	
 	}
+	
+	public void testMethodsWithRegularExpressions() throws InexistentEntityException, IOException {
+			this.dw = new DesignWizard(DESIGNWIZARD_DIR);
+		
+			// Testa o retorno das classes que contém a string "get"
+			Set<MethodNode> methodThatCointainsGet = dw.getMethods(".*get.*");
+			assertFalse("Expected False but came True",methodThatCointainsGet.isEmpty());
+			assertTrue(methodThatCointainsGet.contains(dw.getMethod("org.designwizard.design.Entity.getClassNode()")));
+			assertTrue(methodThatCointainsGet.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
+			assertTrue(methodThatCointainsGet.size() == 189);
+			
+			// Testa o retorno das classes que terminam com a string "String)"
+			Set<MethodNode> methodsFinishingWithParenteses = dw.getMethods(".*(String(\\W))$");
+			assertFalse(methodsFinishingWithParenteses.isEmpty());
+			assertTrue(methodsFinishingWithParenteses.contains(dw.getMethod("org.designwizard.design.Design.packageExtracted(java.lang.String)")));
+			assertTrue(methodsFinishingWithParenteses.size() == 124);
+					
+			// Testa o retorno das classes que contém a string "get" ou ".set"
+			Set<MethodNode> classesThatContainsCommonOrFactory = dw.getMethods(".*get.*|.*(\\W)set.*");
+			assertFalse(classesThatContainsCommonOrFactory.isEmpty());
+			assertTrue(classesThatContainsCommonOrFactory.contains(dw.getMethod("org.designwizard.design.Design.setReturnType(java.lang.String,java.lang.String)")));
+			assertTrue(classesThatContainsCommonOrFactory.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
+			assertFalse(classesThatContainsCommonOrFactory.contains(dw.getMethod("org.designwizard.api.util.FileUtil.reset()")));
+			assertTrue(classesThatContainsCommonOrFactory.size() == 217);
+	}	
+	
 }
