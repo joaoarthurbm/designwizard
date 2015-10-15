@@ -27,6 +27,7 @@ import org.designwizard.extractor.Extractor;
 import org.designwizard.extractor.asm.ASMExtractor;
 import org.designwizard.extractor.asm.event.ExtractionListener;
 import org.designwizard.extractor.asm.event.FactEvent;
+
 import java.util.regex.Matcher;
 
 /**
@@ -473,5 +474,21 @@ public class DesignManager implements ExtractionListener {
 			};
 		}
 		return classes;
+	}
+
+	/**
+	 * Returns the methods that contains the given string name.
+	 * @param regex the regular expression used to describe the classes desired.
+	 * @return a set of <code>MethodNode</code> objects that contains the given string or a empty list if no entity associated was found.
+	 */
+	public Set<MethodNode> getMethods(String regex) {
+		Set<MethodNode> methods = new HashSet<MethodNode>();
+		
+		for (MethodNode m : this.getAllMethods()) {
+			if(m.getName().matches(regex)) {
+				methods.add(m);
+			};
+		}
+		return methods;
 	}
 }

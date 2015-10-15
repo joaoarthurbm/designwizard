@@ -145,6 +145,18 @@ public class DesignWizard {
 		return this.manager.getMethod(methodSignature);
 	
 	}
+	
+	/**
+	 * Return a set of <code>MethodNode</code> object containing all or none <code>MethodNode</code> that matches with
+	 * the given regular expression by parameter
+	 * @param regex the regular expression used to describe the classes desired.
+	 * @return <code>Set&lt;MethodNode&gt;</code> with all <code>MethodNode</code> found or empty if none matches with the regex
+	 */
+	public Set<MethodNode> getMethods(String regex) {
+		
+		return this.manager.getMethods(regex);
+	
+	}
 
 	/**
 	 * Returns the <code>FieldNode</code> object associated with the field
