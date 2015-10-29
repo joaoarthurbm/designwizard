@@ -32,6 +32,23 @@ folder. *Eclipse* will understand that you are configuring an existing project.
 6. Select **all** jars in the *lib* folder and press *OK*
 7. Finish the *New Project Wizard*
 
+## Instructions to Maven users
+
+The DesignWizard project has the ASM dependency considered optional in the your pom.xml file. So, to use the DesignWizard API is necessary to inform the following dependencies:
+
+        <dependency>
+            <groupId>org.designwizard</groupId>
+            <artifactId>designwizard</artifactId>
+            <version>1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>3.1</version>
+        </dependency>
+
+
 ## History
 
 For detailed changelog, see [Releases](https://github.com/joaoarthurbm/designwizard/releases).
