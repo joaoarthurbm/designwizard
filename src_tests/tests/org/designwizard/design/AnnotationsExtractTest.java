@@ -1,9 +1,5 @@
 package tests.org.designwizard.design;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +9,8 @@ import org.designwizard.exception.InexistentEntityException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import junit.framework.TestCase;
 
 /**
  * Test for Issue 39 - Absence of the annotation modifier in external class extraction
@@ -35,7 +33,7 @@ import org.junit.Test;
  *
  * @author Taciano Morais Silva <tacianosilva@gmail.com>
  */
-public class AnnotationsExtractTest {
+public class AnnotationsExtractTest extends TestCase {
 
     private DesignWizard dw;
 
@@ -54,9 +52,6 @@ public class AnnotationsExtractTest {
     public void testAllClasses() throws InexistentEntityException {
         // Internal Classes of the project
         Set<ClassNode> classes = dw.getAllClasses();
-        for (ClassNode classNode : classes) {
-            System.out.println("Classes: " + classNode.getName());
-        }
 
         assertEquals("total classes: ", 8, classes.size());
     }
@@ -65,9 +60,6 @@ public class AnnotationsExtractTest {
     public void testAllAnnotations() throws InexistentEntityException {
         //Total used annotation (internal e external)
         Set<ClassNode> annotations = dw.getAllAnnotations();
-        for (ClassNode classNode : annotations) {
-            System.out.println("Anotação: " + classNode.getName());
-        }
 
         assertEquals("total annotations: ", 7, annotations.size());
     }
@@ -76,8 +68,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationA() throws InexistentEntityException {
         //external annotation and unused
         ClassNode entityA = dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationA");
-        System.out.println("Entity: " + entityA.getName());
-        System.out.println("Modifiers " + entityA.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityA);
         assertTrue("AnnotationA is annotation?", !entityA.isAnnotation());
@@ -92,8 +82,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationB() throws InexistentEntityException {
         //external annotation and used
         ClassNode entityB = dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationB");
-        System.out.println("Entity: " + entityB.getName());
-        System.out.println("Modifiers " + entityB.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityB);
         assertTrue("AnnotationA is annotation?", entityB.isAnnotation());
@@ -108,10 +96,8 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationC() throws InexistentEntityException {
         //external annotation, is not called and unused (it isn't extracted)
         try {
-            ClassNode entityC = dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationC");
-            System.out.println("Entity: " + entityC.getName());
-            System.out.println("Modifiers " + entityC.getModifiers());
-            assertTrue(false);
+            dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationC");
+            fail("This method must throw the exception: InexistentEntityException");
         } catch(InexistentEntityException e) {
             assertTrue(true);
         }
@@ -121,8 +107,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationD() throws InexistentEntityException {
         //internal annotation and used
         ClassNode entityD = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationD");
-        System.out.println("Entity: " + entityD.getName());
-        System.out.println("Modifiers " + entityD.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityD);
         assertTrue("AnnotationA is annotation?", entityD.isAnnotation());
@@ -137,8 +121,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationE() throws InexistentEntityException {
         //internal annotation and unused
         ClassNode entityE = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationE");
-        System.out.println("Entity: " + entityE.getName());
-        System.out.println("Modifiers " + entityE.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityE);
         assertTrue("AnnotationA is annotation?", entityE.isAnnotation());
@@ -153,8 +135,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationF() throws InexistentEntityException {
         //internal annotation and used
         ClassNode entityF = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationF");
-        System.out.println("Entity: " + entityF.getName());
-        System.out.println("Modifiers " + entityF.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityF);
         assertTrue("AnnotationA is annotation?", entityF.isAnnotation());
@@ -169,8 +149,6 @@ public class AnnotationsExtractTest {
     public void testExtractAnnotationG() throws InexistentEntityException {
         //internal annotation and unused
         ClassNode entityG = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationG");
-        System.out.println("Entity: " + entityG.getName());
-        System.out.println("Modifiers " + entityG.getModifiers());
 
         assertNotNull("AnnotationA is not null?", entityG);
         assertTrue("AnnotationA is annotation?", entityG.isAnnotation());
