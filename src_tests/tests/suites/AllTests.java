@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import tests.org.designwizard.design.AbstractEntityTest;
 import tests.org.designwizard.design.AllClassesInSuiteTest;
+import tests.org.designwizard.design.AnnotationsExtractTest;
 import tests.org.designwizard.design.AnnotationsOfClassTest;
 import tests.org.designwizard.design.AnnotationsOfFieldTest;
 import tests.org.designwizard.design.CatchBlockTest;
@@ -46,7 +47,7 @@ public class AllTests extends TestCase {
 		suite.addTest(new TestSuite(ASMExtractorTest.class));
 		suite.addTest(new TestSuite(AnnotationsOfClassTest.class));
 		suite.addTest(new TestSuite(AnnotationsOfFieldTest.class));
-		
+		suite.addTest(new TestSuite(AnnotationsExtractTest.class));
 		
 		//$JUnit-END$
 		return suite;
