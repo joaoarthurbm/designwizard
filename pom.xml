@@ -7,12 +7,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<dw.groupId>org.designwizard</dw.groupId>
 		<dw.artifactId>designwizard</dw.artifactId>
-		<dw.version>1.4</dw.version>
+		<dw.version>1.4.0.3</dw.version>
 	</properties>
 
 	<groupId>org.designwizard</groupId>
 	<artifactId>designwizard</artifactId>
-	<version>1.4</version>
+	<version>1.4.0.3</version>
 
 	<packaging>jar</packaging>
 
