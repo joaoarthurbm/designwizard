@@ -36,7 +36,7 @@ public class ASMExtractor implements Extractor {
 		JarFile jarFile = new JarFile(fileName);
 		Enumeration<JarEntry> e = jarFile.entries();
 
-		URL[] urls = { new File(fileName).toURL() };
+		URL[] urls = { new File(fileName).toURI().toURL() };
 		URLClassLoader classLoader = new URLClassLoader(urls, null);
 
 		while (e.hasMoreElements()) {
@@ -57,7 +57,7 @@ public class ASMExtractor implements Extractor {
 	public void processDir(String fileName) throws IOException {
 
 		File file = new File(fileName);
-		URLClassLoader classLoader = new URLClassLoader(new URL[] { new File(fileName).toURL() });
+		URLClassLoader classLoader = new URLClassLoader(new URL[] { new File(fileName).toURI().toURL() });
 
 		if (file.isFile() && file.getName().endsWith(".class")) {
 
@@ -199,7 +199,7 @@ public class ASMExtractor implements Extractor {
 	@Override
 	public void processClass(String classFilePath) throws IOException {
 		URLClassLoader classLoader = new URLClassLoader(
-				new URL[] { new File(classFilePath).toURL() });
+				new URL[] { new File(classFilePath).toURI().toURL() });
 		classFilePath = removeDirectoryName(classFilePath);
 		processClass(classFilePath, classLoader);
 	}
