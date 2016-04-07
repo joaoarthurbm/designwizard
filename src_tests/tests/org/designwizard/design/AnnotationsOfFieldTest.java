@@ -1,9 +1,5 @@
 package tests.org.designwizard.design;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.util.Set;
 
 import org.designwizard.api.DesignWizard;
@@ -14,7 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AnnotationsOfFieldTest {
+import junit.framework.TestCase;
+
+public class AnnotationsOfFieldTest extends TestCase {
 	
 	DesignWizard dw;
 	

@@ -73,12 +73,18 @@ public class Design implements DesignIF {
 	}
 	
 	@Override
-	public void annotationExtracted(String entity) {
-		if (!this.entities.containsKey(entity)) {
-			ClassNode annotation = new ClassNode(entity);
+	public void annotationExtracted(String entityName) {
+		if (!this.entities.containsKey(entityName)) {
+			ClassNode annotation = new ClassNode(entityName);
 			annotation.modifiers.add(Modifier.ANNOTATION);
-			this.entities.put(entity, annotation);
-		}
+			this.entities.put(entityName, annotation);
+		} else {
+			// If the entity extracted without the annotation modifier and It was using as Annotation.
+            ClassNode classNode = (ClassNode) this.entities.get(entityName);
+            if (classNode != null && !classNode.isAnnotation()) {
+                classNode.modifiers.add(Modifier.ANNOTATION);
+            }
+        }
 	}
 	
 	public Set<ClassNode> getAllAnnotations() {
