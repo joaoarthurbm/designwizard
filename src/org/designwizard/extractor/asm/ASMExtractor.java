@@ -46,7 +46,7 @@ public class ASMExtractor implements Extractor {
 				this.processClass(entryName, classLoader);
 			}
 		}
-
+		jarFile.close();
 	}
 
 	/*
