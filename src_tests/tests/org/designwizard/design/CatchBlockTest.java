@@ -3,13 +3,14 @@ package tests.org.designwizard.design;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.MethodNode;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-public class CatchBlockTest extends TestCase {
+public class CatchBlockTest {
 
 	/**
 	 * Attribute
@@ -21,22 +22,23 @@ public class CatchBlockTest extends TestCase {
 	 * @throws IOException
 	 * @throws InexistentEntityException 
 	 */
-	@Override
-	protected void setUp() throws IOException, InexistentEntityException {
+	@Before
+	public void setUp() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"trycatchblock.jar");
 	}
 	
+	@Test
 	public void testCatchBlock() throws InexistentEntityException {
 		
 		MethodNode method = this.dw.getMethod("ClassWithManyCatchBlocks.main(java.lang.String[])");
-		assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.NumberFormatException.class)));
-		assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.IllegalArgumentException.class)));
+		Assert.assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.NumberFormatException.class)));
+		Assert.assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.IllegalArgumentException.class)));
 	
 		method = this.dw.getMethod("ClassWithManyCatchBlocks.<init>()");
-		assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.io.IOException.class)));
+		Assert.assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.io.IOException.class)));
 		
 		method = this.dw.getMethod("ClassWithManyCatchBlocks.catchRuntimeException()");
-		assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.IllegalArgumentException.class)));
-		assertTrue(method.getCatchedExceptions().contains(this.dw.getClass("MyException")));
+		Assert.assertTrue(method.getCatchedExceptions().contains(this.dw.getClass(java.lang.IllegalArgumentException.class)));
+		Assert.assertTrue(method.getCatchedExceptions().contains(this.dw.getClass("MyException")));
 	}
 }

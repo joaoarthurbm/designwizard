@@ -2,8 +2,6 @@ package tests.org.designwizard.design;
 
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.AbstractEntity;
 import org.designwizard.design.ClassNode;
@@ -13,33 +11,36 @@ import org.designwizard.design.Modifier;
 import org.designwizard.design.factory.AbstractElementsFactory;
 import org.designwizard.design.factory.ElementsFactory;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class AbstractEntityTest extends TestCase {
+public class AbstractEntityTest {
 	
 	private static final String DESIGNWIZARD_DIR = "classes";
 	private DesignWizard dw;
 
+	@Test
 	public void testIsAbstract() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard(DESIGNWIZARD_DIR);
 		
 		AbstractEntity abstractClass = this.dw.getClass(AbstractEntity.class);
-		assertTrue(abstractClass.isAbstract());
+		Assert.assertTrue(abstractClass.isAbstract());
 		
 		abstractClass = this.dw.getClass(AbstractElementsFactory.class);
-		assertTrue(abstractClass.isAbstract());
+		Assert.assertTrue(abstractClass.isAbstract());
 		
 		abstractClass = this.dw.getClass(AbstractElementsFactory.class);
-		assertTrue(abstractClass.isAbstract());
+		Assert.assertTrue(abstractClass.isAbstract());
 		
 		AbstractEntity concreteClass = this.dw.getClass(ElementsFactory.class);
-		assertFalse(concreteClass.isAbstract());
+		Assert.assertFalse(concreteClass.isAbstract());
 		
 		AbstractEntity abstractMethod = this.dw.getMethod("org.designwizard.design.Entity.getName()");
-		assertTrue(abstractMethod.isAbstract());
+		Assert.assertTrue(abstractMethod.isAbstract());
 	}
 	
 	/**
-	 * Todos os m�todos na interface s�o p�blicos e abstratos
+	 * Todos os métodos na interface são públicos e abstratos
 	 * @throws InexistentEntityException
 	 * @throws IOException 
 	 */
@@ -47,11 +48,11 @@ public class AbstractEntityTest extends TestCase {
 		this.dw = new DesignWizard(DESIGNWIZARD_DIR);
 		ClassNode interfaceEntity = this.dw.getClass(Entity.class);
 		
-		assertTrue(interfaceEntity.isAbstract());
+		Assert.assertTrue(interfaceEntity.isAbstract());
 		
 		for (MethodNode method: interfaceEntity.getAllMethods()) {
-			assertTrue(method.isAbstract());
-			assertTrue(method.getVisibility().equals(Modifier.PUBLIC));
+			Assert.assertTrue(method.isAbstract());
+			Assert.assertTrue(method.getVisibility().equals(Modifier.PUBLIC));
 		}
 	}
 }

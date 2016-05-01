@@ -5,19 +5,20 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * This class is a test composition class. I made some tests that must be executed to show to programmers
  * that their source code have some undesirable feature in Design. 
  * @author Jo�o Arthur Brunet Monteiro - joaoarthur@gmail.com - Grupo de M�todos Formais (GMF)
  */
-public class RedBarTest extends TestCase{
+public class RedBarTest  {
 	
 	/**
 	 * Attribute
@@ -28,8 +29,8 @@ public class RedBarTest extends TestCase{
 	 * Creates a new DesignWizard.
 	 * @throws IOException
 	 */
-	@Override
-	protected void setUp() throws IOException {
+	@Before
+	public void setUp() throws IOException {
 		this.dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"edados1.jar");
 	}
 	
@@ -37,8 +38,8 @@ public class RedBarTest extends TestCase{
 	 * Tests structural features from software source code.
 	 * @throws InexistentEntityException
 	 */
+	@Test
 	public void testDesign() throws InexistentEntityException {
-		
 		 
 		//all classes from code
 		Set<ClassNode> classes = dw.getAllClasses();
@@ -52,30 +53,28 @@ public class RedBarTest extends TestCase{
 		f = this.dw.getField("java.lang.System.out");
 		uis.addAll(f.getCallerClasses());
 		
-		assertEquals(1, uis.size());
+		Assert.assertEquals(1, uis.size());
 		ClassNode ui = new LinkedList<ClassNode>(uis).getFirst();
 		
         //source code is organized in UI + CONTROL + BUSINESS LOGIC
-		
 		
 		//identifying CONTROL
 		
 		Set<ClassNode> control = ui.getCalleeClasses();
 		control.remove(ui);
 		
-		
 		//identifying LOGIC
 		Set <ClassNode> logic = classes;
 		logic.removeAll(control);
 		logic.remove(ui);
 		
-		assertFalse(uis.isEmpty());
-		assertFalse(control.isEmpty());
-		assertFalse(logic.isEmpty());
+		Assert.assertFalse(uis.isEmpty());
+		Assert.assertFalse(control.isEmpty());
+		Assert.assertFalse(logic.isEmpty());
 		
 		// there is no entity that knows or use UI.
 		Set<ClassNode> useUI = ui.getCallerClasses();
 		useUI.remove(ui);
-		assertTrue(useUI.isEmpty());
+		Assert.assertTrue(useUI.isEmpty());
 	}
 }
