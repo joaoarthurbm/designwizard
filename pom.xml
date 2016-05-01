@@ -74,6 +74,12 @@
 			<url>https://github.com/Gustavohqo</url>
 			<id>Gustavohqo</id>
 		</developer>
+		<developer>
+			<email>catharinequintans@gmail.com</email>
+			<name>Catharine Quintans</name>
+			<url>https://github.com/catharinequintans</url>
+			<id>catharinequintans</id>
+		</developer>
 	</developers>
 
 	<dependencies>
@@ -189,7 +195,7 @@
 				</executions>
 				<configuration>
                     <!--  -Xdoclint:all -->
-                    <!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
 			</plugin>
 			<plugin>
