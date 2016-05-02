@@ -3,14 +3,13 @@ package tests.org.designwizard.design;
 import java.io.IOException;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.exception.InexistentEntityException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import junit.framework.TestCase;
 import tests.suites.AllTests;
 
 public class AllClassesInSuiteTest {

@@ -46,9 +46,10 @@ public class ClassNodeTest {
 	
 	@Test
 	public void testLoadClass() throws IOException, InexistentEntityException {
+		//FIXME Adequar esses testes para nova suíte de testes.
 		MethodNode allTest = dw.getMethod(AllTests.class.getName()+".suite()");
 		Set<ClassNode> usedBy = allTest.getCalleeClasses();
-		
+				
 		ClassNode loaded = this.dw.getClass(RelationTest.class);
 		Assert.assertTrue(usedBy.remove(loaded));
 		
