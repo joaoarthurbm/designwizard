@@ -5,14 +5,32 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <jacoco.plugin.version>0.7.6.201602180812</jacoco.plugin.version>
+		<jacoco.check.lineRatio>0.52</jacoco.check.lineRatio>
+		<jacoco.check.branchRatio>0.40</jacoco.check.branchRatio>
+		<jacoco.check.complexityMax>15</jacoco.check.complexityMax>
+		<jacoco.skip>false</jacoco.skip>
+		<jacoco.excludePattern/>
+		<jacoco.destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.destFile>
+
+		<skip.surefire.tests>false</skip.surefire.tests>
+		<skip.failsafe.tests>true</skip.failsafe.tests>
+
+		<sonar.language>java</sonar.language>
+		<sonar.exclusions>**/generated-sources/**/*</sonar.exclusions>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+	    <sonar.coverage.exclusions>${jacoco.excludePattern}</sonar.coverage.exclusions>
+		<sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+
 		<dw.groupId>org.designwizard</dw.groupId>
 		<dw.artifactId>designwizard</dw.artifactId>
-		<dw.version>1.4.0.3</dw.version>
+		<dw.version>1.4.0.4-SNAPSHOT</dw.version>
 	</properties>
 
 	<groupId>org.designwizard</groupId>
 	<artifactId>designwizard</artifactId>
-	<version>1.4.0.3</version>
+	<version>1.4.0.4-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 
@@ -44,7 +62,7 @@
 	</issueManagement>
 
 	<scm>
-		<url>git@github.com:joaoarthurbm/designwizard.git</url>
+		<url>https://github.com/joaoarthurbm/designwizard</url>
 		<connection>scm:git:git@github.com/joaoarthurbm/designwizard.git</connection>
 		<developerConnection>scm:git:git@github.com:joaoarthurbm/designwizard.git</developerConnection>
 	</scm>
@@ -73,6 +91,12 @@
 			<name>Gustavo Queiroz</name>
 			<url>https://github.com/Gustavohqo</url>
 			<id>Gustavohqo</id>
+		</developer>
+		<developer>
+			<email>catharinequintans@gmail.com</email>
+			<name>Catharine Quintans</name>
+			<url>https://github.com/catharinequintans</url>
+			<id>catharinequintans</id>
 		</developer>
 	</developers>
 
@@ -160,6 +184,7 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -239,7 +264,7 @@
 				<version>2.18.1</version>
 				<configuration>
 					<forkMode>once</forkMode>
-					<argLine>-XX:-UseSplitVerifier</argLine>
+					<argLine>${surefireArgLine} -XX:-UseSplitVerifier</argLine>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -250,10 +275,56 @@
 				</dependencies>
 			</plugin>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.plugin.version}</version>
+				<executions>
+                    <!--
+                        Prepares the property pointing to the JaCoCo runtime agent which
+                        is passed as VM argument when Maven the Surefire plugin is executed.
+                    -->
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${jacoco.destFile}</destFile>
+                            <!--
+                                Sets the name of the property containing the settings
+                                for JaCoCo runtime agent.
+                            -->
+                            <propertyName>surefireArgLine</propertyName>
+			    			<append>true</append>
+                        </configuration>
+                    </execution>
+                    <!--
+                        Ensures that the code coverage report for unit tests is created after
+                        unit tests have been run.
+                    -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${jacoco.destFile}</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.build.directory}/coverage-reports</outputDirectory>
+							<skip>${skip.surefire.tests}</skip>
+                        </configuration>
+                    </execution>
+			</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.4</version>
 				<configuration>
+					<attach>true</attach>
 					<reportPlugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -280,6 +351,15 @@
 							<version>2.18.1</version>
 						</plugin>
 						<plugin>
+							<groupId>org.jacoco</groupId>
+							<artifactId>jacoco-maven-plugin</artifactId>
+							<version>${jacoco.plugin.version}</version>
+							<configuration>
+                            		<!-- Sets the path to the file which contains the execution data. -->
+                           		<dataFile>${jacoco.destFile}</dataFile>
+                            </configuration>
+						</plugin>
+						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<version>2.16</version>
@@ -292,11 +372,11 @@
 							<artifactId>maven-pmd-plugin</artifactId>
 							<version>3.5</version>
 						</plugin>
-<plugin>
-                            				<groupId>org.codehaus.sonar-plugins</groupId>
-                            				<artifactId>maven-report</artifactId>
+						<plugin>
+                            <groupId>org.codehaus.sonar-plugins</groupId>
+                            <artifactId>maven-report</artifactId>
 							<version>0.1</version>
-			                        </plugin>
+			            </plugin>
 					</reportPlugins>
 				</configuration>
 			</plugin>
