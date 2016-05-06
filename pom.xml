@@ -36,12 +36,12 @@
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>DesignWizard - API that supports the automated inspection of Design Tests of Java programs</description>
-	<url>http://designwizard.org</url>
+	<url>http://www.designwizard.org</url>
 
 	<licenses>
 		<license>
-			<name>GNU Lesser General Public</name>
-			<url>LICENSE.txt</url>
+			<name>MIT License</name>
+			<url>http://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
 	
@@ -58,12 +58,12 @@
 
 	<issueManagement>
 		<url>https://github.com/joaoarthurbm/designwizard/issues</url>
-		<system>GitHub Issues</system>
+		<system>GitHub</system>
 	</issueManagement>
 
 	<scm>
 		<url>https://github.com/joaoarthurbm/designwizard</url>
-		<connection>scm:git:git@github.com/joaoarthurbm/designwizard.git</connection>
+		<connection>scm:git:git://github.com/joaoarthurbm/designwizard.git</connection>
 		<developerConnection>scm:git:git@github.com:joaoarthurbm/designwizard.git</developerConnection>
 	</scm>
 
@@ -97,6 +97,11 @@
 			<name>Catharine Quintans</name>
 			<url>https://github.com/catharinequintans</url>
 			<id>catharinequintans</id>
+		</developer>
+		<developer>
+			<name>Aline Costa</name>
+			<url>https://github.com/alineatcosta</url>
+			<id>alineatcosta</id>
 		</developer>
 	</developers>
 
