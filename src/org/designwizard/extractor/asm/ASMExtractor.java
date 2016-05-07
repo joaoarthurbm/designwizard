@@ -74,7 +74,7 @@ public class ASMExtractor implements Extractor {
 			}
 
 		}
-
+		classLoader.close();
 	}
 
 	private String removeDirectoryName(String fileName) {
