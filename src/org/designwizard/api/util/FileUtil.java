@@ -31,8 +31,10 @@ public class FileUtil {
 	public static boolean writeResult(File file, String contents) {
 		Writer output = null;
 	    try {
-	      output = new BufferedWriter( new FileWriter(file) );
-	      output.write( contents );
+	      FileWriter localFile = new FileWriter(file);
+	      output = new BufferedWriter(localFile);
+	      output.write(contents);
+	      localFile.close();
 	    } catch (IOException e) {
 			return false;
 		} 
