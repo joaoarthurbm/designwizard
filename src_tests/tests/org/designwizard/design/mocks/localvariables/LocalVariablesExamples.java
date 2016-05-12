@@ -1,6 +1,6 @@
 package tests.org.designwizard.design.mocks.localvariables;
 
-public class LocalVariablesExample {
+public class LocalVariablesExamples {
 	
 	/**
 	 * Tests the local variable extraction (not instantiated variable).

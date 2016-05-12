@@ -24,14 +24,14 @@ import org.junit.Test;
 public class LocalVariablesExtractionTest {
 
 	private DesignWizard dw;
-    private ClassNode localVariablesExample;
+    private ClassNode localVariablesExamples;
     private ClassNode localVariable;
 
     @Before
     public void setUp() throws Exception {
         String arquivoJar = "classes/tests/org/designwizard/design/mocks/localvariables/";
         dw = new DesignWizard(arquivoJar);
-        localVariablesExample = dw.getClass("tests.org.designwizard.design.mocks.localvariables.LocalVariablesExample");
+        localVariablesExamples = dw.getClass("tests.org.designwizard.design.mocks.localvariables.LocalVariablesExamples");
         localVariable = new ClassNode("tests.org.designwizard.design.mocks.localvariables.LocalVariable");
     }
 
@@ -45,30 +45,30 @@ public class LocalVariablesExtractionTest {
         // Internal Classes of the project
         Set<ClassNode> classes = dw.getAllClasses();
  
-        Set<FieldNode> fields = localVariablesExample.getAllFields();
-        Set<MethodNode> methods = localVariablesExample.getAllMethods();
+        Set<FieldNode> fields = localVariablesExamples.getAllFields();
+        Set<MethodNode> methods = localVariablesExamples.getAllMethods();
         for (MethodNode method : methods) {
 			System.out.println("Method: " + method.getName());
 		}
         
         assertNotNull("LocalVariable", localVariable);
-        assertNotNull("LocalVariablesExample", localVariablesExample);
+        assertNotNull("LocalVariablesExamples", localVariablesExamples);
 
         assertTrue("Contains LocalVariable class?", classes.contains(localVariable));
-        assertTrue("Contains LocalVariablesExamples class?", classes.contains(localVariablesExample));
+        assertTrue("Contains LocalVariablesExamples class?", classes.contains(localVariablesExamples));
         
         assertEquals("total classes: ", 2, classes.size());
         assertEquals("total fields: ", 0, fields.size());
-        // include LocalVariablesExample.<init>() - Constructor
+        // include LocalVariablesExamples.<init>() - Constructor
         assertEquals("total methods: ", 7, methods.size());
     }
 
     
     @Test
     public void testPrintLocalVariable() throws InexistentEntityException {
-    	assertNotNull("LocalVariablesExample", localVariablesExample);
+    	assertNotNull("LocalVariablesExamples", localVariablesExamples);
     	
-    	MethodNode printLocalVariableMethod = localVariablesExample.getDeclaredMethod("printLocalVariable()");
+    	MethodNode printLocalVariableMethod = localVariablesExamples.getDeclaredMethod("printLocalVariable()");
     	Set<ClassNode> callees = printLocalVariableMethod.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("Not Instantiated Test Callee: " + classNode.getName());
@@ -79,9 +79,9 @@ public class LocalVariablesExtractionTest {
     
     @Test
     public void testCastLocalVariable() throws InexistentEntityException {
-    	assertNotNull("LocalVariablesExample", localVariablesExample);
+    	assertNotNull("LocalVariablesExamples", localVariablesExamples);
     	
-    	MethodNode castLocalVariableMethod = localVariablesExample.getDeclaredMethod("castLocalVariable()");
+    	MethodNode castLocalVariableMethod = localVariablesExamples.getDeclaredMethod("castLocalVariable()");
     	Set<ClassNode> callees = castLocalVariableMethod.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("Cast Test Callee: " + classNode.getName());
@@ -92,9 +92,9 @@ public class LocalVariablesExtractionTest {
     
     @Test
     public void testAssignmentLocalVariable() throws InexistentEntityException {
-    	assertNotNull("LocalVariablesExample", localVariablesExample);
+    	assertNotNull("LocalVariablesExamples", localVariablesExamples);
     	
-    	MethodNode assignmentLocalVariableMethod = localVariablesExample.getDeclaredMethod("assignmentLocalVariable()");
+    	MethodNode assignmentLocalVariableMethod = localVariablesExamples.getDeclaredMethod("assignmentLocalVariable()");
     	Set<ClassNode> callees = assignmentLocalVariableMethod.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("Assignment Test Callee: " + classNode.getName());
@@ -105,9 +105,9 @@ public class LocalVariablesExtractionTest {
     
     @Test
     public void testPrintLocalVariableInstantiated() throws InexistentEntityException {
-    	assertNotNull("LocalVariablesExample", localVariablesExample);
+    	assertNotNull("LocalVariablesExamples", localVariablesExamples);
     	
-    	MethodNode printLocalVariableInstatiatedMethod = localVariablesExample.getDeclaredMethod("printLocalVariableInstantiated()");
+    	MethodNode printLocalVariableInstatiatedMethod = localVariablesExamples.getDeclaredMethod("printLocalVariableInstantiated()");
     	Set<ClassNode> callees = printLocalVariableInstatiatedMethod.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("Instantiated Test Callee: " + classNode.getName());
