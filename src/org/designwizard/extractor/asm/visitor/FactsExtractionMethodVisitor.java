@@ -153,7 +153,6 @@ public class FactsExtractionMethodVisitor extends FactsEventSourceImpl implement
 	public void visitLocalVariable(final String name, final String desc, final String signature, final Label start, final Label end, final int index) {
 		// If name != this (All methods locally call the class itself "this")
 		if (!"this".equals(name)) {
-			System.out.println(this.method + " LocalVariable Name: " + name + " desc: " + desc + " signature: " + signature);
 			super.factEvent = new FactEvent(this, "LOAD", this.method, desc);
 			super.fireRelationExtracted();
 		}
