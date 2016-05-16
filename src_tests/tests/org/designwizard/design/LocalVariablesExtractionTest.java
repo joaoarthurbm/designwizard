@@ -8,9 +8,12 @@ import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
+import org.designwizard.design.relation.Relation;
+import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -23,14 +26,18 @@ import org.junit.Test;
  */
 public class LocalVariablesExtractionTest {
 
-	private DesignWizard dw;
+	private static DesignWizard dw;
     private ClassNode localVariablesExamples;
     private ClassNode localVariable;
+    
+    @BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+    	String arquivoJar = "classes/tests/org/designwizard/design/mocks/localvariables/";
+        dw = new DesignWizard(arquivoJar);
+	}
 
     @Before
     public void setUp() throws Exception {
-        String arquivoJar = "classes/tests/org/designwizard/design/mocks/localvariables/";
-        dw = new DesignWizard(arquivoJar);
         localVariablesExamples = dw.getClass("tests.org.designwizard.design.mocks.localvariables.LocalVariablesExamples");
         localVariable = new ClassNode("tests.org.designwizard.design.mocks.localvariables.LocalVariable");
     }
@@ -72,6 +79,11 @@ public class LocalVariablesExtractionTest {
     	Set<ClassNode> callees = printLocalVariableMethod.getCalleeClasses();
     	for (ClassNode classNode : callees) {
 			System.out.println("Not Instantiated Test Callee: " + classNode.getName());
+		}
+    	
+    	Set<Relation> loads = printLocalVariableMethod.getRelations(TypesOfRelation.LOAD);
+    	for (Relation relation : loads) {
+    		System.out.println("Not Instantiated Test LOAD: " + relation.getCallerEntity().getName() + " call -> " + relation.getCalledEntity().getName());
 		}
         
     	assertTrue("Contains LocalVariable class?", callees.contains(localVariable));
