@@ -17,6 +17,10 @@ track of the official repository and keep your code updated.
 
 English is the universal language nowadays, so please don't create or comment on issues using another language.
 
+## Continuos Integration with [Travis](https://travis-ci.org)
+
+[![Build Status](https://travis-ci.org/joaoarthurbm/designwizard.svg)](https://travis-ci.org/joaoarthurbm/designwizard)
+
 ## Instructions to Eclipse users
 
 This project is not deployed as an Eclipse project. In order to import
