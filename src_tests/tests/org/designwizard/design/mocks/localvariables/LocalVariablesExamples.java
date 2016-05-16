@@ -16,7 +16,7 @@ public class LocalVariablesExamples {
 	public void castLocalVariable() {
 		LocalVariable var = null;
 		if (true) {
-			var = (LocalVariable) getObject();
+			var = (LocalVariable) anObject();
 		}
 		System.out.println("Local Variavle: " + var);
 	}
@@ -27,7 +27,7 @@ public class LocalVariablesExamples {
 	public void assignmentLocalVariable() {
 		LocalVariable var = null;
 		if (true) {
-			var = getLocalVariable();
+			var = aLocalVariable();
 		}
 		System.out.println("Local Variavle: " + var);
 	}
@@ -40,11 +40,11 @@ public class LocalVariablesExamples {
 		System.out.println("Local Variavle: " + var);
 	}
 	
-	private Object getObject() {
+	private Object anObject() {
 		return new LocalVariable();
 	}
 	
-	private LocalVariable getLocalVariable() {
+	private LocalVariable aLocalVariable() {
 		return new LocalVariable();
 	}
 }
