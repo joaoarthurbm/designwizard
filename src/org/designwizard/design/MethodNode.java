@@ -218,7 +218,7 @@ public class MethodNode extends AbstractEntity implements Entity {
 		return result;
 	}
 
-	//FIXME resolver problemas de heran�a
+	//FIXME resolver problemas de herança
 	private void resolveInterfaceProblems(ArrayList<String[]> result, MethodNode method) {
 		
 		ClassNode classNode = method.getDeclaringClass();

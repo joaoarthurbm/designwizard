@@ -145,7 +145,7 @@ public class Design implements DesignIF {
 	 * Creates the reverse relation for the entities and adds them in the Design.
 	 * @return The reverse relation or null if the there is no reverse relation for the specified type.
 	 */
-	 //TODO especificar quais s�o as reverse relations.
+	 //TODO especificar quais são as reverse relations.
 	private Relation resolveReverseRelation(Entity caller, Entity called, TypesOfRelation typeOfRelation) {
 		TypesOfRelation typeReverseRelation = typeOfRelation.getReverseRelation();
 		return (typeReverseRelation != null) ? factory.createRelation(typeReverseRelation, called, caller) : null;

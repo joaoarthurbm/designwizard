@@ -88,8 +88,8 @@ public class InheritanceTest extends TestCase {
 	public void testAttributeRedefinedBySubClass() throws IOException, InexistentEntityException {
 
 		/**
-		 * Primeiro cen�rio:
-		 *  O atributo � redefinido pela subclasse.
+		 * Primeiro cenário:
+		 *  O atributo é redefinido pela subclasse.
 		 *  A subclasse acessa de 3 maneiras: 
 		 *     id
 		 *     this.id

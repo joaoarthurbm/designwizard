@@ -15,7 +15,7 @@ import org.designwizard.exception.InexistentEntityException;
 /**
  * This class is a test composition class. I made some tests that must be executed to show to programmers
  * that their source code have some undesirable feature in Design. 
- * @author Jo�o Arthur Brunet Monteiro - joaoarthur@gmail.com - Grupo de M�todos Formais (GMF)
+ * @author João Arthur Brunet Monteiro - joaoarthur@gmail.com - Grupo de Métodos Formais (GMF)
  */
 public class RedBarTest extends TestCase{
 	

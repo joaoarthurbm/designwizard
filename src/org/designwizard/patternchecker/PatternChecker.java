@@ -4,7 +4,7 @@ import org.designwizard.design.DesignIF;
 
 /**
  * This interface provides operations to check whether a design implements correctly a design pattern.
- * @author Jo�o Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
+ * @author João Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
  *
  */
 public interface PatternChecker {

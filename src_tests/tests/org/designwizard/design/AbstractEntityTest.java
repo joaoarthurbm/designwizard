@@ -39,7 +39,7 @@ public class AbstractEntityTest extends TestCase {
 	}
 	
 	/**
-	 * Todos os m�todos na interface s�o p�blicos e abstratos
+	 * All methods in the interface are public and abstract.
 	 * @throws InexistentEntityException
 	 * @throws IOException 
 	 */

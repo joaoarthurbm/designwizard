@@ -8,7 +8,7 @@ import org.designwizard.design.relation.Relation.TypesOfRelation;
 
 /**
  * Interface to object creation.
- * @author Jo�o Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
+ * @author João Arthur Brunet Monteiro - jarthur@dsc.ufcg.edu.br
  */
 public interface AbstractElementsFactory {
 
