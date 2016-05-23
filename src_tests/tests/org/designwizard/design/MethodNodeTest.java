@@ -330,7 +330,7 @@ public class MethodNodeTest extends TestCase {
 			assertTrue(methodsThatContainsGetOrSet.contains(dw.getMethod("org.designwizard.design.Design.setReturnType(java.lang.String,java.lang.String)")));
 			assertTrue(methodsThatContainsGetOrSet.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
 			assertFalse(methodsThatContainsGetOrSet.contains(dw.getMethod("org.designwizard.api.util.FileUtil.reset()")));
-			assertTrue(methodsThatContainsGetOrSet.size() == 218);
+			assertTrue(methodsThatContainsGetOrSet.size() == 220);
 	}	
 	
 }
