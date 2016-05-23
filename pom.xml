@@ -25,12 +25,12 @@
 
 		<dw.groupId>org.designwizard</dw.groupId>
 		<dw.artifactId>designwizard</dw.artifactId>
-		<dw.version>1.4.0.4-SNAPSHOT</dw.version>
+		<dw.version>1.5-SNAPSHOT</dw.version>
 	</properties>
 
 	<groupId>org.designwizard</groupId>
 	<artifactId>designwizard</artifactId>
-	<version>1.4.0.4-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 
@@ -238,20 +238,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>2.16</version>
@@ -396,4 +382,35 @@
             		</plugins>
         	</pluginManagement>
 	</build>
+	<profiles>
+        <profile>
+            <!--To do a release, add the property to your mvn command: -->
+            <!-- mvn -DperformRelease=true -->
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
