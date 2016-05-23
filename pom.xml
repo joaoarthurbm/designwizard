@@ -25,12 +25,12 @@
 
 		<dw.groupId>org.designwizard</dw.groupId>
 		<dw.artifactId>designwizard</dw.artifactId>
-		<dw.version>1.4.0.4-SNAPSHOT</dw.version>
+		<dw.version>1.5-SNAPSHOT</dw.version>
 	</properties>
 
 	<groupId>org.designwizard</groupId>
 	<artifactId>designwizard</artifactId>
-	<version>1.4.0.4-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 
