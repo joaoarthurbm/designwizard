@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.exception.InexistentEntityException;
@@ -14,18 +12,21 @@ import org.designwizard.patternchecker.CheckWarning;
 import org.designwizard.patternchecker.CheckingResult;
 import org.designwizard.patternchecker.PatternChecker;
 import org.designwizard.patternchecker.SingletonPatternChecker;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class SingletonPatternCheckerTest extends TestCase {
+public class SingletonPatternCheckerTest {
 	
 	private DesignWizard dw;
 
+	@Test
 	public void testWhetherIsSingleton() throws InexistentEntityException, IOException {
 		this.dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"singleton.jar");
 
 		ClassNode classEntity = this.dw.getClass("SingletonImplementation");
 		PatternChecker checker = new SingletonPatternChecker(classEntity);
 		checker.verify();
-		assertTrue(checker.getVeredict());
+		Assert.assertTrue(checker.getVeredict());
 
 		/* Test with a public constructor */
 		this.dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"singletonBadConstructor1.jar");
@@ -33,12 +34,12 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonBadConstructor");
 		checker = new SingletonPatternChecker(classEntity);
 		CheckingResult resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		Set<CheckError> errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		CheckError uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.PUBLIC_CONSTRUCTOR_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.PUBLIC_CONSTRUCTOR_ERROR, 
 				uniqueError.getErrorMessage());
 
 		/* Test with a public Singleton instance */
@@ -47,18 +48,18 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonPublicField");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
 				uniqueError.getErrorMessage());
 
 		Set<CheckWarning> warnings = resultOfCheck.getWarnings();
-		assertEquals(1, warnings.size());
+		Assert.assertEquals(1, warnings.size());
 		CheckWarning uniqueWarning = warnings.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
 				uniqueWarning.getMessage());
 		
 		/* Test without Singleton instance as field */
@@ -67,18 +68,18 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonWithoutField");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
 				uniqueError.getErrorMessage());
 
 		warnings = resultOfCheck.getWarnings();
-		assertEquals(1, warnings.size());
+		Assert.assertEquals(1, warnings.size());
 		uniqueWarning = warnings.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
 				uniqueWarning.getMessage());
 		
 		/* Test with non static Singleton instance as field */
@@ -87,18 +88,18 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonNonStaticField");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.NO_SINGLETON_FIELDS_ERROR, 
 				uniqueError.getErrorMessage());
 
 		warnings = resultOfCheck.getWarnings();
-		assertEquals(1, warnings.size());
+		Assert.assertEquals(1, warnings.size());
 		uniqueWarning = warnings.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_FIELD_MISS_WARN, 
 				uniqueWarning.getMessage());
 
 
@@ -111,12 +112,12 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonGetInstanceWithoutFieldAcess");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
 				uniqueError.getErrorMessage());
 
 		/* Test getInstance without static modifier */
@@ -124,12 +125,12 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonNonStaticGetInstance");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
 				uniqueError.getErrorMessage());
 
 		/* Test without getInstance */
@@ -137,12 +138,12 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonWithoutGetInstance");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
 				uniqueError.getErrorMessage());
 
 		/* Test getInstance with private modifier */
@@ -150,12 +151,12 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonWithPrivateGetInstance");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertFalse(checker.getVeredict());
+		Assert.assertFalse(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(1, errors.size());
+		Assert.assertEquals(1, errors.size());
 		uniqueError = errors.iterator().next();
-		assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
+		Assert.assertEquals(SingletonPatternChecker.GET_INSTANCE_NOT_FOUND_ERROR, 
 				uniqueError.getErrorMessage());
 
 		/* *********** TESTING CORRECT IMPLEMENTATIONS ************* */
@@ -165,19 +166,17 @@ public class SingletonPatternCheckerTest extends TestCase {
 		classEntity = this.dw.getClass("SingletonCorrect1");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertTrue(checker.getVeredict());
+		Assert.assertTrue(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(0, errors.size());
+		Assert.assertEquals(0, errors.size());
 
 		classEntity = this.dw.getClass("SingletonCorrect2");
 		checker = new SingletonPatternChecker(classEntity);
 		resultOfCheck = checker.verify();
-		assertTrue(checker.getVeredict());
+		Assert.assertTrue(checker.getVeredict());
 		
 		errors = resultOfCheck.getErrors();
-		assertEquals(0, errors.size());
-
-	
+		Assert.assertEquals(0, errors.size());
 	}
 }

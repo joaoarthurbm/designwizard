@@ -7,10 +7,9 @@ import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.exception.InexistentEntityException;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import junit.framework.TestCase;
 
 /**
  * Test for Issue 39 - Absence of the annotation modifier in external class extraction
@@ -33,7 +32,7 @@ import junit.framework.TestCase;
  *
  * @author Taciano Morais Silva <tacianosilva@gmail.com>
  */
-public class AnnotationsExtractTest extends TestCase {
+public class AnnotationsExtractTest {
 
     private DesignWizard dw;
 
@@ -53,7 +52,7 @@ public class AnnotationsExtractTest extends TestCase {
         // Internal Classes of the project
         Set<ClassNode> classes = dw.getAllClasses();
 
-        assertEquals("total classes: ", 8, classes.size());
+        Assert.assertEquals("total classes: ", 8, classes.size());
     }
 
     @Test
@@ -61,7 +60,7 @@ public class AnnotationsExtractTest extends TestCase {
         //Total used annotation (internal e external)
         Set<ClassNode> annotations = dw.getAllAnnotations();
 
-        assertEquals("total annotations: ", 7, annotations.size());
+        Assert.assertEquals("total annotations: ", 7, annotations.size());
     }
 
     @Test
@@ -69,13 +68,13 @@ public class AnnotationsExtractTest extends TestCase {
         //external annotation and unused
         ClassNode entityA = dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationA");
 
-        assertNotNull("AnnotationA is not null?", entityA);
-        assertTrue("AnnotationA is annotation?", !entityA.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityA);
+        Assert.assertTrue("AnnotationA is annotation?", !entityA.isAnnotation());
 
         // Classes annotated by external annotationA
         Set<ClassNode> classesA = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.external.AnnotationA");
-        assertEquals("Num classes annotated by AnnotationB", 0, classesA.size());
+        Assert.assertEquals("Num classes annotated by AnnotationB", 0, classesA.size());
     }
 
     @Test
@@ -83,24 +82,19 @@ public class AnnotationsExtractTest extends TestCase {
         //external annotation and used
         ClassNode entityB = dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationB");
 
-        assertNotNull("AnnotationA is not null?", entityB);
-        assertTrue("AnnotationA is annotation?", entityB.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityB);
+        Assert.assertTrue("AnnotationA is annotation?", entityB.isAnnotation());
 
         // Classes annotated by external annotationB
         Set<ClassNode> classesB = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.external.AnnotationB");
-        assertEquals("Num classes annotated by AnnotationB", 1, classesB.size());
+        Assert.assertEquals("Num classes annotated by AnnotationB", 1, classesB.size());
     }
 
-    @Test
+    @Test(expected=InexistentEntityException.class)
     public void testExtractAnnotationC() throws InexistentEntityException {
         //external annotation, is not called and unused (it isn't extracted)
-        try {
-            dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationC");
-            fail("This method must throw the exception: InexistentEntityException");
-        } catch(InexistentEntityException e) {
-            assertTrue(true);
-        }
+        dw.getClass("tests.org.designwizard.design.mocks.annotations.external.AnnotationC");
     }
 
     @Test
@@ -108,13 +102,13 @@ public class AnnotationsExtractTest extends TestCase {
         //internal annotation and used
         ClassNode entityD = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationD");
 
-        assertNotNull("AnnotationA is not null?", entityD);
-        assertTrue("AnnotationA is annotation?", entityD.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityD);
+        Assert.assertTrue("AnnotationA is annotation?", entityD.isAnnotation());
 
         // Classes annotated by internal annotationD
         Set<ClassNode> classesD = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.issue39.AnnotationD");
-        assertEquals("Num classes annotated by AnnotationD", 1, classesD.size());
+        Assert.assertEquals("Num classes annotated by AnnotationD", 1, classesD.size());
     }
 
     @Test
@@ -122,13 +116,13 @@ public class AnnotationsExtractTest extends TestCase {
         //internal annotation and unused
         ClassNode entityE = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationE");
 
-        assertNotNull("AnnotationA is not null?", entityE);
-        assertTrue("AnnotationA is annotation?", entityE.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityE);
+        Assert.assertTrue("AnnotationA is annotation?", entityE.isAnnotation());
 
         // Classes annotated by internal annotationE
         Set<ClassNode> classesE = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.issue39.AnnotationE");
-        assertEquals("Num classes annotated by AnnotationE", 0, classesE.size());
+        Assert.assertEquals("Num classes annotated by AnnotationE", 0, classesE.size());
     }
 
     @Test
@@ -136,13 +130,13 @@ public class AnnotationsExtractTest extends TestCase {
         //internal annotation and used
         ClassNode entityF = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationF");
 
-        assertNotNull("AnnotationA is not null?", entityF);
-        assertTrue("AnnotationA is annotation?", entityF.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityF);
+        Assert.assertTrue("AnnotationA is annotation?", entityF.isAnnotation());
 
         // Classes annotated by internal annotationF
         Set<ClassNode> classesF = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.issue39.AnnotationF");
-        assertEquals("Num classes annotated by AnnotationF", 1, classesF.size());
+        Assert.assertEquals("Num classes annotated by AnnotationF", 1, classesF.size());
     }
 
     @Test
@@ -150,13 +144,13 @@ public class AnnotationsExtractTest extends TestCase {
         //internal annotation and unused
         ClassNode entityG = dw.getClass("tests.org.designwizard.design.mocks.annotations.issue39.AnnotationG");
 
-        assertNotNull("AnnotationA is not null?", entityG);
-        assertTrue("AnnotationA is annotation?", entityG.isAnnotation());
+        Assert.assertNotNull("AnnotationA is not null?", entityG);
+        Assert.assertTrue("AnnotationA is annotation?", entityG.isAnnotation());
 
         // Classes annotated by internal annotationG
         Set<ClassNode> classesG = classesByAnnotation(dw,
                 "tests.org.designwizard.design.mocks.annotations.issue39.AnnotationG");
-        assertEquals("Num classes annotated by AnnotationG", 0, classesG.size());
+        Assert.assertEquals("Num classes annotated by AnnotationG", 0, classesG.size());
     }
 
     public static Set<ClassNode> classesByAnnotation(DesignWizard dw, String annotationName) throws InexistentEntityException {

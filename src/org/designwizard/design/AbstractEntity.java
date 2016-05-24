@@ -198,7 +198,18 @@ public abstract class AbstractEntity implements Entity {
 	
 	@Override
 	public int hashCode() {
-		return this.name.hashCode();
+		return this.name.hashCode() + this.type.hashCode() + modifiers.hashCode();
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof AbstractEntity)) {
+			return false; 
+		 } else {
+	        AbstractEntity abstractEntity = (AbstractEntity) obj;
+	        return this.name.equals(abstractEntity.getName()) &&
+	        	   this.type.equals(abstractEntity.getTypeOfEntity()) &&
+	        	   this.modifiers.equals(abstractEntity.getModifiers());
+	    }
+	}
 }

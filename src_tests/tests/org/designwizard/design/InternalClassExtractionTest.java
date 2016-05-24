@@ -2,22 +2,23 @@ package tests.org.designwizard.design;
 
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-public class InternalClassExtractionTest extends TestCase {
+public class InternalClassExtractionTest {
 	
 	private DesignWizard dw;
 	
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		this.dw = new DesignWizard("resources/testFiles/innerclass.jar");
 	}
 	
-	
+	@Test
 	public void testInternalClasses() throws InexistentEntityException {
 		
 		ClassNode classNode = this.dw.getClass("ClassTest");
@@ -28,18 +29,17 @@ public class InternalClassExtractionTest extends TestCase {
 		
 		Set<ClassNode> innerClasses = classNode.getInnerClasses();
 		
-		assertTrue(innerClasses.contains(privateInner));
-		assertTrue(innerClasses.contains(protectedInner));
-		assertTrue(innerClasses.contains(publicInner));
-		assertTrue(innerClasses.contains(packageInner));
+		Assert.assertTrue(innerClasses.contains(privateInner));
+		Assert.assertTrue(innerClasses.contains(protectedInner));
+		Assert.assertTrue(innerClasses.contains(publicInner));
+		Assert.assertTrue(innerClasses.contains(packageInner));
 		
 		// existe uma classe anonima
-		assertEquals(5, innerClasses.size());
+		Assert.assertEquals(5, innerClasses.size());
 
-		assertEquals(privateInner.getOuterClass(), classNode);
-		assertEquals(publicInner.getOuterClass(), classNode);
-		assertEquals(protectedInner.getOuterClass(), classNode);
-		assertEquals(packageInner.getOuterClass(), classNode);
-		
+		Assert.assertEquals(privateInner.getOuterClass(), classNode);
+		Assert.assertEquals(publicInner.getOuterClass(), classNode);
+		Assert.assertEquals(protectedInner.getOuterClass(), classNode);
+		Assert.assertEquals(packageInner.getOuterClass(), classNode);
 	}
 }

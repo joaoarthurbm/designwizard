@@ -219,7 +219,7 @@
 				</executions>
 				<configuration>
                     <!--  -Xdoclint:all -->
-                    <!-- <additionalparam>-Xdoclint:none</additionalparam> -->
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
 			</plugin>
 			<plugin>
