@@ -40,7 +40,7 @@ public class AbstractEntityTest {
 	}
 	
 	/**
-	 * Todos os métodos na interface são públicos e abstratos
+	 * All methods in the interface are public and abstract.
 	 * @throws InexistentEntityException
 	 * @throws IOException 
 	 */

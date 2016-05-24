@@ -713,7 +713,7 @@ public class ClassNodeTest {
 	
 	@Test
 	public void testClassesWithRegularExpressions() throws InexistentEntityException {
-		// Testa o retorno das classes que cont�m a string "api"
+		// Testa o retorno das classes que contém a string "api"
 		Set<ClassNode> classesThatContainsApi = dw.getClasses(".*api.*");
 		Assert.assertFalse(classesThatContainsApi.isEmpty());
 		Assert.assertTrue(classesThatContainsApi.contains(dw.getClass("org.designwizard.api.DesignWizard")));
@@ -730,7 +730,7 @@ public class ClassNodeTest {
 		Set<ClassNode> classesStartingWithApi = dw.getClasses("^api.*");
 		Assert.assertTrue(classesStartingWithApi.isEmpty());
 		
-		// Testa o retorno das classes que cont�m a string "common" ou "factory"
+		// Testa o retorno das classes que contém a string "common" ou "factory"
 		Set<ClassNode> classesThatContainsCommonOrFactory = dw.getClasses(".*common.*|.*factory.*");
 		Assert.assertFalse(classesThatContainsCommonOrFactory.isEmpty());
 		Assert.assertTrue(classesThatContainsCommonOrFactory.contains(dw.getClass("org.designwizard.design.factory.ElementsFactory")));
