@@ -582,20 +582,20 @@ public class ClassNodeTest {
 		
 		MethodNode m = this.dw.getMethod("CalculadoraMain.main(java.lang.String[])");
 		Set<ClassNode> usedBy = m.getCalleeClasses();
-		Assert.assertEquals(6,usedBy.size());
+		Assert.assertEquals(7,usedBy.size());
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("CalculadoraMain")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Logica")));
 		
 		clazz = this.dw.getClass("CalculadoraMain");
 		usedBy = clazz.getCalleeClasses();
-		Assert.assertEquals(7,usedBy.size());
+		Assert.assertEquals(8,usedBy.size());
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("CalculadoraMain")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Logica")));
 		
 		clazz = this.dw.getClass("CalculadoraPolinomial");
 		usedBy = clazz.getCalleeClasses();
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Polinomio")));
-		Assert.assertEquals(5,usedBy.size());
+		Assert.assertEquals(7,usedBy.size());
 		
 		clazz = this.dw.getClass("Comando");
 		usedBy = clazz.getCalleeClasses();
@@ -608,7 +608,7 @@ public class ClassNodeTest {
 		
 		clazz = this.dw.getClass("Inteiro");
 		usedBy = clazz.getCalleeClasses();
-		Assert.assertEquals(5,usedBy.size());
+		Assert.assertEquals(6,usedBy.size());
 		
 		clazz = this.dw.getClass("Logica");
 		usedBy = clazz.getCalleeClasses();
@@ -617,7 +617,7 @@ public class ClassNodeTest {
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Logica")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Comando")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("CalculadoraPolinomial")));
-		Assert.assertEquals(20,usedBy.size());
+		Assert.assertEquals(23,usedBy.size());
 		
 		clazz = this.dw.getClass("Polinomio");
 		usedBy = clazz.getCalleeClasses();
@@ -625,7 +625,7 @@ public class ClassNodeTest {
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Polinomio")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Inteiro")));
 		Assert.assertTrue(usedBy.contains(this.dw.getClass("Logica")));
-		Assert.assertEquals(13,usedBy.size());
+		Assert.assertEquals(18,usedBy.size());
 		
 		clazz = this.dw.getClass("TratamentosComuns");
 		usedBy = clazz.getCalleeClasses();
@@ -660,7 +660,7 @@ public class ClassNodeTest {
 		Assert.assertTrue(innerusers.contains(this.dw.getClass("Logica.Polinomio")));
 	
 		Set<ClassNode> innerUse = clazz.getCalleeClasses();
-		Assert.assertEquals(8,innerUse.size());
+		Assert.assertEquals(9,innerUse.size());
 		Assert.assertTrue(innerUse.contains(this.dw.getClass("Logica.Polinomio$Monomio")));
 	}
 

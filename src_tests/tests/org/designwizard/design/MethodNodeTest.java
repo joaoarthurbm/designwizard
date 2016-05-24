@@ -326,6 +326,6 @@ public class MethodNodeTest {
 		Assert.assertTrue(methodsThatContainsGetOrSet
 				.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
 		Assert.assertFalse(methodsThatContainsGetOrSet.contains(dw.getMethod("org.designwizard.api.util.FileUtil.reset()")));
-		Assert.assertTrue(methodsThatContainsGetOrSet.size() == 218);
+		Assert.assertTrue(methodsThatContainsGetOrSet.size() == 220);
 	}	
 }
