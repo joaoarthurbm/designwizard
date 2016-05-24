@@ -3,6 +3,18 @@
 Visit http://www.designwizard.org to get information 
 about the usage of Design Wizard.
 
+## Requiriments
+
+### Required source code Java 1.7 (JDK 7)
+
+The DesignWizard uses the asm-3.1 library and it allows to extract informations from code of java 7 or previous.
+
+### If the source code for Java 1.8 (JDK 8), the code should not contain lambda expressions.
+
+The DesingWizard can extract design information from code of java 8. However, asm-3.1 doesn't support lambdas expression available in JDK 8.
+
+In the case your code to use lambda expressions, should occur the problem in the [issue #36](https://github.com/joaoarthurbm/designwizard/issues/36): 
+
 ## Contributing
 
 Want to contribute to this project? Awesome! Just remember to fork and add

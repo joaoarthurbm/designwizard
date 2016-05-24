@@ -1,26 +1,28 @@
 package tests.org.designwizard.design.relation;
 
-import junit.framework.TestCase;
-
 import org.designwizard.design.AbstractEntity;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.MethodNode;
 import org.designwizard.design.Modifier;
 import org.designwizard.design.relation.Relation;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author jarthur
  * This class tests all the classes that implements the Relation interface.
  */
-public class RelationTest extends TestCase {
+public class RelationTest {
 	
 	private Relation r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12;
 	private AbstractEntity c1,c2,c3,c4, m1,m2,m3,m4;
 	
 	
-	@Override
-	protected void setUp() {
+	@Before
+	public void setUp() {
 	
 		this.c1 = new ClassNode("ContainRelation");
 		c1.addModifier(Modifier.PUBLIC);
@@ -67,8 +69,8 @@ public class RelationTest extends TestCase {
 		r12 = new Relation(c1,m1,TypesOfRelation.CONTAINS);
 	}
 	
-	@Override
-	protected void tearDown() {
+	@After
+	public void tearDown() {
 		this.r1 = null;
 		this.r2 = null;
 		this.r3 = null;
@@ -86,12 +88,13 @@ public class RelationTest extends TestCase {
 		
 	}
 	
+	@Test
 	public void testEquals() {
-		assertFalse(r1.equals(r2));
-		assertFalse(r3.equals(r4));
-		assertFalse(r5.equals(r6));
-		assertTrue(r7.equals(r8));
-		assertTrue(r9.equals(r10));
-		assertTrue(r11.equals(r12));
+		Assert.assertFalse(r1.equals(r2));
+		Assert.assertFalse(r3.equals(r4));
+		Assert.assertFalse(r5.equals(r6));
+		Assert.assertTrue(r7.equals(r8));
+		Assert.assertTrue(r9.equals(r10));
+		Assert.assertTrue(r11.equals(r12));
 	}
 }

@@ -3,8 +3,6 @@ package tests.org.designwizard.design;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.common.Config;
 import org.designwizard.design.ClassNode;
@@ -13,13 +11,16 @@ import org.designwizard.design.FieldNode;
 import org.designwizard.design.factory.ElementsFactory;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class FieldNodeTest extends TestCase {
+public class FieldNodeTest {
 	
 	private static final String DESIGNWIZARD_DIR = "classes";
 	
 	private DesignWizard dw;
 	
+	@Test
 	public void testGetDeclaredType() throws InexistentEntityException {
 		String fieldName = "Class.fieldName";
 		String className = "int";
@@ -30,52 +31,55 @@ public class FieldNodeTest extends TestCase {
 		design.addRelation(TypesOfRelation.CONTAINS, "MyClass", "F:"+fieldName );
 		
 		FieldNode field = design.getField(fieldName);
-		assertFalse(field.isStatic());
+		Assert.assertFalse(field.isStatic());
 		ClassNode declaredType = design.getClass(className);
 		ClassNode parentClass = design.getClass(parentClassName);
 		
-		assertEquals(field.getType(), declaredType);
-		assertEquals(field.getDeclaringClass(), parentClass);
+		Assert.assertEquals(field.getType(), declaredType);
+		Assert.assertEquals(field.getDeclaringClass(), parentClass);
 	}
 	
+	@Test
 	public void testGetShortName() throws InexistentEntityException {
 		String fieldName = "Class.fieldName";
 		String className = "int";
 		Design design = new Design();
 		design.addRelation(TypesOfRelation.INSTANCE, "F:"+fieldName, className);
 		FieldNode field = design.getField(fieldName);
-		assertEquals("fieldName",field.getShortName());
+		Assert.assertEquals("fieldName",field.getShortName());
 	}
 	
+	@Test
 	public void testIsStatic() throws IOException, InexistentEntityException {
 		DesignWizard dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"singleton.jar");
 		FieldNode field = dw.getField("SingletonImplementation.uniqueInstance");
-		assertTrue(field.isStatic());
+		Assert.assertTrue(field.isStatic());
 	}
 	
+	@Test
 	public void testGetPackageName() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard(DESIGNWIZARD_DIR);
 		
 		ClassNode classNode = this.dw.getClass(Config.class);
 		for (FieldNode field : classNode.getAllFields()) {
-			assertEquals("org.designwizard.common", field.getPackage().getName());
+			Assert.assertEquals("org.designwizard.common", field.getPackage().getName());
 		}
 		
 		classNode = this.dw.getClass(ElementsFactory.class);
 		for (FieldNode field : classNode.getAllFields()) {
-			assertEquals("org.designwizard.design.factory", field.getPackage().getName());
+			Assert.assertEquals("org.designwizard.design.factory", field.getPackage().getName());
 		}
 		
 		classNode = this.dw.getClass(ClassNodeTest.class);
 		for (FieldNode field : classNode.getAllFields()) {
-			assertEquals("tests.org.designwizard.design", field.getPackage().getName());
+			Assert.assertEquals("tests.org.designwizard.design", field.getPackage().getName());
 		}
 		
 		this.dw = new DesignWizard("resources"+File.separator+"testFiles"+File.separator+"visibility.jar");
 		classNode = this.dw.getClass("PrivateFields");
 		for (FieldNode field : classNode.getAllFields()) {
 			//default package
-			assertEquals("default", field.getPackage().getName());
+			Assert.assertEquals("default", field.getPackage().getName());
 		}
 	}
 	

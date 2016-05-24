@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.Design;
@@ -13,21 +11,23 @@ import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
 import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
 
 //FIXME not a unit test
-public class InheritanceTest extends TestCase {
+public class InheritanceTest {
 
 	private DesignWizard dw;
 
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		// TODO Auto-generated method stub
-		super.tearDown();
 		dw = null;
 	}
 
+	@Test
 	public void testInheritance() throws InexistentEntityException {
-
 		Design design = new Design();
 		design.addRelation(TypesOfRelation.EXTENDS, "SuperClass", "java.lang.Object");
 		design.addRelation(TypesOfRelation.EXTENDS, "SubClass", "SuperClass");
@@ -40,22 +40,22 @@ public class InheritanceTest extends TestCase {
 
 		ClassNode subClass = design.getClass("SubClass");
 		Set<FieldNode> declaredFields = subClass.getDeclaredFields();
-		assertTrue(declaredFields.isEmpty());
+		Assert.assertTrue(declaredFields.isEmpty());
 		Set<FieldNode> inheritedFields = subClass.getInheritedFields();
-		assertEquals(1, inheritedFields.size());
-
+		Assert.assertEquals(1, inheritedFields.size());
 
 		Set<FieldNode> inheritedField = design.getClass("SubClass").getInheritedFields();
-		assertEquals("SuperClass.id", inheritedField.iterator().next().getName());
+		Assert.assertEquals("SuperClass.id", inheritedField.iterator().next().getName());
 
 		MethodNode methodNode = design.getMethod("SubClass.getID()");
 
-		assertEquals(methodNode.getAccessedFields().size(), 1);
+		Assert.assertEquals(methodNode.getAccessedFields().size(), 1);
 
-		assertEquals("F:SuperClass.id", "F:"+methodNode.getAccessedFields().iterator().next().getName());
-		assertFalse(design.getField("SuperClass.id").getCallerMethods().isEmpty());
+		Assert.assertEquals("F:SuperClass.id", "F:"+methodNode.getAccessedFields().iterator().next().getName());
+		Assert.assertFalse(design.getField("SuperClass.id").getCallerMethods().isEmpty());
 	}
 
+	@Test
 	public void testDesignWizardInheritance() throws IOException, InexistentEntityException {
 		dw = new DesignWizard("classes");
 
@@ -63,28 +63,29 @@ public class InheritanceTest extends TestCase {
 		Set<FieldNode> accessedFields = method.getAccessedFields();
 
 		FieldNode field = dw.getField("org.designwizard.design.AbstractEntity.name");
-		assertTrue(accessedFields.contains(field));
+		Assert.assertTrue(accessedFields.contains(field));
 
 		field = dw.getField("org.designwizard.design.AbstractEntity.type");
-		assertTrue(accessedFields.contains(field));
+		Assert.assertTrue(accessedFields.contains(field));
 
 		field = dw.getField("org.designwizard.design.AbstractEntity.relations");
-		assertTrue(accessedFields.contains(field));
+		Assert.assertTrue(accessedFields.contains(field));
 
 		method = dw.getMethod("org.designwizard.design.AbstractEntity.getName()");
 		accessedFields = method.getAccessedFields();
 		field = dw.getField("org.designwizard.design.AbstractEntity.name");
-		assertTrue(accessedFields.contains(field));
+		Assert.assertTrue(accessedFields.contains(field));
 
 		method = dw.getMethod("org.designwizard.design.ClassNode.getShortName()");
 		Set<MethodNode> methods = method.getCalleeMethods();
-		assertFalse(methods.contains(dw.getMethod("org.designwizard.design.ClassNode.getName()")));
-		assertTrue(methods.contains(dw.getMethod("org.designwizard.design.AbstractEntity.getName()")));
-		assertTrue(methods.contains(dw.getMethod("org.designwizard.design.AbstractEntity.getShortName()")));
-		assertTrue(methods.contains(dw.getMethod("org.designwizard.design.ClassNode.isInnerClass()")));
-		assertEquals(6, methods.size());
+		Assert.assertFalse(methods.contains(dw.getMethod("org.designwizard.design.ClassNode.getName()")));
+		Assert.assertTrue(methods.contains(dw.getMethod("org.designwizard.design.AbstractEntity.getName()")));
+		Assert.assertTrue(methods.contains(dw.getMethod("org.designwizard.design.AbstractEntity.getShortName()")));
+		Assert.assertTrue(methods.contains(dw.getMethod("org.designwizard.design.ClassNode.isInnerClass()")));
+		Assert.assertEquals(6, methods.size());
 	}
 
+	@Test
 	public void testAttributeRedefinedBySubClass() throws IOException, InexistentEntityException {
 
 		/**
@@ -99,22 +100,22 @@ public class InheritanceTest extends TestCase {
 
 		ClassNode subClass = dw.getClass("SubClass");
 
-		assertEquals(subClass.getDeclaredFields().size(),1);
-		assertEquals(subClass.getInheritedFields().size(),3);
+		Assert.assertEquals(subClass.getDeclaredFields().size(),1);
+		Assert.assertEquals(subClass.getInheritedFields().size(),3);
 
 		MethodNode method = dw.getMethod("SubClass.<init>()");
 		Set<FieldNode> accessedFields = method.getAccessedFields();
-		assertEquals(4, accessedFields.size());
+		Assert.assertEquals(4, accessedFields.size());
 
 		FieldNode declaredField = dw.getField("SubClass.id");
-		assertEquals(subClass.getDeclaredFields().iterator().next(),declaredField);
-
+		Assert.assertEquals(subClass.getDeclaredFields().iterator().next(),declaredField);
 
 		ClassNode superClass = dw.getClass("SuperClass");
-		assertEquals(superClass.getDeclaredFields().size(),1);
-		assertEquals(superClass.getInheritedFields().size(),2);
+		Assert.assertEquals(superClass.getDeclaredFields().size(),1);
+		Assert.assertEquals(superClass.getInheritedFields().size(),2);
 	}
 
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers() throws IOException, InexistentEntityException {
 		/**
 		 * 1
@@ -123,22 +124,22 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Filha.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("FUser.metodo()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 
 		hasToBeThere = dw.getMethod("FUser.metodo()");
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 	}
 
-
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers2() throws IOException, InexistentEntityException {
 		/**
 		 * 2
@@ -147,37 +148,38 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Pai.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("FUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("FUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("FUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("PUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		assertEquals(5,callers.size());
+		Assert.assertEquals(5,callers.size());
 
 		hasToBeThere = dw.getMethod("FUser.metodo1()");
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 
 		hasToBeThere = dw.getMethod("PUser.metodo1()");
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("PUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 	}
 
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers3() throws IOException, InexistentEntityException {
 		/**
 		 * 3
@@ -186,16 +188,17 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Pai.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("Pai.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("Pai.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 	}
 
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers4() throws IOException, InexistentEntityException {
 		/**
 		 * 4.1
@@ -206,19 +209,19 @@ public class InheritanceTest extends TestCase {
 		Set<MethodNode> callersFirstLevel = field.getCallerMethods();
 
 		MethodNode hasToBeThere = dw.getMethod("Pai.<init>(java.lang.Object)");
-		assertTrue(callersFirstLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersFirstLevel.contains(hasToBeThere));
 		hasToBeThere = dw.getMethod("Pai.metodo1()");
-		assertTrue(callersFirstLevel.contains(hasToBeThere));
-		assertEquals(2, callersFirstLevel.size());
+		Assert.assertTrue(callersFirstLevel.contains(hasToBeThere));
+		Assert.assertEquals(2, callersFirstLevel.size());
 
 		Set<MethodNode> callersSecondLevel = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("Pai.metodo2()");
-		assertTrue(callersSecondLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersSecondLevel.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callersSecondLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersSecondLevel.contains(hasToBeThere));
 		
-		assertEquals(2, callersSecondLevel.size());
+		Assert.assertEquals(2, callersSecondLevel.size());
 
 		/**
 		 * 4.2
@@ -226,41 +229,43 @@ public class InheritanceTest extends TestCase {
 		field = dw.getField("Filha.A");
 		callersFirstLevel = field.getCallerMethods();
 		hasToBeThere = dw.getMethod("Filha.<init>(java.lang.String)");
-		assertTrue(callersFirstLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersFirstLevel.contains(hasToBeThere));
 
 		callersSecondLevel = hasToBeThere.getCallerMethods();
 
 		hasToBeThere = dw.getMethod("FUser.metodo2()");
-		assertTrue(callersSecondLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersSecondLevel.contains(hasToBeThere));
 
 		callersSecondLevel = hasToBeThere.getCallerMethods(); 
 		hasToBeThere = dw.getMethod("FUserUser.metodo2()");
-		assertTrue(callersSecondLevel.contains(hasToBeThere));
+		Assert.assertTrue(callersSecondLevel.contains(hasToBeThere));
 	}
 	
-	
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers5() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources/testFiles/commands/removecommandsubsupercase5.jar");
 		
 		MethodNode method = dw.getMethod("Pai.metodo3()");
 		Set<MethodNode> callersFirstLevel = method.getCallerMethods();
-		assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo4()")));
-		assertEquals(1, callersFirstLevel.size());
+		Assert.assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo4()")));
+		Assert.assertEquals(1, callersFirstLevel.size());
 	}
 	
+	@Test
 	public void testSubClassExtendsSuperClassAttributeCallers6() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources/testFiles/commands/removecommandsubsupercase6.jar");
 		
 		MethodNode method = dw.getMethod("Pai.metodo3()");
 		Set<MethodNode> callersFirstLevel = method.getCallerMethods();
 		
-		assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo3()")));
-		assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo4()")));
-		assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo5()")));
+		Assert.assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo3()")));
+		Assert.assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo4()")));
+		Assert.assertTrue(callersFirstLevel.contains(dw.getMethod("FUser.metodo5()")));
 
-		assertEquals(3, callersFirstLevel.size());
+		Assert.assertEquals(3, callersFirstLevel.size());
 	}
 	
+	@Test
 	public void testRemoveCommandSubAbs1() throws IOException, InexistentEntityException {
 		/**
 		 * 1
@@ -269,20 +274,21 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Filha.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("FUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2, callers.size());
+		Assert.assertEquals(2, callers.size());
 
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1, callers.size());
+		Assert.assertEquals(1, callers.size());
 	}
 
+	@Test
 	public void testRemoveCommandSubAbs2() throws IOException, InexistentEntityException {
 		/**
 		 * 2
@@ -291,55 +297,56 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Pai.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("FUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("FUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("PUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("Filha.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(5, callers.size());
+		Assert.assertEquals(5, callers.size());
 		
 		callers = dw.getMethod("FUser.metodo1()").getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1, callers.size());
+		Assert.assertEquals(1, callers.size());
 		
 		callers = dw.getMethod("PUser.metodo1()").getCallerMethods();
 		hasToBeThere = dw.getMethod("PUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1, callers.size());
+		Assert.assertEquals(1, callers.size());
 	}
 	
+	@Test
 	public void testRemoveCommandSubAbs3() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources/testFiles/commands/removecommandsubabscase3.jar");
 		FieldNode field = dw.getField("Pai.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("Pai.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("Pai.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 	}
 	
-	
+	@Test
 	public void testRemoveCommandSubAbs4() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources/testFiles/commands/removecommandsubsabscase4.jar");
 		
@@ -349,21 +356,21 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Pai.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("Pai.<init>(java.lang.Object)");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("Pai.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("Pai.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 		
 		/**
 		 * 1.2
@@ -371,19 +378,20 @@ public class InheritanceTest extends TestCase {
 		field = dw.getField("Filha.A");
 		callers = field.getCallerMethods();
 		hasToBeThere = dw.getMethod("Filha.<init>(java.lang.String)");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = this.dw.getMethod("FUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = this.dw.getMethod("FUserUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 	}
 	
+	@Test
 	public void testRemoveCommandAbsAbs1() throws IOException, InexistentEntityException {
 		/**
 		 * 1.1
@@ -392,22 +400,21 @@ public class InheritanceTest extends TestCase {
 		FieldNode field = dw.getField("Filha.A");
 		Set<MethodNode> callers = field.getCallerMethods();
 		MethodNode hasToBeThere = dw.getMethod("Filha.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		
 		hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("FUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
-		assertEquals(3,callers.size());
+		Assert.assertEquals(3,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo1()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 		
 		/**
 		 * 1.2
@@ -416,19 +423,20 @@ public class InheritanceTest extends TestCase {
 		callers = method.getCallerMethods();
 
 		hasToBeThere = this.dw.getMethod("PUser.metodo3()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
 		hasToBeThere = this.dw.getMethod("FUser.metodo6User()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = this.dw.getMethod("FUserUser.metodo6UserUser()");
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 	}
 	
+	@Test
 	public void testRemoveCommandSubInt1() throws IOException, InexistentEntityException {
 		this.dw = new DesignWizard("resources/testFiles/commands/removecommandasubintcase1.jar");
 		
@@ -439,19 +447,18 @@ public class InheritanceTest extends TestCase {
 		Set<MethodNode> callers = field.getCallerMethods();
 
 		MethodNode hasToBeThere = dw.getMethod("PUser.metodo2()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = dw.getMethod("FUser.metodo()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = dw.getMethod("FUserUser.metodo()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
-		
+		Assert.assertEquals(1,callers.size());
 		
 		/**
 		 * 1.2
@@ -459,20 +466,17 @@ public class InheritanceTest extends TestCase {
 		MethodNode method = dw.getMethod("Filha.metodo6()");
 		callers = method.getCallerMethods();
 		hasToBeThere = this.dw.getMethod("PUser.metodo5()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 
 		hasToBeThere = this.dw.getMethod("FUser.metodo6User()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(2,callers.size());
+		Assert.assertEquals(2,callers.size());
 		
 		callers = hasToBeThere.getCallerMethods();
 		hasToBeThere = this.dw.getMethod("FUserUser.metodo6UserUser()");
-		assertTrue(callers.contains(hasToBeThere));
+		Assert.assertTrue(callers.contains(hasToBeThere));
 		
-		assertEquals(1,callers.size());
+		Assert.assertEquals(1,callers.size());
 	}
-	
-	
-	
 }
