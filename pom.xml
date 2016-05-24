@@ -11,7 +11,7 @@
 		<jacoco.check.branchRatio>0.40</jacoco.check.branchRatio>
 		<jacoco.check.complexityMax>15</jacoco.check.complexityMax>
 		<jacoco.skip>false</jacoco.skip>
-		<jacoco.excludePattern/>
+		<jacoco.excludePattern>tests/**</jacoco.excludePattern>
 		<jacoco.destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.destFile>
 
 		<skip.surefire.tests>false</skip.surefire.tests>
@@ -44,7 +44,7 @@
 			<url>http://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
-	
+
 	<distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -269,6 +269,11 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco.plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>${jacoco.excludePattern}</exclude>
+					</excludes>
+				</configuration>
 				<executions>
                     <!--
                         Prepares the property pointing to the JaCoCo runtime agent which
@@ -335,6 +340,10 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-javadoc-plugin</artifactId>
 							<version>2.10.3</version>
+							<configuration>
+								<!-- -Xdoclint:all -->
+								<additionalparam>-Xdoclint:none</additionalparam>
+							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -346,9 +355,12 @@
 							<artifactId>jacoco-maven-plugin</artifactId>
 							<version>${jacoco.plugin.version}</version>
 							<configuration>
-                            		<!-- Sets the path to the file which contains the execution data. -->
+                          		<!-- Sets the path to the file which contains the execution data. -->
                            		<dataFile>${jacoco.destFile}</dataFile>
-                            </configuration>
+								<excludes>
+									<exclude>${jacoco.excludePattern}</exclude>
+								</excludes>
+							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -373,14 +385,14 @@
 			</plugin>
 		</plugins>
 		<pluginManagement>
-           		 <plugins>
-                		<plugin>
-                    			<groupId>org.codehaus.mojo</groupId>
-                    			<artifactId>sonar-maven-plugin</artifactId>
-                    			<version>2.3</version>
-                		</plugin>
-            		</plugins>
-        	</pluginManagement>
+           	<plugins>
+            	<plugin>
+               			<groupId>org.codehaus.mojo</groupId>
+               			<artifactId>sonar-maven-plugin</artifactId>
+               			<version>2.3</version>
+            	</plugin>
+            </plugins>
+        </pluginManagement>
 	</build>
 	<profiles>
         <profile>
