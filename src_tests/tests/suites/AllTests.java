@@ -17,6 +17,7 @@ import tests.org.designwizard.design.EntityTest;
 import tests.org.designwizard.design.FieldNodeTest;
 import tests.org.designwizard.design.InheritanceTest;
 import tests.org.designwizard.design.InternalClassExtractionTest;
+import tests.org.designwizard.design.LocalVariablesExtractionTest;
 import tests.org.designwizard.design.MethodNodeTest;
 import tests.org.designwizard.design.PackageExtractionTest;
 import tests.org.designwizard.design.RedBarTest;
@@ -27,28 +28,29 @@ import tests.org.designwizard.patternchecker.SingletonPatternCheckerTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
-		AbstractEntityTest.class, 
-		AllClassesInSuiteTest.class, 
-		AnnotationsExtractTest.class,
-		AnnotationsOfClassTest.class,
-        AnnotationsOfFieldTest.class, 
-        AnnotationsOfMethodTest.class, 
-        CatchBlockTest.class,
-		CatchedExceptionsTest.class, 
-		ClassNodeTest.class, 
-		EntityTest.class, 
-		FieldNodeTest.class, 
-		InheritanceTest.class,
-		InternalClassExtractionTest.class, 
-		MethodNodeTest.class, 
-		PackageExtractionTest.class, 
-		RedBarTest.class,
+	AbstractEntityTest.class, 
+	AllClassesInSuiteTest.class, 
+	AnnotationsExtractTest.class,
+	AnnotationsOfClassTest.class,
+	AnnotationsOfFieldTest.class, 
+	AnnotationsOfMethodTest.class, 
+	CatchBlockTest.class,
+	CatchedExceptionsTest.class, 
+	ClassNodeTest.class,
+	EntityTest.class,
+	FieldNodeTest.class, 
+	InheritanceTest.class,
+	InternalClassExtractionTest.class,
+	LocalVariablesExtractionTest.class,
+	MethodNodeTest.class,
+	PackageExtractionTest.class,
+	RedBarTest.class,
 
-		TranslatorUtilTest.class,
+	TranslatorUtilTest.class,
 
-		ASMExtractorTest.class,
+	ASMExtractorTest.class,
 
-		RelationTest.class, SingletonPatternCheckerTest.class })
+	RelationTest.class, SingletonPatternCheckerTest.class })
 
 public final class AllTests {
 	//FIXME Esse método não deveria existir.
