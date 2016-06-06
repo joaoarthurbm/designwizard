@@ -31,18 +31,22 @@ public abstract class AbstractEntity implements Entity {
 	/* (non-Javadoc)
 	 * @see designwizard.design.entity.Entity#getShortName()
 	 */
+	@Override
 	public String getShortName() {
 		return this.getName().substring(this.getName().lastIndexOf(".")+1, this.getName().length());
 	}
 
+	@Override
 	public abstract Set<ClassNode> getCalleeClasses();
 	
+	@Override
 	public abstract Set<ClassNode> getCallerClasses();
 	
 	/**
      * Returns the set of <code>ClassNode</code> representing the annotations within this Entity.
      * @return the set of the annotations within this object.
      */
+	@Override
 	public Set<ClassNode> getAnnotations() {
 		
 		Set<Relation> containsRelations = this.getRelations(TypesOfRelation.IS_ANNOTATED_BY);
@@ -63,6 +67,7 @@ public abstract class AbstractEntity implements Entity {
 		this.modifiers = new ArrayList<Modifier>();
 	}
 	
+	@Override
 	public Modifier getVisibility() {
 		return this.visibility;
 	}
@@ -71,6 +76,7 @@ public abstract class AbstractEntity implements Entity {
 	 * Adds a relation for this entity.
 	 * @param relation the relation to be added.
 	 */
+	@Override
 	public void addRelation(Relation relation) {
 		if (this.relations.get(relation.getType()) == null){
 			Set<Relation> allRelations = new HashSet<Relation>();
@@ -92,6 +98,7 @@ public abstract class AbstractEntity implements Entity {
 	 * @param relation the relation to be removed.
 	 * @return <tt>true</tt> if this <code>Entity</code> contains the specified relation.
 	 */
+	@Override
 	public boolean removeRelation(Relation relation) {
 		Set<Relation> allRelations = this.relations.get(relation.getType());
 		return allRelations != null && allRelations.remove(relation);
@@ -101,6 +108,7 @@ public abstract class AbstractEntity implements Entity {
 	 * Method that returns the description of this design element.
 	 * @return a String representation for this element of design.
 	 */
+	@Override
 	public String getName() {
 		return this.name;
 	}
@@ -109,6 +117,7 @@ public abstract class AbstractEntity implements Entity {
 	 * Method that returns the type of this element of design.
 	 * @return the type of this element of design.
 	 */
+	@Override
 	public TypesOfEntities getTypeOfEntity() {
 		return this.type;
 	}
@@ -116,6 +125,7 @@ public abstract class AbstractEntity implements Entity {
 	/* (non-Javadoc)
 	 * @see designwizard.design.entity.Entity#addModifier(designwizard.design.entity.ui.Modifier)
 	 */
+	@Override
 	public void addModifier(Modifier modifier) {
 		if (modifier.isVisibility()) {
 			this.setVisibility(modifier);
@@ -126,6 +136,7 @@ public abstract class AbstractEntity implements Entity {
 	/* (non-Javadoc)
 	 * @see designwizard.design.Entity#addModifiers(java.util.Collection)
 	 */
+	@Override
 	public void addModifiers(Collection<Modifier> modifiers) {
 		for (Modifier mod : modifiers) {
 			if (mod.isVisibility()) {
@@ -143,6 +154,7 @@ public abstract class AbstractEntity implements Entity {
 	/* (non-Javadoc)
 	 * @see designwizard.design.entity.Entity#containsModifiers(designwizard.design.entity.ui.Modifier[])
 	 */
+	@Override
 	public boolean containsModifiers(Modifier... modifiers) {
 		return this.modifiers.containsAll(Arrays.asList(modifiers)); 
 	}
@@ -151,6 +163,7 @@ public abstract class AbstractEntity implements Entity {
 	 * Returns the visibility of this <code>Method</code>.
 	 * @return the visibility of this <code>Method</code>.
 	 */
+	@Override
 	public Collection<Modifier> getModifiers() {
 		return this.modifiers;
 	}
@@ -160,6 +173,7 @@ public abstract class AbstractEntity implements Entity {
 	 * @param relation the relation to be verified.
 	 * @return true if the specified relation is on this entity or false if not.
 	 */
+	@Override
 	public boolean containsRelation(Relation relation) {
 		Set<Relation> set = this.relations.get(relation.getType());
 		if (set == null) return false;
@@ -171,8 +185,8 @@ public abstract class AbstractEntity implements Entity {
 	 * @param type the type of the relation.
 	 * @return A Collection containing all the relations with the specified type. If there is no <code>Relation</code> of 
 	 * the specified type, an empty Set<Realtion> will be returned.
-	 * 
-	 *  */
+	 */
+	@Override
 	public Set<Relation> getRelations(TypesOfRelation type) {
 		if (this.relations.get(type) == null) {
 			return new HashSet<Relation>();
@@ -183,6 +197,7 @@ public abstract class AbstractEntity implements Entity {
 	/* (non-Javadoc)
 	 * @see designwizard.design.Entity#isAbstract()
 	 */
+	@Override
 	public boolean isAbstract() {
 		return this.containsModifiers(Modifier.ABSTRACT);
 	}
