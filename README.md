@@ -1,6 +1,6 @@
 # Design Wizard
 
-Visit http://www.designwizard.org to get information 
+Visit https://sites.google.com/site/designwizardhomepage/ to get information 
 about the usage of Design Wizard.
 
 ## Requiriments
