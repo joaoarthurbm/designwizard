@@ -1,6 +1,8 @@
 package tests.org.designwizard.design;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
@@ -8,8 +10,6 @@ import org.designwizard.api.DesignWizard;
 import org.designwizard.design.ClassNode;
 import org.designwizard.design.FieldNode;
 import org.designwizard.design.MethodNode;
-import org.designwizard.design.relation.Relation;
-import org.designwizard.design.relation.Relation.TypesOfRelation;
 import org.designwizard.exception.InexistentEntityException;
 import org.junit.After;
 import org.junit.Before;
@@ -54,9 +54,6 @@ public class LocalVariablesExtractionTest {
  
         Set<FieldNode> fields = localVariablesExamples.getAllFields();
         Set<MethodNode> methods = localVariablesExamples.getAllMethods();
-        for (MethodNode method : methods) {
-			System.out.println("Method: " + method.getName());
-		}
         
         assertNotNull("LocalVariable", localVariable);
         assertNotNull("LocalVariablesExamples", localVariablesExamples);
@@ -77,15 +74,7 @@ public class LocalVariablesExtractionTest {
     	
     	MethodNode printLocalVariableMethod = localVariablesExamples.getDeclaredMethod("printLocalVariable()");
     	Set<ClassNode> callees = printLocalVariableMethod.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Not Instantiated Test Callee: " + classNode.getName());
-		}
-    	
-    	Set<Relation> loads = printLocalVariableMethod.getRelations(TypesOfRelation.LOAD);
-    	for (Relation relation : loads) {
-    		System.out.println("Not Instantiated Test LOAD: " + relation.getCallerEntity().getName() + " call -> " + relation.getCalledEntity().getName());
-		}
-        
+    	        
     	assertTrue("Contains LocalVariable class?", callees.contains(localVariable));
     }
     
@@ -95,10 +84,7 @@ public class LocalVariablesExtractionTest {
     	
     	MethodNode castLocalVariableMethod = localVariablesExamples.getDeclaredMethod("castLocalVariable()");
     	Set<ClassNode> callees = castLocalVariableMethod.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Cast Test Callee: " + classNode.getName());
-		}
-        
+    	        
     	assertTrue("Contains LocalVariable class?", callees.contains(localVariable));
     }
     
@@ -108,10 +94,7 @@ public class LocalVariablesExtractionTest {
     	
     	MethodNode assignmentLocalVariableMethod = localVariablesExamples.getDeclaredMethod("assignmentLocalVariable()");
     	Set<ClassNode> callees = assignmentLocalVariableMethod.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Assignment Test Callee: " + classNode.getName());
-		}
-        
+    	        
     	assertTrue("Contains LocalVariable class?", callees.contains(localVariable));
     }
     
@@ -121,10 +104,7 @@ public class LocalVariablesExtractionTest {
     	
     	MethodNode printLocalVariableInstatiatedMethod = localVariablesExamples.getDeclaredMethod("printLocalVariableInstantiated()");
     	Set<ClassNode> callees = printLocalVariableInstatiatedMethod.getCalleeClasses();
-    	for (ClassNode classNode : callees) {
-			System.out.println("Instantiated Test Callee: " + classNode.getName());
-		}
-
+    	
     	assertTrue("Contains LocalVariable class?", callees.contains(localVariable));
     }
 }

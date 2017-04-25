@@ -15,6 +15,7 @@ import tests.org.designwizard.design.CatchedExceptionsTest;
 import tests.org.designwizard.design.ClassNodeTest;
 import tests.org.designwizard.design.EntityTest;
 import tests.org.designwizard.design.FieldNodeTest;
+import tests.org.designwizard.design.GenericTypeExtractTest;
 import tests.org.designwizard.design.InheritanceTest;
 import tests.org.designwizard.design.InternalClassExtractionTest;
 import tests.org.designwizard.design.LocalVariablesExtractionTest;
@@ -38,7 +39,8 @@ import tests.org.designwizard.patternchecker.SingletonPatternCheckerTest;
 	CatchedExceptionsTest.class, 
 	ClassNodeTest.class,
 	EntityTest.class,
-	FieldNodeTest.class, 
+	FieldNodeTest.class,
+	GenericTypeExtractTest.class,
 	InheritanceTest.class,
 	InternalClassExtractionTest.class,
 	LocalVariablesExtractionTest.class,

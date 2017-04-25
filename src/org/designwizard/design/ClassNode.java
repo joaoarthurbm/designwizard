@@ -783,8 +783,11 @@ public class ClassNode extends AbstractEntity implements Entity {
 		Set<Relation> loaded = this.getRelations(TypesOfRelation.IS_INVOKED_BY);
 		
 		for (Relation relation: loaded) {
-		
-			result.add((MethodNode) relation.getCalledEntity());
+			
+			Entity e = relation.getCalledEntity();
+			if (e instanceof MethodNode) {
+				result.add((MethodNode)e);
+			}
 		
 		}
 		
@@ -823,15 +826,19 @@ public class ClassNode extends AbstractEntity implements Entity {
 			feedBack.addAll(e.getCallerClasses());
 		
 		}
-		
+
 		//classes that load this class
 		Set<Relation> set = this.getRelations(TypesOfRelation.IS_INVOKED_BY);
 		
 		for (Relation relation : set) {
 		
-			MethodNode method = (MethodNode) relation.getCalledEntity();
-			if (method.getDeclaringClass() != null)	feedBack.add(method.getDeclaringClass());
-		
+			Entity e = relation.getCalledEntity();
+			if (e instanceof MethodNode) {
+				MethodNode method = (MethodNode) relation.getCalledEntity();
+				if (method.getDeclaringClass() != null)	feedBack.add(method.getDeclaringClass());
+			} else if (e instanceof ClassNode) {
+				feedBack.add((ClassNode)e);
+			}
 		}
 		
 		return feedBack;

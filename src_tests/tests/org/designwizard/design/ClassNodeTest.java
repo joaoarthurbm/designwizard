@@ -604,7 +604,7 @@ public class ClassNodeTest {
 		
 		clazz = this.dw.getClass("IF");
 		usedBy = clazz.getCalleeClasses();
-		Assert.assertEquals(0,usedBy.size());
+		Assert.assertEquals(2, usedBy.size());
 		
 		clazz = this.dw.getClass("Inteiro");
 		usedBy = clazz.getCalleeClasses();

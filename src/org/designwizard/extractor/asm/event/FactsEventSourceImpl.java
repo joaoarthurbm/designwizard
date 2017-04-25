@@ -2,14 +2,17 @@ package org.designwizard.extractor.asm.event;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.designwizard.extractor.asm.visitor.EmptyVisitor;
+import org.designwizard.extractor.asm.visitor.GenericTypeSignatureVisitor;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.signature.SignatureReader;
 
 public class FactsEventSourceImpl implements FactsEventSource {
 
@@ -154,5 +157,20 @@ public class FactsEventSourceImpl implements FactsEventSource {
 	@Override
 	public void visitSource(String source, String debug) {
 		this.cv.visitSource(source, debug);
+	}
+	
+	protected void genericTypeExtration(String entity, String signature) {
+		if (signature != null) {
+			GenericTypeSignatureVisitor msv = new GenericTypeSignatureVisitor();
+			SignatureReader r = new SignatureReader(signature);
+			r.accept(msv);
+			
+			// Extraction of generic types as ClassNode
+			Set<String> types = msv.getTypes();
+			for (String type : types) {			
+				factEvent = new FactEvent(this, "LOAD", entity, type);
+				fireRelationExtracted();
+			}
+		}
 	}
 }

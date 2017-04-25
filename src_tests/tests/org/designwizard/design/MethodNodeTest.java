@@ -309,14 +309,14 @@ public class MethodNodeTest {
 				methodThatCointainsGet.contains(dw.getMethod("org.designwizard.design.Entity.getClassNode()")));
 		Assert.assertTrue(
 				methodThatCointainsGet.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
-		Assert.assertTrue(methodThatCointainsGet.size() == 189);
+		Assert.assertEquals(193, methodThatCointainsGet.size());
 
 		// Testa o retorno das method que terminam com a string "String)"
 		Set<MethodNode> methodsFinishingWithParenteses = dw.getMethods(".*(String(\\W))$");
 		Assert.assertFalse(methodsFinishingWithParenteses.isEmpty());
 		Assert.assertTrue(methodsFinishingWithParenteses
 				.contains(dw.getMethod("org.designwizard.design.Design.packageExtracted(java.lang.String)")));
-		Assert.assertTrue(methodsFinishingWithParenteses.size() == 125);
+		Assert.assertEquals(130, methodsFinishingWithParenteses.size());
 
 		// Testa o retorno das method que contém a string "get" ou ".set"
 		Set<MethodNode> methodsThatContainsGetOrSet = dw.getMethods(".*get.*|.*(\\W)set.*");
@@ -326,6 +326,6 @@ public class MethodNodeTest {
 		Assert.assertTrue(methodsThatContainsGetOrSet
 				.contains(dw.getMethod("org.designwizard.design.PackageNode.getAllMethods()")));
 		Assert.assertFalse(methodsThatContainsGetOrSet.contains(dw.getMethod("org.designwizard.api.util.FileUtil.reset()")));
-		Assert.assertTrue(methodsThatContainsGetOrSet.size() == 220);
+		Assert.assertEquals(226, methodsThatContainsGetOrSet.size());
 	}	
 }
