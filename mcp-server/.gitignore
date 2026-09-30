@@ -1,0 +1,6 @@
+/target/
+dependency-reduced-pom.xml
+
+# Auto-created by DesignWizard's Config when none is present in the working
+# directory the server is launched from -- a runtime artifact, not source.
+/designwizard.properties

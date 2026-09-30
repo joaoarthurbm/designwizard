@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!--
+		Standalone Maven project, not a reactor module of the root designwizard pom.
+		It depends on org.designwizard:designwizard from the local repository, so the
+		root project must be `mvn install`-ed first (see AGENTS.md for the JDK 8
+		requirement that build has today). This avoids needing to publish a release
+		of designwizard to pick up API changes during development: `mvn install`
+		at the root is enough.
+	-->
+
+	<groupId>org.designwizard</groupId>
+	<artifactId>designwizard-mcp-server</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>DesignWizard MCP Server</name>
+	<description>
+		Exposes DesignWizard's bytecode-derived architecture queries and design-rule
+		checks (cyclic dependencies, dependency rules, Singleton pattern, hashCode/equals)
+		as Model Context Protocol tools over stdio, for any already-compiled Java project.
+	</description>
+
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mcp.sdk.version>2.0.1</mcp.sdk.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.designwizard</groupId>
+			<artifactId>designwizard</artifactId>
+			<version>1.5-SNAPSHOT</version>
+		</dependency>
+
+		<!--
+			designwizard's own pom marks ASM as an optional dependency (see README's
+			"Instructions to Maven users"), so consumers must declare it explicitly or
+			every DesignWizard construction fails with NoClassDefFoundError at runtime.
+		-->
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.modelcontextprotocol.sdk</groupId>
+			<artifactId>mcp-core</artifactId>
+			<version>${mcp.sdk.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.modelcontextprotocol.sdk</groupId>
+			<artifactId>mcp-json-jackson2</artifactId>
+			<version>${mcp.sdk.version}</version>
+		</dependency>
+
+		<dependency>
+			<!-- Logs go to stderr (never stdout, which is the MCP protocol channel). -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>2.0.13</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>designwizard-mcp-server</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+			</plugin>
+			<plugin>
+				<!-- Produces a single runnable jar: `java -jar designwizard-mcp-server.jar` -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>org.designwizard.mcp.Main</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
